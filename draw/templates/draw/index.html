@@ -45,14 +45,19 @@
 
     // getting the URL (you may want to use for Exercise 3)
     var url = window.location.href;
+    //console.log(url);
+    var windowSize = url.split('size=')[1];
+    //console.log(windowSize);
 
     var socket = new WebSocket(
         'ws://' + window.location.host + '/ws/draw');
 
     tool.onMouseMove = function(event) { //http://paperjs.org/reference/tool/ path examples
-       path.add(event.point);
-       // You may need to add code here if you want to pass any other information.
-       socket.send("{\"x\" : " + event.point.x + ", \"y\" : " + event.point.y + ", \"uid\" : " + uid + ", \"color\" : " + JSON.stringify(color) + "}" );
+        if (windowSize === 'small') {
+            path.add(event.point);
+            // You may need to add code here if you want to pass any other information.
+            socket.send("{\"x\" : " + event.point.x + ", \"y\" : " + event.point.y + ", \"uid\" : " + uid + ", \"color\" : " + JSON.stringify(color) + "}" );
+        }
     }
 
     socket.onmessage = function(receivedMessage) {
@@ -61,13 +66,15 @@
         // You will probably want to add some code here to draw more lines.
 
         var rUID = received['uid'];
-        if (!(rUID in users)) {
-            users[rUID] = new paper.Path();
+        if (rUID === uid || windowSize === 'large' ) {
+            if (!(rUID in users)) {
+                users[rUID] = new paper.Path();
+            }
+            var rColor = received['color'];
+            var point  = new paper.Point(received['x'], received['y']);
+            users[rUID].strokeColor = rColor;
+            users[rUID].add(point);
         }
-        var rColor = received['color'];
-        var point  = new paper.Point(received['x'], received['y']);
-        users[rUID].strokeColor = rColor;
-        users[rUID].add(point);
     }
 
     socket.onclose = function(e) {
