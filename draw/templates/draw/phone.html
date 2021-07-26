@@ -1,0 +1,50 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>P4 Phone Screen</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'draw/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <script type="text/javascript" src="{% static 'draw/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'draw/vendor/paper/paper-full.min.js' %}"></script>
+
+    <style type="text/css">
+        html, body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+        }
+        .menu-button {
+            position: absolute;
+            height:20%; 
+            width:30%;
+            border: 2px solid black;
+        }
+    </style>
+
+</head>
+<body> 
+
+    <div style="border: 2px solid black; width: 400px; height:100px;"> Playdate Planner </div>
+
+    <div class="menu-button" style="top: 40%; left: 10%;" onclick="openShareSchedUI();"> Share Schedule </div>
+    <div class="menu-button" style="top: 40%; left: 60%;" onclick=""> Book Playdates </div>
+
+</body>
+<script>
+
+    var url = window.location.href;
+    var ws = new WebSocket('ws://' + window.location.host + '/ws/draw');
+
+    function createSchedule() { // add params
+        ws.send(); // add params to send
+    }
+
+    function openShareSchedUI() {
+        alert('hi');
+    }
+
+</script>
+</html>
