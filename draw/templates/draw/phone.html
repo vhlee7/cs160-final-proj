@@ -22,28 +22,126 @@
             width:30%;
             border: 2px solid black;
         }
+
+        #share-ui {
+            position: absolute;
+            height: 90%;
+            width: 100%;
+            top: 10%;
+            left: 0;
+            background-color: #e4e4e4;
+        }
+
+        #book-ui {
+            position: absolute;
+            height: 90%;
+            width: 100%;
+            top: 10%;
+            left: 0;
+            background-color: #4e4e4e;
+        }
+
+        #close-ui {
+            position: absolute;
+            height: 5%;
+            width: 5%;
+            top: 12%;
+            left: 90%;
+            border: 2px solid red;
+            text-align: center;
+            color: red;   
+        }
     </style>
 
 </head>
 <body> 
 
-    <div style="border: 2px solid black; width: 400px; height:100px;"> Playdate Planner </div>
+    <div style="border: 2px solid black; width: 100%; height:10%;"> Playdate Planner </div>
 
     <div class="menu-button" style="top: 40%; left: 10%;" onclick="openShareSchedUI();"> Share Schedule </div>
-    <div class="menu-button" style="top: 40%; left: 60%;" onclick=""> Book Playdates </div>
+    <div class="menu-button" style="top: 40%; left: 60%;" onclick="openBookUI();"> Book Playdates </div>
+    <div id="share-ui" style="visibility:hidden;"> 
+        Add to Calendar <br><br>
+        Description: <input type="text" name="description" id="description"> <br><br>
+        Date (mm/dd/yy): <input type="text" name="date" id="date"> <br><br>
+        Start Time (hh:mm): <input type="text" name="sTime" id="sTime">
+        <select name="ap1" id="ap1"> <option value="am"> am </option> <option value="pm"> pm </option></select> <br><br> 
+        End Time (hh:mm): <input type="text" name="eTime" id="eTime">
+        <select name="ap2" id="ap2"> <option value="am"> am </option> <option value="pm"> pm </option></select> <br><br>
+        <button onclick="createSchedule();"> Add to Calendar</button>
+    </div>
+    <div id="book-ui" style="visibility:hidden;"> 
+
+    </div>
+    <div id="close-ui" style="visibility:hidden;" onclick="closeUI();"> X </div>
 
 </body>
 <script>
-
+    // view page by going to http://127.0.0.1:8000/draw/phone
+    var uid = Date.now() % 10000;
     var url = window.location.href;
     var ws = new WebSocket('ws://' + window.location.host + '/ws/draw');
 
-    function createSchedule() { // add params
-        ws.send(); // add params to send
+    ws.onmessage = function(receivedMessage) {
+        var received = JSON.parse(receivedMessage.data);
+        console.log("Received: " + JSON.stringify(received));
     }
 
+    ws.onclose = function(e) {
+        console.error('Chat socket closed unexpectedly');
+    };
+
+    function formatTime(time, ap) {
+        var h = Number(time[0]);
+        if (ap === 'pm' && h != 12) {
+            h = h + 12;
+        } else if (ap === 'am' && h == 12) {
+            h = 0;
+        }
+        h = h % 24;
+        var t = [h, Number(time[1])];
+        return t;
+    }
+
+    function createSchedule() {
+        var desc = document.getElementById("description").value;
+        var date = document.getElementById("date").value.split('/');
+        var sTime = document.getElementById("sTime").value.split(':');
+        var ap1 = document.getElementById("ap1").value;
+        var eTime = document.getElementById("eTime").value.split(':');
+        var ap2 = document.getElementById("ap2").value;
+
+        var startTime = formatTime(sTime, ap1);
+        var endTime = formatTime(eTime, ap2);
+         
+        ws.send(JSON.stringify({
+            to: 'display',
+            desc: desc,
+            date: date,
+            start: startTime,
+            end: endTime
+        })); // add mores params to send as needed
+    }
+
+
     function openShareSchedUI() {
-        alert('hi');
+        document.getElementById('share-ui').style.visibility = 'visible';
+        document.getElementById('close-ui').style.visibility = 'visible';
+    }
+
+    function openBookUI() {
+        document.getElementById('book-ui').style.visibility = 'visible';
+        document.getElementById('close-ui').style.visibility = 'visible';
+    }
+
+    function closeUI() {
+        var menuButtons = document.getElementsByClassName('menu-button');
+        for (let i = 0; i < menuButtons.length; i++) {
+            menuButtons[i].style.visibility = 'visible';
+        }
+        document.getElementById('share-ui').style.visibility = 'hidden';
+        document.getElementById('book-ui').style.visibility = 'hidden';
+        document.getElementById('close-ui').style.visibility = 'hidden';
     }
 
 </script>
