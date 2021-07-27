@@ -4,77 +4,101 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>P4 Drawing</title>
+    <title>P4 Display</title>
 
     <link rel="stylesheet" type="text/css" href="{% static 'draw/vendor/bootstrap/css/bootstrap.min.css' %}">
     <script type="text/javascript" src="{% static 'draw/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'draw/vendor/paper/paper-full.min.js' %}"></script>
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js"></script>
     <style type="text/css">
-    </style>
+        
 
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: Helvetica,Arial,Verdana,sans-serif;
+            font-size: 14px;
+        }
+
+        #calendar {
+            max-height: 85vh;
+        }
+
+        .container {
+            padding: 30px;
+        }
+    </style>
 </head>
 <body>
-    <!-- You may change the dimensions of this canvas -->
-    <canvas id="myCanvas" width="750px" height="750px"></canvas>
+    <div class="container">
+        <div id="calendar"></div>
+    </div>
+
 </body>
 <script>
+    var calendar;
 
-    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
-    function getRandNum(max) {
-        return Math.floor(Math.random() * max);
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        calendar = new FullCalendar.Calendar(calendarEl, {
+            timeZone: 'local',
+            initialView: 'timeGridWeek',
+            headerToolbar: {
+                left: 'prev,next',
+                center: 'title',
+                right: 'timeGridWeek,timeGridDay'
+            }, 
+            events: [ ]
+        });
+        calendar.render();
+    });
+    
+    function formatEvent(message) {
+        return {
+            title: message.desc,
+            start: "2021" + "-" + message.date[0] + "-" + message.date[1] + "T" + message.start[0] + ":00:00",
+            end: "2021" + "-" + message.date[0] + "-" + message.date[1] + "T" + message.end[0] + ":" + "00:00"
+        }
+    }  
+
+    
+    
+    function addEvent(event) {
+        calendar.addEvent(event);
     }
-    // generate a color randomly
-    function genHexColor() {
-        var max = 256;
-        var r = getRandNum(max).toString(16);
-        var g = getRandNum(max).toString(16);
-        var b = getRandNum(max).toString(16);
-        return '#' + r + g + b;
+
+
+    function addEventFromUser(message) {
+        
+        var start = "20" + message.date[2] + "-" + message.date[0] + "-" + message.date[1] + "T" + message.start[0] + ":" + message.start[1] + ":00";
+        
+        var end = "20" + message.date[2] + "-" + message.date[0] + "-" + message.date[1] + "T" + message.end[0] + ":" + message.end[1] + ":00";
+        
+
+        console.log(calendar);
+        console.log(start);
+        console.log(end);
+        calendar.addEvent({
+            title: message.desc,
+            start: start,
+            end: end
+        });
+        calendar.render();
     }
 
-    // setting up the canvas and one paper tool
-    var canvas = document.getElementById('myCanvas');
-    paper.setup(canvas);
-    var tool = new paper.Tool();
-    var path = new paper.Path();
-    var uid = Date.now() % 10000;
-    var color = genHexColor();
-    path.strokeColor = color;
-    var users = {};
-
-    // getting the URL (you may want to use for Exercise 3)
-    var url = window.location.href;
-    //console.log(url);
-    var windowSize = url.split('size=')[1];
-    //console.log(windowSize);
 
     var socket = new WebSocket(
         'ws://' + window.location.host + '/ws/draw');
-
-    tool.onMouseMove = function(event) { //http://paperjs.org/reference/tool/ path examples
-        if (windowSize === 'small') {
-            path.add(event.point);
-            // You may need to add code here if you want to pass any other information.
-            socket.send("{\"x\" : " + event.point.x + ", \"y\" : " + event.point.y + ", \"uid\" : " + uid + ", \"color\" : " + JSON.stringify(color) + "}" );
-        }
-    }
 
     socket.onmessage = function(receivedMessage) {
         var received = JSON.parse(receivedMessage.data);
         console.log("Received: " + JSON.stringify(received));
         // You will probably want to add some code here to draw more lines.
-
-        var rUID = received['uid'];
-        if (rUID === uid || windowSize === 'large' ) {
-            if (!(rUID in users)) {
-                users[rUID] = new paper.Path();
-            }
-            var rColor = received['color'];
-            var point  = new paper.Point(received['x'], received['y']);
-            users[rUID].strokeColor = rColor;
-            users[rUID].add(point);
-        }
+        
+        var event = formatEvent(received);
+        console.log(JSON.stringify(event));
+        addEvent(event);
     }
 
     socket.onclose = function(e) {
