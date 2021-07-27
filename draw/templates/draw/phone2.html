@@ -1,0 +1,230 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>P4 Phone Screen</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'draw/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <script type="text/javascript" src="{% static 'draw/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'draw/vendor/paper/paper-full.min.js' %}"></script>
+
+    <style type="text/css">
+        html, body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+        }
+        .menu-button {
+            position: absolute;
+            height:10%; 
+            width:30%;
+            border: 2px solid black;
+            text-align:center;
+        }
+
+        #share-ui {
+            position: absolute;
+            height: 80%;
+            width: 90%;
+            top: 20%;
+            left: 10%;
+        }
+
+        #book-ui {
+            position: absolute;
+            height: 80%;
+            width: 90%;
+            top: 20%;
+            left: 10%;
+        }
+
+        #close-ui {
+            position: absolute;
+            height: 4%;
+            width: 5%;
+            top: 20%;
+            left: 90%;
+            border: 2px solid red;
+            text-align: center;
+            color: red;   
+        }
+
+        #items {
+            position: absolute;
+            top: 35%;
+            left: 5%;
+            height: 65%;
+            width: 90%;
+            overflow-y: auto;
+        }
+    </style>
+
+</head>
+<body> 
+
+    <div style="width: 100%; height:20%; text-align:center;"> 
+        <h2>Playdate Planner</h2> <br>
+        Name: <input type="text" name="name" id="name">
+    </div>
+    <div class="menu-button" style="top: 20%; left: 10%;" onclick="openShareSchedUI();"> Add Event to Calendar </div>
+    <div class="menu-button" style="top: 20%; left: 60%;" onclick="openBookUI();"> Book Playdates </div>
+    <div id="share-ui" style="visibility:hidden;"> 
+        <h4>Add to Calendar</h4> <br><br>
+        Description: <input type="text" name="description" id="description"> <br><br>
+        Date: <input type="date" name="date" id="date"> <br><br>
+        Start Time: <input type="time" name="sTime" id="sTime" required> <br><br> 
+        End Time: <input type="time" name="eTime" id="eTime"> <br><br>
+        Additional Notes (optional): <input type="text" name="notes" id="notes"> <br><br>
+        <button onclick="closeUI();"> Go Back </button> <button onclick="createSchedule();"> Add to Calendar</button>
+    </div>
+    <div id="book-ui" style="visibility:hidden;"> 
+        Enter in an ID from the calendar to book <br><br>
+        ID: <input type="text" name="schedID" id="schedID"> <br><br>
+        <button onclick="closeUI();"> Go Back </button> <button onclick="bookSchedule();"> Book playdate </button>
+    </div>
+    <div id="close-ui" style="visibility:hidden;" onclick="closeUI();"> X </div>
+    <div id="items"> 
+        <h4> My Playdates</h4>
+    </div>
+
+</body>
+<script>
+    // view page by going to http://127.0.0.1:8000/draw/phone
+    var uid = Date.now() % 10000;
+    var scheduleItems = {};
+    var booked = {};
+
+    var url = window.location.href;
+    var ws = new WebSocket('ws://' + window.location.host + '/ws/draw');
+
+    ws.onmessage = function(receivedMessage) {
+        var received = JSON.parse(receivedMessage.data);
+        console.log("Received: " + JSON.stringify(received));
+        var dest = received['to'];
+        var rUID = received['uid'];
+
+        if (dest === 'phone') {
+            var schID = received['schID'];
+            addAttendees(schID, received['fromID'], received['from']);
+        }
+        if (dest === 'display') {
+            var schID = received['schID'];
+            scheduleItems[schID] = received;
+        }
+    }
+
+    ws.onclose = function(e) {
+        console.error('Chat socket closed unexpectedly');
+    };
+
+    function getRandNum(max) {
+        return Math.floor(Math.random() * max);
+    }
+
+    function createSchedule() {
+        var desc = document.getElementById("description").value;
+        var date = document.getElementById("date").value;
+        var sTime = document.getElementById("sTime").value;
+        var eTime = document.getElementById("eTime").value;
+        var notes = document.getElementById("notes").value;
+        var name = document.getElementById("name").value;
+
+        schID = getRandNum(99999);
+        
+        var msg = {
+            to: 'display',
+            uid: uid,
+            schID: schID,
+            name: name,
+            desc: desc,
+            date: date, // yyyy-mm-dd
+            start: sTime, // hh:mm (24h time)
+            end: eTime,
+            notes: notes
+        };
+    
+        ws.send(JSON.stringify(msg)); // add mores params to send as needed
+        addSchedule(schID, uid, name, desc, date, sTime, eTime, notes);
+    }
+
+    function bookSchedule() {
+        var shID = document.getElementById("schedID").value;
+        var name = document.getElementById("name").value;
+        if ( !(shID in scheduleItems)) {
+            alert('unable to find that playdate.');
+            return;
+        }
+        var sched = scheduleItems[shID];
+        var msg = {
+            to: 'phone',
+            from: name,
+            fromID: uid,
+            schID: shID
+        };
+
+        ws.send(JSON.stringify(msg));
+        
+        addSchedule(sched['schID'], sched['uid'], sched['name'], sched['desc'], sched['date'], sched['start'], sched['end'], sched['notes']);
+    }
+
+    function addSchedule(sid, userID, name, desc, date, start, end, notes) {
+        var pd = document.getElementById("items");
+        n = name;
+        if (userID === uid) {
+            n = '<b> me </b>';
+        }
+        
+        var e = document.createElement("div");
+        e.id = sid;
+        e.innerHTML += '<b> ID: ' + sid + '</b> <br>' + desc + '; hosted by ' + n + ' on ' + date + ' from ' + start + ' to ' + end + '<br>' +
+            'Notes: ' + notes + '<br>' +
+            'Attendees: ';
+        pd.appendChild(e);
+    }
+
+    function addAttendees(sid, userID, name) {
+        var s = document.getElementById(sid);
+        n = name + ', ';
+        var sh = scheduleItems[sid];
+        if (uid === userID) {
+            n = '<b> me </b>, ';
+        }
+        s.innerHTML += n;
+    }
+
+
+    function openShareSchedUI() {
+        document.getElementById('share-ui').style.visibility = 'visible';
+        document.getElementById('items').style.visibility = 'hidden';
+        //document.getElementById('close-ui').style.visibility = 'visible';
+        var menuButtons = document.getElementsByClassName('menu-button');
+        for (let i = 0; i < menuButtons.length; i++) {
+            menuButtons[i].style.visibility = 'hidden';
+        }
+    }
+
+    function openBookUI() {
+        document.getElementById('book-ui').style.visibility = 'visible';
+        document.getElementById('items').style.visibility = 'hidden';
+        //document.getElementById('close-ui').style.visibility = 'visible';
+        var menuButtons = document.getElementsByClassName('menu-button');
+        for (let i = 0; i < menuButtons.length; i++) {
+            menuButtons[i].style.visibility = 'hidden';
+        }
+    }
+
+    function closeUI() {
+        var menuButtons = document.getElementsByClassName('menu-button');
+        for (let i = 0; i < menuButtons.length; i++) {
+            menuButtons[i].style.visibility = 'visible';
+        }
+        document.getElementById('share-ui').style.visibility = 'hidden';
+        document.getElementById('book-ui').style.visibility = 'hidden';
+        document.getElementById('items').style.visibility = 'visible';
+        //document.getElementById('close-ui').style.visibility = 'hidden';
+    }
+
+</script>
+</html>

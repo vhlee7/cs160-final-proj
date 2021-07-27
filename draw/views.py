@@ -11,3 +11,6 @@ def room(request, room_name):
 
 def phone(request):
     return render(request, 'draw/phone.html')
+
+def phone2(request):
+    return render(request, 'draw/phone2.html')
