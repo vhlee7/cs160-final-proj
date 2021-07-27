@@ -57,36 +57,14 @@
     function formatEvent(message) {
         return {
             title: message.desc,
-            start: "2021" + "-" + message.date[0] + "-" + message.date[1] + "T" + message.start[0] + ":00:00",
-            end: "2021" + "-" + message.date[0] + "-" + message.date[1] + "T" + message.end[0] + ":" + "00:00"
+            start: message.date + "T" + message.start + ":00",
+            end: message.date + "T" + message.end + ":00"
         }
     }  
-
-    
     
     function addEvent(event) {
         calendar.addEvent(event);
     }
-
-
-    function addEventFromUser(message) {
-        
-        var start = "20" + message.date[2] + "-" + message.date[0] + "-" + message.date[1] + "T" + message.start[0] + ":" + message.start[1] + ":00";
-        
-        var end = "20" + message.date[2] + "-" + message.date[0] + "-" + message.date[1] + "T" + message.end[0] + ":" + message.end[1] + ":00";
-        
-
-        console.log(calendar);
-        console.log(start);
-        console.log(end);
-        calendar.addEvent({
-            title: message.desc,
-            start: start,
-            end: end
-        });
-        calendar.render();
-    }
-
 
     var socket = new WebSocket(
         'ws://' + window.location.host + '/ws/draw');
@@ -95,7 +73,7 @@
         var received = JSON.parse(receivedMessage.data);
         console.log("Received: " + JSON.stringify(received));
         // You will probably want to add some code here to draw more lines.
-        
+        console.log(received)
         var event = formatEvent(received);
         console.log(JSON.stringify(event));
         addEvent(event);
