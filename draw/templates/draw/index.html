@@ -53,12 +53,26 @@
         });
         calendar.render();
     });
+
+    function getRandNum(max) {
+        return Math.floor(Math.random() * max);
+    }
+   
+    function genHexColor() {
+        var max = 256;
+        var r = getRandNum(max).toString(16);
+        var g = getRandNum(max).toString(16);
+        var b = getRandNum(max).toString(16);
+        return '#' + r + g + b;
+    }
     
     function formatEvent(message) {
         return {
             title: message.desc,
             start: message.date + "T" + message.start + ":00",
-            end: message.date + "T" + message.end + ":00"
+            end: message.date + "T" + message.end + ":00",
+            backgroundColor: genHexColor(),
+            textColor: '#000000'
         }
     }  
     
