@@ -18,64 +18,78 @@
         }
         .menu-button {
             position: absolute;
-            height:20%; 
+            height:10%; 
             width:30%;
             border: 2px solid black;
+            text-align:center;
         }
 
         #share-ui {
             position: absolute;
-            height: 90%;
-            width: 100%;
-            top: 10%;
-            left: 0;
-            background-color: #e4e4e4;
+            height: 80%;
+            width: 90%;
+            top: 20%;
+            left: 10%;
         }
 
         #book-ui {
             position: absolute;
-            height: 90%;
-            width: 100%;
-            top: 10%;
-            left: 0;
-            background-color: #4e4e4e;
+            height: 80%;
+            width: 90%;
+            top: 20%;
+            left: 10%;
         }
 
         #close-ui {
             position: absolute;
-            height: 5%;
+            height: 4%;
             width: 5%;
-            top: 12%;
+            top: 20%;
             left: 90%;
             border: 2px solid red;
             text-align: center;
             color: red;   
+        }
+
+        #items {
+            position: absolute;
+            top: 35%;
+            left: 5%;
+            height: 65%;
+            width: 90%;
+            overflow-y: auto;
         }
     </style>
 
 </head>
 <body> 
 
-    <div style="border: 2px solid black; width: 100%; height:10%;"> Playdate Planner </div>
-
-    <div class="menu-button" style="top: 40%; left: 10%;" onclick="openShareSchedUI();"> Share Schedule </div>
-    <div class="menu-button" style="top: 40%; left: 60%;" onclick="openBookUI();"> Book Playdates </div>
+    <div style="width: 100%; height:20%; text-align:center;"> 
+        <h2>Playdate Planner</h2> <br>
+        Name: <input type="text" name="name" id="name">
+    </div>
+    <div class="menu-button" style="top: 20%; left: 10%;" onclick="openShareSchedUI();"> Add Event to Calendar </div>
+    <div class="menu-button" style="top: 20%; left: 60%;" onclick="openBookUI();"> Book Playdates </div>
     <div id="share-ui" style="visibility:hidden;"> 
-        Add to Calendar <br><br>
+        <h4>Add to Calendar</h4> <br><br>
         Description: <input type="text" name="description" id="description"> <br><br>
         Date (mm/dd/yy): <input type="text" name="date" id="date"> <br><br>
         Start Time (hh:mm): <input type="text" name="sTime" id="sTime">
         <select name="ap1" id="ap1"> <option value="am"> am </option> <option value="pm"> pm </option></select> <br><br> 
         End Time (hh:mm): <input type="text" name="eTime" id="eTime">
         <select name="ap2" id="ap2"> <option value="am"> am </option> <option value="pm"> pm </option></select> <br><br>
-        <button onclick="createSchedule();"> Add to Calendar</button>
+        Additional Notes (optional): <input type="text" name="notes" id="notes"> <br><br>
+        <button onclick="closeUI();"> Go Back </button> <button onclick="createSchedule();"> Add to Calendar</button>
     </div>
     <div id="book-ui" style="visibility:hidden;"> 
         Enter in an ID from the calendar to book <br><br>
         ID: <input type="text" name="schedID" id="schedID"> <br><br>
-        <button onclick="bookSchedule();"> Book playdate </button>
+        <button onclick="closeUI();"> Go Back </button> <button onclick="bookSchedule();"> Book playdate </button>
     </div>
     <div id="close-ui" style="visibility:hidden;" onclick="closeUI();"> X </div>
+    <div id="items"> 
+        <h4> My Playdates</h4>
+    </div>
 
 </body>
 <script>
@@ -94,7 +108,8 @@
         var rUID = received['uid'];
 
         if (dest === 'phone') {
-            alert('hi');
+            var schID = received['schID'];
+            addAttendees(schID, received['fromID'], received['from']);
         }
         if (dest === 'display') {
             var schID = received['schID'];
@@ -118,55 +133,117 @@
         return t;
     }
 
+    function unformatTime(time) {
+        var h = time[0];
+        ap = 'am';
+        if (h >= 12) {
+            ap = 'pm';
+        }
+        h = h % 12;
+        if (h == 0) {
+            h = 12;
+        }
+        return h + ':' + time[1] + ' ' + ap;
+    }
+
     function getRandNum(max) {
         return Math.floor(Math.random() * max);
     }
 
     function createSchedule() {
         var desc = document.getElementById("description").value;
-        var date = document.getElementById("date").value.split('/');
-        var sTime = document.getElementById("sTime").value.split(':');
+        var date = document.getElementById("date").value;
+        var sTime = document.getElementById("sTime").value;
         var ap1 = document.getElementById("ap1").value;
-        var eTime = document.getElementById("eTime").value.split(':');
+        var eTime = document.getElementById("eTime").value;
         var ap2 = document.getElementById("ap2").value;
+        var notes = document.getElementById("notes").value;
+        var name = document.getElementById("name").value;
 
-        var startTime = formatTime(sTime, ap1);
-        var endTime = formatTime(eTime, ap2);
+        var startTime = formatTime(sTime.split(':'), ap1);
+        var endTime = formatTime(eTime.split(':'), ap2);
         schID = getRandNum(99999);
         
         var msg = {
             to: 'display',
             uid: uid,
             schID: schID,
-            name: 'karen',
+            name: name,
             desc: desc,
-            date: date,
+            date: date.split('/'),
             start: startTime,
-            end: endTime
+            end: endTime,
+            notes: notes
         };
     
         ws.send(JSON.stringify(msg)); // add mores params to send as needed
+        addSchedule(schID, uid, name, desc, date, sTime + ' ' + ap1, eTime + ' ' + ap2, notes);
     }
 
     function bookSchedule() {
-        var shID = document.getElementById("schID").value;
+        var shID = document.getElementById("schedID").value;
+        var name = document.getElementById("name").value;
         if ( !(shID in scheduleItems)) {
             alert('unable to find that playdate.');
             return;
         }
         var sched = scheduleItems[shID];
+        var msg = {
+            to: 'phone',
+            from: name,
+            fromID: uid,
+            schID: shID
+        };
 
+        ws.send(JSON.stringify(msg));
+        var date = sched['date'][0] + '/' + sched['date'][1] + '/' + sched['date'][2];
+        addSchedule(sched['schID'], sched['uid'], sched['name'], sched['desc'], date, unformatTime(sched['start']), unformatTime(sched['end']), sched['notes']);
+    }
+
+    function addSchedule(sid, userID, name, desc, date, start, end, notes) {
+        var pd = document.getElementById("items");
+        n = name;
+        if (userID === uid) {
+            n = '<b> me </b>';
+        }
+        
+        var e = document.createElement("div");
+        e.id = sid;
+        e.innerHTML += '<b> ID: ' + sid + '</b> <br>' + desc + '; hosted by ' + n + ' on ' + date + ' from ' + start + ' to ' + end + '<br>' +
+            'Notes: ' + notes + '<br>' +
+            'Attendees: ';
+        pd.appendChild(e);
+    }
+
+    function addAttendees(sid, userID, name) {
+        var s = document.getElementById(sid);
+        n = name + ', ';
+        var sh = scheduleItems[sid];
+        if (uid === userID) {
+            n = '<b> me </b>, ';
+        }
+        s.innerHTML += n;
     }
 
 
     function openShareSchedUI() {
         document.getElementById('share-ui').style.visibility = 'visible';
-        document.getElementById('close-ui').style.visibility = 'visible';
+        document.getElementById('items').style.visibility = 'hidden';
+        //document.getElementById('close-ui').style.visibility = 'visible';
+        var menuButtons = document.getElementsByClassName('menu-button');
+        for (let i = 0; i < menuButtons.length; i++) {
+            menuButtons[i].style.visibility = 'hidden';
+        }
     }
 
     function openBookUI() {
         document.getElementById('book-ui').style.visibility = 'visible';
-        document.getElementById('close-ui').style.visibility = 'visible';
+        document.getElementById('items').style.visibility = 'hidden';
+        //document.getElementById('close-ui').style.visibility = 'visible';
+        var menuButtons = document.getElementsByClassName('menu-button');
+        for (let i = 0; i < menuButtons.length; i++) {
+            menuButtons[i].style.visibility = 'hidden';
+        }
     }
 
     function closeUI() {
@@ -176,7 +253,8 @@
         }
         document.getElementById('share-ui').style.visibility = 'hidden';
         document.getElementById('book-ui').style.visibility = 'hidden';
-        document.getElementById('close-ui').style.visibility = 'hidden';
+        document.getElementById('items').style.visibility = 'visible';
+        //document.getElementById('close-ui').style.visibility = 'hidden';
     }
 
 </script>
