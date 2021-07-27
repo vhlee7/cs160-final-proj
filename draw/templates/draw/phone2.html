@@ -19,68 +19,71 @@
 
         #share-ui {
             position: absolute;
-            height: 80%;
+            height: 70%;
             width: 90%;
-            top: 20%;
+            top: 25%;
             left: 10%;
         }
 
         #book-ui {
             position: absolute;
-            height: 80%;
+            height: 70%;
             width: 90%;
-            top: 20%;
+            top: 25%;
             left: 10%;
         }
 
         #items {
-            position: absolute;
-            top: 30%;
-            left: 5%;
-            height: 70%;
-            width: 90%;
             overflow-y: auto;
+        }
+
+        #title {
+            margin-top: 5%;
         }
     </style>
 
 </head>
 <body> 
 
-    <div class="container">
-        <div class="row justify-content-center">
+    <div class="container" style="height:100%; width:100%;">
+        <div id="title" class="row justify-content-center">
             <div class="col-12">
                 <div> 
-                    <p class="h1" style="text-align: center;">Playdate Planner</p> <br>
-                    Name: <input type="text" name="name" id="name">
+                    <p class="h1" style="text-align: center;font-size: 8vw;">Playdate Planner</p> <br>
+                        <div id="name-box" style="font-size: 5vw;"> Name: <input type="text" name="name" id="name"> </div>
                 </div>
             </div>
         </div>
-        <div class="row pt-3 justify-content-center">
+        <div class="row pt-3 justify-content-center" style="margin-top: 10%;">
             <div class="col-6">
-                <div class="btn btn-dark menu-button" onclick="openShareSchedUI();"> Host Playdate </div>
+                <div class="btn btn-dark menu-button" style="font-size: 5vw;" onclick="openShareSchedUI();"> Host Playdate </div>
             </div>
             <div class="col-6">
-                <div class="btn btn-dark menu-button" onclick="openBookUI();"> Book Playdates </div>
+                <div class="btn btn-dark menu-button" style="font-size: 5vw;" onclick="openBookUI();"> Book Playdates </div>
             </div>
         </div>
-        <div id="share-ui" style="visibility:hidden;"> 
-            <h4>Enter playdate details</h4> <br><br>
-            Description: <input type="text" name="description" id="description"> <br><br>
-            Date: <input type="date" name="date" id="date"> <br><br>
-            Start Time: <input type="time" name="sTime" id="sTime" required> <br><br> 
-            End Time: <input type="time" name="eTime" id="eTime"> <br><br>
-            Additional Notes (optional): <input type="text" name="notes" id="notes"> <br><br>
-            <button class="btn btn-dark" onclick="closeUI();"> Go Back </button> <button class="btn btn-dark" onclick="createSchedule();"> Add to Calendar</button>
-        </div>
-        <div id="book-ui" style="visibility:hidden;"> 
-            Enter in an ID from the calendar to RSVP <br><br>
-            ID: <input type="text" name="schedID" id="schedID"> <br><br>
-            <button class="btn btn-dark" onclick="closeUI();"> Go Back </button> <button class="btn btn-dark" onclick="bookSchedule();"> Book playdate </button>
-        </div>
-        <div id="items" style="text-align: center;"> 
-            <h4> My Playdates</h4>
-        </div>
+        <div class="row pt-3 justify-content-center" style="margin-top: 10%;">
+            <div class="col-12" id="items" style="font-size: 3vw;"> 
+                <h4 style="font-size: 5vw; text-align: center;"> My Playdates</h4>
+            </div>
+        </div>  
     </div>
+        <div id="share-ui" style="visibility:hidden; font-size: 3vw;"> 
+            <h4 style="text-align: center; font-size: 5vw;">Enter playdate details</h4> <br><br>
+            Description: <br> <input type="text" name="description" id="description"> <br><br>
+            Date: <input type="date" name="date" id="date"> <br><br>
+            Start Time: <input type="time" name="sTime" id="sTime"<br><br> 
+            End Time: <input type="time" name="eTime" id="eTime" <br><br>
+            Additional Notes (optional): <br> <input type="text" name="notes" id="notes"> <br><br>
+            <button class="btn btn-dark" style="font-size: 4vw;" onclick="closeUI();"> Go Back </button> 
+            <button class="btn btn-dark" style="font-size: 4vw;" onclick="createSchedule();"> Add to Calendar</button>
+        </div>
+        <div id="book-ui" style="visibility:hidden; font-size: 4vw;"> 
+            <h4 style="text-align: center; font-size: 5vw;"> Enter in an ID from the calendar to RSVP</h4> <br><br>
+            ID: <input type="text" name="schedID" id="schedID"> <br><br>
+            <button class="btn btn-dark" style="font-size: 4vw;" onclick="closeUI();"> Go Back </button> 
+            <button class="btn btn-dark" style="font-size: 4vw;" onclick="bookSchedule();"> Book playdate </button>
+        </div>
 
 </body>
 <script>
