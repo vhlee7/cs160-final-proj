@@ -9,6 +9,10 @@
     <link rel="stylesheet" type="text/css" href="{% static 'draw/vendor/bootstrap/css/bootstrap.min.css' %}">
     <script type="text/javascript" src="{% static 'draw/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'draw/vendor/paper/paper-full.min.js' %}"></script>
+    
+    <!-- https://weareoutman.github.io/clockpicker/ -->
+    <link href="http://weareoutman.github.io/clockpicker/dist/jquery-clockpicker.min.css" rel="stylesheet" />
+    <script src="http://weareoutman.github.io/clockpicker/dist/jquery-clockpicker.min.js"></script>
 
     <style type="text/css">
         html, body {
@@ -73,11 +77,21 @@
     <div id="share-ui" style="visibility:hidden;"> 
         <h4>Add to Calendar</h4> <br><br>
         Description: <input type="text" name="description" id="description"> <br><br>
-        Date (mm/dd/yy): <input type="text" name="date" id="date"> <br><br>
-        Start Time (hh:mm): <input type="text" name="sTime" id="sTime">
-        <select name="ap1" id="ap1"> <option value="am"> am </option> <option value="pm"> pm </option></select> <br><br> 
-        End Time (hh:mm): <input type="text" name="eTime" id="eTime">
-        <select name="ap2" id="ap2"> <option value="am"> am </option> <option value="pm"> pm </option></select> <br><br>
+        Date: <input type="date" name="date" id="date"> <br><br>
+       
+        <div class="input-group clockpicker" data-align="top" data-autoclose="true" style="width: 150px;"> Start Time:
+            <input type="text" class="form-control" value="09:30" name="sTime" id="sTime">
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-time"></span>
+            </span>
+        </div> <br><br> 
+       
+        <div class="input-group clockpicker" data-align="top" data-autoclose="true" style="width: 150px;"> End Time:
+            <input type="text" class="form-control" value="09:30" name="eTime" id="eTime">
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-time"></span>
+            </span>
+        </div> <br><br> 
         Additional Notes (optional): <input type="text" name="notes" id="notes"> <br><br>
         <button onclick="closeUI();"> Go Back </button> <button onclick="createSchedule();"> Add to Calendar</button>
     </div>
@@ -121,31 +135,6 @@
         console.error('Chat socket closed unexpectedly');
     };
 
-    function formatTime(time, ap) {
-        var h = Number(time[0]);
-        if (ap === 'pm' && h != 12) {
-            h = h + 12;
-        } else if (ap === 'am' && h == 12) {
-            h = 0;
-        }
-        h = h % 24;
-        var t = [h, Number(time[1])];
-        return t;
-    }
-
-    function unformatTime(time) {
-        var h = time[0];
-        ap = 'am';
-        if (h >= 12) {
-            ap = 'pm';
-        }
-        h = h % 12;
-        if (h == 0) {
-            h = 12;
-        }
-        return h + ':' + time[1] + ' ' + ap;
-    }
-
     function getRandNum(max) {
         return Math.floor(Math.random() * max);
     }
@@ -154,14 +143,10 @@
         var desc = document.getElementById("description").value;
         var date = document.getElementById("date").value;
         var sTime = document.getElementById("sTime").value;
-        var ap1 = document.getElementById("ap1").value;
         var eTime = document.getElementById("eTime").value;
-        var ap2 = document.getElementById("ap2").value;
         var notes = document.getElementById("notes").value;
         var name = document.getElementById("name").value;
 
-        var startTime = formatTime(sTime.split(':'), ap1);
-        var endTime = formatTime(eTime.split(':'), ap2);
         schID = getRandNum(99999);
         
         var msg = {
@@ -170,14 +155,14 @@
             schID: schID,
             name: name,
             desc: desc,
-            date: date.split('/'),
-            start: startTime,
-            end: endTime,
+            date: date,
+            start: sTime,
+            end: eTime,
             notes: notes
         };
     
         ws.send(JSON.stringify(msg)); // add mores params to send as needed
-        addSchedule(schID, uid, name, desc, date, sTime + ' ' + ap1, eTime + ' ' + ap2, notes);
+        addSchedule(schID, uid, name, desc, date, sTime, eTime, notes);
     }
 
     function bookSchedule() {
@@ -196,8 +181,7 @@
         };
 
         ws.send(JSON.stringify(msg));
-        var date = sched['date'][0] + '/' + sched['date'][1] + '/' + sched['date'][2];
-        addSchedule(sched['schID'], sched['uid'], sched['name'], sched['desc'], date, unformatTime(sched['start']), unformatTime(sched['end']), sched['notes']);
+        addSchedule(sched['schID'], sched['uid'], sched['name'], sched['desc'], sched['date'], sched['start'], sched['end'], sched['notes']);
     }
 
     function addSchedule(sid, userID, name, desc, date, start, end, notes) {
@@ -256,6 +240,8 @@
         document.getElementById('items').style.visibility = 'visible';
         //document.getElementById('close-ui').style.visibility = 'hidden';
     }
+
+    $('.clockpicker').clockpicker();
 
 </script>
 </html>
