@@ -38,23 +38,13 @@
             left: 10%;
         }
 
-        #close-ui {
-            position: absolute;
-            height: 4%;
-            width: 5%;
-            top: 20%;
-            left: 90%;
-            border: 2px solid red;
-            text-align: center;
-            color: red;   
-        }
-
         #items {
-            position: absolute;
-            top: 35%;
+            position: absolute; 
+            top: 30%;
             left: 5%;
-            height: 65%;
+            height: 70%;
             width: 90%;
+            
             overflow-y: auto;
         }
 
@@ -66,53 +56,50 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 <div> 
-                    <p class="h1">Playdate Planner</p> <br>
+                    <p class="h1" style="text-align: center;">Playdate Planner</p> <br>
                     Name: <input type="text" name="name" id="name">
                 </div>
             </div>
         </div>
         <div class="row pt-3 justify-content-center">
             <div class="col-6">
-                <div class="btn btn-dark menu-button" onclick="openShareSchedUI();"> Add Event to Calendar </div>
+                <div class="btn btn-dark menu-button" onclick="openShareSchedUI();"> Host Playdate </div>
             </div>
             <div class="col-6">
                 <div class="btn btn-dark menu-button" onclick="openBookUI();"> Book Playdates </div>
             </div>
         </div>
-    
         <div id="share-ui" style="visibility:hidden;"> 
-            <h4>Add to Calendar</h4> <br><br>
+            <h4>Enter playdate details</h4> <br><br>
             Description: <input type="text" name="description" id="description"> <br><br>
-            Date: <input type="date" name="date" id="date"> <br><br>
-                    
-            <div class="input-group clockpicker" data-align="top" data-autoclose="true" style="width: 150px;"> Start Time:
-                <input type="text" class="form-control" value="09:30" name="sTime" id="sTime">
+            Date: <input type="date" name="date" id="date"> <br><br>    
+            <div class="input-group clockpicker clock-start" data-align="top" data-autoclose="true" style="width: 150px;"> Start Time:
+                <input type="text" class="form-control" value="" placeholder="Now" name="sTime" id="sTime">
                 <span class="input-group-addon">
-                <span class="glyphicon glyphicon-time"></span>
+                    <span class="glyphicon glyphicon-time"></span>
                 </span>
             </div> 
             <br><br> 
-            <div class="input-group clockpicker" data-align="top" data-autoclose="true" style="width: 150px;"> End Time:
-                <input type="text" class="form-control" value="09:30" name="eTime" id="eTime">
-            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-time"></span>
-                            </span>
+            <div class="input-group clockpicker clock-end" data-align="top" data-autoclose="true" style="width: 150px;"> End Time:
+                <input type="text" class="form-control" value="" placeholder="Now" name="eTime" id="eTime">
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                </span>
             </div>
             <br><br> 
             Additional Notes (optional): <input type="text" name="notes" id="notes"> <br><br>
             <button class="btn btn-dark" onclick="closeUI();"> Go Back </button> <button class="btn btn-dark" onclick="createSchedule();"> Add to Calendar</button>
-
-            <div id="book-ui" style="visibility:hidden;"> 
-                Enter in an ID from the calendar to book <br><br>
-                ID: <input type="text" name="schedID" id="schedID"> <br><br>
-                <button class="btn btn-dark" onclick="closeUI();"> Go Back </button> <button class="btn btn-dark" onclick="bookSchedule();"> Book playdate </button>
-            </div>
-            <div id="close-ui" style="visibility:hidden;" onclick="closeUI();"> X </div>
-            <div id="items"> 
-                    <h4> My Playdates</h4>
-            </div>
+        </div>
+        <div id="book-ui" style="visibility:hidden;"> 
+            Enter in an ID from the calendar to RSVP <br><br>
+            ID: <input type="text" name="schedID" id="schedID"> <br><br>
+            <button class="btn btn-dark" onclick="closeUI();"> Go Back </button> <button class="btn btn-dark" onclick="bookSchedule();"> Book playdate </button>
+        </div>
+        <div id="items"> 
+            <h4 style="text-align: center;"> My Playdates</h4>
         </div>
     </div>
+    
 
 </body>
 <script>
@@ -250,7 +237,17 @@
         //document.getElementById('close-ui').style.visibility = 'hidden';
     }
 
-    $('.clockpicker').clockpicker();
+    $('.clockpicker.clock-start').clockpicker({
+        placement: 'right',
+        donetext: 'Done',
+        'default': 'now'
+    });
+    $('.clockpicker.clock-end').clockpicker({
+        placement: 'right',
+        align: 'left',
+        donetext: 'Done',
+        'default': 'now'
+    });
 
 </script>
 </html>
