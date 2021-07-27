@@ -71,7 +71,9 @@
         <button onclick="createSchedule();"> Add to Calendar</button>
     </div>
     <div id="book-ui" style="visibility:hidden;"> 
-
+        Enter in an ID from the calendar to book <br><br>
+        ID: <input type="text" name="schedID" id="schedID"> <br><br>
+        <button onclick="bookSchedule();"> Book playdate </button>
     </div>
     <div id="close-ui" style="visibility:hidden;" onclick="closeUI();"> X </div>
 
@@ -79,12 +81,25 @@
 <script>
     // view page by going to http://127.0.0.1:8000/draw/phone
     var uid = Date.now() % 10000;
+    var scheduleItems = {};
+    var booked = {};
+
     var url = window.location.href;
     var ws = new WebSocket('ws://' + window.location.host + '/ws/draw');
 
     ws.onmessage = function(receivedMessage) {
         var received = JSON.parse(receivedMessage.data);
         console.log("Received: " + JSON.stringify(received));
+        var dest = received['to'];
+        var rUID = received['uid'];
+
+        if (dest === 'phone') {
+            alert('hi');
+        }
+        if (dest === 'display') {
+            var schID = received['schID'];
+            scheduleItems[schID] = received;
+        }
     }
 
     ws.onclose = function(e) {
@@ -103,6 +118,10 @@
         return t;
     }
 
+    function getRandNum(max) {
+        return Math.floor(Math.random() * max);
+    }
+
     function createSchedule() {
         var desc = document.getElementById("description").value;
         var date = document.getElementById("date").value.split('/');
@@ -113,15 +132,30 @@
 
         var startTime = formatTime(sTime, ap1);
         var endTime = formatTime(eTime, ap2);
-         
-        ws.send(JSON.stringify({
+        schID = getRandNum(99999);
+        
+        var msg = {
             to: 'display',
             uid: uid,
+            schID: schID,
+            name: 'karen',
             desc: desc,
             date: date,
             start: startTime,
             end: endTime
-        })); // add mores params to send as needed
+        };
+    
+        ws.send(JSON.stringify(msg)); // add mores params to send as needed
+    }
+
+    function bookSchedule() {
+        var shID = document.getElementById("schID").value;
+        if ( !(shID in scheduleItems)) {
+            alert('unable to find that playdate.');
+            return;
+        }
+        var sched = scheduleItems[shID];
+
     }
 
 
