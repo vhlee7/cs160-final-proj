@@ -131,7 +131,7 @@
             
             <div class="row mt-1 justify-content-center">
                 <div class="col-xs-12" id="items" > 
-                    <h6> My Playdates</h4>
+                    <h5 style="text-align: center;"> My Playdates</h5>
                 </div>
             </div>
 
@@ -194,6 +194,8 @@
     
         ws.send(JSON.stringify(msg)); // add mores params to send as needed
         addSchedule(schID, uid, name, desc, date, sTime, eTime, notes);
+        alert('You have successfully sent your playdate on ' + date + ' from ' + sTime + ' to ' + eTime + ' to the calendar.');
+        closeUI();
     }
 
     function bookSchedule() {
@@ -214,6 +216,8 @@
         ws.send(JSON.stringify(msg));
         
         addSchedule(sched['schID'], sched['uid'], sched['name'], sched['desc'], sched['date'], sched['start'], sched['end'], sched['notes']);
+        alert('You have successfully RSVPed the playdate on ' + sched['date'] + ' from ' + sched['start'] + ' to ' + sched['end']);
+        closeUI();
     }
 
     function addSchedule(sid, userID, name, desc, date, start, end, notes) {
@@ -225,7 +229,7 @@
         
         var e = document.createElement("div");
         e.id = sid;
-        e.innerHTML += '<b> ID: ' + sid + '</b> <br>' + desc + '; hosted by ' + n + ' on ' + date + ' from ' + start + ' to ' + end + '<br>' +
+        e.innerHTML += '<b> ID: ' + sid + '</b> <br>' + desc + '<br>Host: ' + n + '<br>When: ' + date + '; ' + start + ' - ' + end + '<br>' +
             'Notes: ' + notes + '<br>' +
             'Attendees: ';
         pd.appendChild(e);
