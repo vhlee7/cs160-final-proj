@@ -21,6 +21,7 @@
             margin: 0;
             padding: 0;
             font-family: 'Comic Neue', cursive;
+            background-color: #f8f9fa;
         }
 
         .h1 {
@@ -49,6 +50,10 @@
     document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
         calendar = new FullCalendar.Calendar(calendarEl, {
+            eventClick: function(info) {
+                var eventObj = info.event;
+                alert(eventObj.title);
+            },
             timeZone: 'local',
             initialView: 'timeGridWeek',
             headerToolbar: {
@@ -60,26 +65,12 @@
         });
         calendar.render();
     });
-
-    function getRandNum(max) {
-        return Math.floor(Math.random() * max);
-    }
-   
-    function genHexColor() {
-        var max = 256;
-        var r = getRandNum(max).toString(16);
-        var g = getRandNum(max).toString(16);
-        var b = getRandNum(max).toString(16);
-        return '#' + r + g + b;
-    }
     
     function formatEvent(message) {
         return {
-            title: message.desc,
+            title: "[" + message.schID + "] " + message.name + ' - '+ message.desc,
             start: message.date + "T" + message.start + ":00",
-            end: message.date + "T" + message.end + ":00",
-            backgroundColor: genHexColor(),
-            textColor: '#000000'
+            end: message.date + "T" + message.end + ":00" 
         }
     }  
     
@@ -95,9 +86,11 @@
         console.log("Received: " + JSON.stringify(received));
         // You will probably want to add some code here to draw more lines.
         console.log(received)
-        var event = formatEvent(received);
-        console.log(JSON.stringify(event));
-        addEvent(event);
+        if (received['to'] == 'display') {
+            var event = formatEvent(received);
+            console.log(JSON.stringify(event));
+            addEvent(event);
+        }
     }
 
     socket.onclose = function(e) {

@@ -5,16 +5,22 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Phone Screen #2</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static 'draw/vendor/bootstrap/css/bootstrap.min.css' %}">
     <script type="text/javascript" src="{% static 'draw/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'draw/vendor/paper/paper-full.min.js' %}"></script>
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
     <style type="text/css">
         html, body {
             height: 100%;
             width: 100%;
             margin: 0;
+        }
+
+        * {
+            font-family: 'Comic Neue', cursive;
         }
 
         .phone-screen {
@@ -38,37 +44,40 @@
 
         .add-event, .book-event {
             position: absolute;
+            margin-left: auto;
+            margin-right: auto;
             left: 0;
-            top: 0;
+            right: 0;
+            
         }
         
         .add-event {
-            padding-left: 15px;
-            padding-right: 15px;
+            padding-left: 25px;
+            padding-right: 25px;
         }
 
         .book-event {
-            padding-left: 5px;
-            padding-right: 5px;
+            padding-left: 25px;
+            padding-right: 25px;
         }
 
     </style>
 
 </head>
 <body> 
-    <div class="phone-screen" style="height:667px; width:375px; border: black solid 3px; border-radius: 15px;">
+    <div class="phone-screen bg-light p-5">
         
         <div id="title" class="row justify-content-center">
-            <div class="col-sx-12 w-100 text-center">
-                    <p class="h1 title">Playdate Planner</p> 
+            <div class="col-xs-12 col-sm-12 col-lg-6 w-100 text-center">
+                    <p class="h2 title">Playdate Planner</p> 
                     <form class="form-inline justify-content-center">
                         <label style="margin-right: 3px;" for="inputName">Name: </label>
-                        <input type="text" name="name" class="form-control mb-2 mr-sm-2" id="name" placeholder="Name">
+                        <input type="text" name="name" class="form-control w-75 form-control-sm" id="name" placeholder="Name">
                     </form>
             </div>
         </div>
 
-        <div class="row pt-3 justify-content-center">
+        <div class="row pt-3 mt-3 justify-content-center">
             <div class="col-xs-5 mr-1">
                 <div class="btn btn-dark btn-sm btn-block menu-button" onclick="openShareSchedUI();"> Host Playdate </div>
             </div>
@@ -78,8 +87,8 @@
         </div>
 
         <div class="row justify-content-center">
-            <div class="col-sm-10 mx-auto"> 
-                <div class="form-container">
+            <div class="col-lg-6 col-sm-12 col-sx-12"> 
+                
                     <div class= "add-event" id="share-ui" style="visibility:hidden;"> 
                         <h4>Enter playdate details:</h4>
                         <form>
@@ -90,24 +99,24 @@
 
                             <div class="form-group">
                                 <label for="date">Date: </label>
-                                <input type="date" name="date" id="date">
+                                <input class="form-control" type="date" name="date" id="date">
                             </div>
 
                             <div class="form-group">
                                 <label class="mr-1" for="sTime">Start Time: </label>
-                                <input type="time" name="sTime" id="sTime">
+                                <input class="form-control" type="time" name="sTime" id="sTime">
                             </div>
 
                             <div class="form-group">
                                 <label class="mr-1" for="eTime"> End Time: </label>
-                                <input type="time" name="eTime" id="eTime" >
+                                <input class="form-control" type="time" name="eTime" id="eTime" >
                             </div>
                             <div class="form-group">
                                 <label for="notes">Additional Notes (optional): </label>
                                 <input class="form-control" type="text" name="notes" id="notes"> 
                             </div>
                         </form>
-                        <div class="text-right">
+                        <div class="text-leftgit ">
                             <button class="btn btn-dark btn-sm"  onclick="closeUI();"> Go Back </button> 
                             <button class="btn btn-dark btn-sm"  onclick="createSchedule();"> Add to Calendar</button>
                         </div>
@@ -120,16 +129,16 @@
                             </div>
                         </form>
 
-                        <div class="text-right">
+                        <div class="text-left">
                             <button class="btn btn-dark btn-sm"  onclick="closeUI();">Go Back</button> 
                             <button class="btn btn-dark btn-sm"  onclick="bookSchedule();">Book Playdate</button>
                         </div>
                     </div>
-                </div>
+                
                 </div>
             </div>
             
-            <div class="row mt-1 justify-content-center">
+            <div class="row pt-5 justify-content-center">
                 <div class="col-xs-12" id="items" > 
                     <h5 style="text-align: center;"> My Playdates</h5>
                 </div>

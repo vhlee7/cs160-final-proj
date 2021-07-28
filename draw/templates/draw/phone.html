@@ -5,11 +5,14 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Phone Screen #1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" type="text/css" href="{% static 'draw/vendor/bootstrap/css/bootstrap.min.css' %}">
     <script type="text/javascript" src="{% static 'draw/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'draw/vendor/paper/paper-full.min.js' %}"></script>
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
     <!-- https://weareoutman.github.io/clockpicker/ -->
     <link href="http://weareoutman.github.io/clockpicker/dist/jquery-clockpicker.min.css" rel="stylesheet" />
     <script src="http://weareoutman.github.io/clockpicker/dist/jquery-clockpicker.min.js"></script>
@@ -19,6 +22,10 @@
             height: 100%;
             width: 100%;
             margin: 0;
+        }
+
+        * {
+            font-family: 'Comic Neue', cursive;
         }
 
         .phone-screen {
@@ -42,37 +49,40 @@
 
         .add-event, .book-event {
             position: absolute;
+            margin-left: auto;
+            margin-right: auto;
             left: 0;
-            top: 0;
+            right: 0;
+            
         }
         
         .add-event {
-            padding-left: 15px;
-            padding-right: 15px;
+            padding-left: 25px;
+            padding-right: 25px;
         }
 
         .book-event {
-            padding-left: 5px;
-            padding-right: 5px;
+            padding-left: 25px;
+            padding-right: 25px;
         }
 
     </style>
 
 </head>
 <body> 
-    <div class="phone-screen" style="height:667px; width:375px; border: black solid 3px; border-radius: 15px;">
+    <div class="phone-screen bg-light p-5">
         
         <div id="title" class="row justify-content-center">
-            <div class="col-sx-12 w-100 text-center">
-                    <p class="h1 title">Playdate Planner</p> 
+            <div class="col-xs-12 col-sm-12 col-lg-6 w-100 text-center">
+                    <p class="h2 title">Playdate Planner</p> 
                     <form class="form-inline justify-content-center">
-                        <label style="margin-right: 3px;" for="inputName">Name: </label>
-                        <input type="text" name="name" class="form-control mb-2 mr-sm-2" id="name" placeholder="Name">
+                        <label style="margin-right: 3px;" for="inputName"> Name: </label>
+                        <input type="text" name="name" class="form-control w-75 form-control-sm" id="name" placeholder="Name">
                     </form>
             </div>
         </div>
         
-        <div class="row pt-3 justify-content-center">
+        <div class="row pt-3 mt-3 justify-content-center">
             <div class="col-xs-5 mr-1">
                 <div class="btn btn-dark btn-sm btn-block menu-button" onclick="openShareSchedUI();"> Host Playdate </div>
             </div>
@@ -82,69 +92,70 @@
         </div>
         
         <div class="row justify-content-center">
-            <div class="col-sm-10 mx-auto"> 
-                <div class="form-container">
-                    <div class= "add-event" id="share-ui" style="visibility:hidden;"> 
-                        <h4>Enter playdate details:</h4> 
+            <div class="col-lg-6 col-sm-12 col-sx-12"> 
+                <div class="add-event" id="share-ui" style="visibility:hidden;"> 
+                    <h4>Enter playdate details:</h4> 
+                    <form>
+                        <div class="form-group">
+                            <label for="description"> Description: </label>
+                            <input class="form-control" type="text" name="description" id="description"> 
+                        </div>
+
+                        <div class="form-group">
+                            <label for="date">Date: </label>
+                            <input class="form-control" type="date" name="date" id="date">
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group clockpicker clock-start" data-align="top" data-autoclose="true" > 
+                                <label class="mr-1" for="sTime">Start Time: </label>
+                                <input type="text" class="form-control" value="" placeholder="Now" name="sTime" id="sTime">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-time"></span>
+                                </span>
+                            </div> 
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group clockpicker clock-end" data-align="top" data-autoclose="true">
+                                <label class="mr-1" for="eTime"> End Time: </label>
+                                <input type="text" class="form-control" value="" placeholder="Now" name="eTime" id="eTime">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-time"></span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="notes">Additional Notes (optional): </label>
+                            <input class="form-control" type="text" name="notes" id="notes"> 
+                        </div>
+                    </form>
+                    <div class="text-left">
+                        <button class="btn btn-dark btn-sm"  onclick="closeUI();"> Go Back </button> 
+                        <button class="btn btn-dark btn-sm"  onclick="createSchedule();"> Add to Calendar</button>
+                    </div>
+                </div>
+
+                
+                <div class="book-event" id="book-ui" style="visibility:hidden;"> 
+                        <p class="font-weight-bold"> Enter in an ID from the calendar to RSVP: </p> 
                         <form>
                             <div class="form-group">
-                                <label for="description"> Description: </label>
-                                <input class="form-control" type="text" name="description" id="description"> 
-                            </div>
-
-                            <div class="form-group">
-                                <label for="date">Date: </label>
-                                <input class="form-control" type="date" name="date" id="date">
-                            </div>
-
-                            <div class="form-group">
-                                <div class="input-group clockpicker clock-start" data-align="top" data-autoclose="true" > 
-                                    <label class="mr-1" for="sTime">Start Time: </label>
-                                    <input type="text" class="form-control" value="" placeholder="Now" name="sTime" id="sTime">
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-time"></span>
-                                    </span>
-                                </div> 
-                            </div>
-
-                            <div class="form-group">
-                                <div class="input-group clockpicker clock-end" data-align="top" data-autoclose="true">
-                                    <label class="mr-1" for="eTime"> End Time: </label>
-                                    <input type="text" class="form-control" value="" placeholder="Now" name="eTime" id="eTime">
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-time"></span>
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="notes">Additional Notes (optional): </label>
-                                <input class="form-control" type="text" name="notes" id="notes"> 
+                                <label for="eventID">ID: </label>
+                                <input class="form-control" type="text" name="schedID" id="schedID"> 
                             </div>
                         </form>
-                        <div class="text-right">
-                            <button class="btn btn-dark btn-sm"  onclick="closeUI();"> Go Back </button> 
-                            <button class="btn btn-dark btn-sm"  onclick="createSchedule();"> Add to Calendar</button>
-                        </div>
-                    </div>
-                    <div class="book-event" id="book-ui" style="visibility:hidden;"> 
-                            <p class="font-weight-bold"> Enter in an ID from the calendar to RSVP: </p> 
-                            <form>
-                                <div class="form-group">
-                                    ID: <input type="text" name="schedID" id="schedID"> 
-                                </div>
-                            </form>
 
-                            <div class="text-right">
-                                <button class="btn btn-dark btn-sm"  onclick="closeUI();">Go Back</button> 
-                                <button class="btn btn-dark btn-sm"  onclick="bookSchedule();">Book Playdate</button>
-                            </div>
+                        <div class="text-left">
+                            <button class="btn btn-dark btn-sm"  onclick="closeUI();">Go Back</button> 
+                            <button class="btn btn-dark btn-sm"  onclick="bookSchedule();">Book Playdate</button>
                         </div>
-                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="row mt-1 justify-content-center">
+        <div class="row pt-5 justify-content-center">
             <div class="col-xs-12" id="items"> 
                 <h5 style="text-align: center;"> My Playdates</h5>
             </div>
@@ -293,12 +304,12 @@
     }
 
     $('.clockpicker.clock-start').clockpicker({
-        placement: 'right',
+        placement: 'top',
         donetext: 'Done',
         'default': 'now'
     });
     $('.clockpicker.clock-end').clockpicker({
-        placement: 'right',
+        placement: 'top',
         align: 'left',
         donetext: 'Done',
         'default': 'now'
