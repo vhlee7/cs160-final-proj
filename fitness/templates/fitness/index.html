@@ -27,6 +27,8 @@
     </style>
 </head>
 <body>
+    <button onclick="ok();"> click </button>
+    <button onclick="ok2();"> click </button>
     <div class="container">
         <p class="h1 text-center">Calendar</p>
         <div id="calendar"></div>
@@ -99,6 +101,15 @@
     }
 
     fetchWorkout();
+
+    var myStorage = window.localStorage;
+    function ok() {
+        localStorage.setItem('key', "uwu");
+    }
+    function ok2() {
+        let a = localStorage.getItem('key');
+        alert(a);
+    }
 
 
 
