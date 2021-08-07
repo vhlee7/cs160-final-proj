@@ -1,0 +1,33 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Motivation Page</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'fitness/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <script type="text/javascript" src="{% static 'fitness/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'fitness/vendor/paper/paper-full.min.js' %}"></script>
+</head>
+<body>
+    <button onclick="uwu();"> click </button>
+    <div id="ex"> huh</div>
+</body>
+<script>
+    var myStorage = window.localStorage;
+    var b = document.getElementById("ex");
+
+    function uwu() {
+        let u = localStorage.getItem('key');
+        alert(u);
+    }
+
+    window.addEventListener("storage", change);
+
+    function change(event) {
+        b.innerHTML += localStorage.getItem('key');
+    }
+
+</script>
+</html>
