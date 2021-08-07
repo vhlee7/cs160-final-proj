@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Calendar</title>
+    <title>Home Page</title>
 
     <link rel="stylesheet" type="text/css" href="{% static 'fitness/vendor/bootstrap/css/bootstrap.min.css' %}">
     <script type="text/javascript" src="{% static 'fitness/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
@@ -29,7 +29,7 @@
 <body>
     <button onclick="ok();"> click </button>
     <button onclick="ok2();"> click </button>
-    <div style="height:50px; width:50px; background-color:blue;"> <a href="./motivation">clickformotivation</a></div>
+    <div style="height:50px; width:50px; background-color:blue;"> <a href="./motivation/">clickformotivation</a></div>
     <div class="container">
         <p class="h1 text-center">Calendar</p>
         <div id="calendar"></div>
@@ -37,6 +37,7 @@
 
 </body>
 <script>
+    // this is the homepage, feel free to delete anything here
     var calendar;
 
     document.addEventListener('DOMContentLoaded', function() {
