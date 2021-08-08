@@ -1,0 +1,28 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Calendar</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'fitness/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <script type="text/javascript" src="{% static 'fitness/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'fitness/vendor/paper/paper-full.min.js' %}"></script>
+
+    <script type="text/javascript" src="{% static 'fitness/js/calendar.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{%static 'fitness/css/calendar.css' %}"/>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+     <div class="container">
+        <p class="h1 text-center">Calendar</p>
+        <div id="calendar"></div>
+    </div>
+</body>
+</html>
