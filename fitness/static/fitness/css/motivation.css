@@ -1,0 +1,56 @@
+.h1Position {
+	text-align: center;
+	margin-top: 8%;
+}
+
+.quotePosition {
+	border: 30px solid cadetblue;
+	text-align: center;
+	margin-top:  15%;
+	margin-left: 7%;
+	margin-right: 7%;
+	padding:  50px;
+	font-size: 50px;
+}
+
+.vidPosition {
+	width: 900px;
+	height: 500px;
+	allow: accelerometer autoplay clipboard-write encrypted-media gyroscope picture-in-picture;
+	margin: 10% auto;
+	display: block;
+	border: 30px solid red;
+}
+
+#refresh1Position {
+	font-size: 50px;
+	margin-left: 89%;
+}
+
+#refresh2Position {
+	font-size: 50px;
+	margin-left: 89%;
+}
+
+#backButton {
+	font-size: 50px;
+	margin-left: 15%;
+}
+
+#homeButton {
+	font-size: 50px;
+	margin-left: 25%;
+}
+
+#forwardButton {
+	font-size: 50px;
+	margin-left: 25%;
+}
+
+#quoteHolder {
+
+}
+
+#videoHolder {
+
+}
