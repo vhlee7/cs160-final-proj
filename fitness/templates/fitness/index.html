@@ -4,6 +4,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
     <title>Home Page</title>
 
     <link rel="stylesheet" type="text/css" href="{% static 'fitness/vendor/bootstrap/css/bootstrap.min.css' %}">
@@ -13,6 +14,7 @@
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
     <style type="text/css">
         
@@ -24,15 +26,45 @@
             background-color: #f8f9fa;
         }
 
+        #border {
+            border-style: solid; 
+            /* margin-left: 10px; */
+        }
+        
+
     </style>
 </head>
+
+
+
+
+
 <body>
-    <button onclick="ok();"> click </button>
-    <button onclick="ok2();"> click </button>
-    <div style="height:50px; width:50px; background-color:blue;"> <a href="./motivation/">clickformotivation</a></div>
-    <div class="container">
-        <p class="h1 text-center">Calendar</p>
-        <div id="calendar"></div>
+    <h1 class = "text-center">GoMotivation</h1>
+    <div class = "container"> 
+        <div class = "row"> 
+            <div class="col-sm-2"> </div>
+            <div class="col-sm-3" id = "border"> <div onclick="location.href='/fitness/calendar/';" style="cursor: pointer;"><p class="text-center">My Schedule</p></div> </div> 
+            <div class="col-sm-2"> </div>
+            <div class="col-sm-3" id = "border"> <div onclick="location.href='/fitness/goals/';" style="cursor: pointer;"><p class="text-center">My Goals</p></div> </div>
+            <div class="col-sm-2"> </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2"> </div>
+            <div class="col-sm-3" id = "border"> <div onclick="location.href='/fitness/muscle-groups/';" style="cursor: pointer;"><p class="text-center">My Exercises</p></div> </div>
+            <div class="col-sm-2"> </div>
+            <div class="col-sm-3" id = "border"> <div onclick="location.href='/fitness/motivation/';" style="cursor: pointer;"><p class="text-center">My Motivation</p></div> </div>
+            <div class="col-sm-2"> </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4"> </div>
+            <div class="col-sm-4" id = "border"><div onclick="location.href='/fitness/progress/';" style="cursor: pointer;"><p class="text-center">My Progress</p></div></div>
+            <div class="col-sm-4"> </div>
+            
+        </div>
+       
     </div>
 
 </body>
