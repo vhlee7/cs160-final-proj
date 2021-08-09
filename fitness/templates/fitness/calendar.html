@@ -26,3 +26,125 @@
     </div>
 </body>
 </html>
+
+<!-- 
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Home Page</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'fitness/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <script type="text/javascript" src="{% static 'fitness/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'fitness/vendor/paper/paper-full.min.js' %}"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <style type="text/css">
+        
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Comic Neue', cursive;
+            background-color: #f8f9fa;
+        }
+
+    </style>
+</head>
+<body>
+    <button onclick="ok();"> click </button>
+    <button onclick="ok2();"> click </button>
+    <div style="height:50px; width:50px; background-color:blue;"> <a href="./motivation/">clickformotivation</a></div>
+    <div class="container">
+        <p class="h1 text-center">Calendar</p>
+        <div id="calendar"></div>
+    </div>
+
+</body>
+<script>
+    // this is the homepage, feel free to delete anything here
+    var calendar;
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        calendar = new FullCalendar.Calendar(calendarEl, {
+            eventClick: function(info) {
+                var eventObj = info.event;
+                alert(eventObj.title);
+            },
+            timeZone: 'local',
+            initialView: 'timeGridWeek',
+            headerToolbar: {
+                left: 'prev,next',
+                center: 'title',
+                right: 'timeGridWeek,timeGridDay'
+            }, 
+            events: [ ]
+        });
+        calendar.render();
+    });
+    
+    function formatEvent(message) {
+        return {
+            title: "[" + message.schID + "] " + message.name + ' - '+ message.desc,
+            start: message.date + "T" + message.start + ":00",
+            end: message.date + "T" + message.end + ":00" 
+        }
+    }  
+    
+    function addEvent(event) {
+        calendar.addEvent(event);
+    }
+
+    var socket = new WebSocket(
+        'ws://' + window.location.host + '/ws/fitness');
+
+    socket.onmessage = function(receivedMessage) {
+        var received = JSON.parse(receivedMessage.data);
+        console.log("Received: " + JSON.stringify(received));
+    
+        console.log(received)
+        if (received['to'] == 'display') {
+            var event = formatEvent(received);
+            console.log(JSON.stringify(event));
+            addEvent(event);
+        }
+    }
+
+    socket.onclose = function(e) {
+        console.error('Chat socket closed unexpectedly');
+    };
+    
+    function reqListener () {
+        console.log(this.responseText);
+    }
+    function fetchWorkout() {
+        var wgerUrl = 'https://wger.de/api/v2/exercise/';
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", wgerUrl, true);
+        xhr.addEventListener("load", reqListener);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send();
+    }
+
+    fetchWorkout();
+
+    var myStorage = window.localStorage;
+    function ok() {
+        localStorage.setItem('key', "uwu2");
+    }
+    function ok2() {
+        let a = localStorage.getItem('key');
+        alert(a);
+    }
+
+
+
+
+</script>
+</html> -->
