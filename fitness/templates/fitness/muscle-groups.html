@@ -1,0 +1,130 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Muscle Group Page</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'fitness/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <script type="text/javascript" src="{% static 'fitness/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'fitness/vendor/paper/paper-full.min.js' %}"></script>
+</head>
+<style>
+h1 {
+  text-align : center;
+  font-weight : bold;
+  font-size : 4em;
+  margin-top: 5%;
+}
+h3 {
+  text-align : center;
+  font-size : 2.5em;
+}
+.images{
+  max-width: 100%;
+  height: auto;
+}
+.tables{
+  text-align : center;
+}
+table{
+  border-collapse: separate;
+  border-spacing: 0 60px;
+  text-align:center;
+}
+td{
+  border : 1px solid black;
+}
+.tr-rows{
+  height : 392.25px;
+}
+.section{
+  font-size : 2em;
+  font-weight : bold;
+}
+.my-container{
+  padding : 0px 4%;
+}
+.footer {
+  border-top: 1px solid black;
+}
+
+#footer-table{
+
+  border-spacing: 0 32px;
+}
+</style>
+<body>
+    <div class = "my-container">
+      <h1>Muscle Groups </h1>
+      <h3>Click on a section to see specific exercises!</h3>
+
+      <div class =" col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class ="tables">
+  				<table align="center"width="100%" border="0" style=" margin-top:2%">
+  	         <tr class= "tr-rows">
+
+                  <td width="45%" onclick="armsClick();"><p class = "section">Arms</p><img class ="images" src="../../static/fitness/images/arms.png"></td>
+                  <td style = "border: transparent;" width = "10%"></td>
+                  <td width="45%" onclick="legsClick();"><p class = "section">Legs</p><img class ="images" src="../../static/fitness/images/legs.png"></td>
+  	         </tr>
+             <tr class="tr-rows">
+                  <td width="45%" onclick="absClick();"><p class = "section">Abs</p><img class ="images" src="../../static/fitness/images/abs.png" ></td>
+                  <td style = "border: transparent;" width = "10%"></td>
+                  <td width="45%" onclick="shouldersClick();"><p class = "section">Shoulders</p><img class ="images" src="../../static/fitness/images/shoulders.png"></td>
+  	         </tr>
+             <tr class ="tr-rows">
+                  <td width="45%" onclick="backClick();"><p class = "section">Back</p><img class ="images" src="../../static/fitness/images/back.png" ></td>
+                  <td style = "border: transparent;" width = "10%"></td>
+                  <td width="45%" onclick="chestClick();" ><p class = "section">Chest</p><img class ="images" src="../../static/fitness/images/chest.png"></td>
+  	         </tr>
+  	  	 </table>
+      </div>
+      </div>
+      </div>
+
+      <div class ="footer col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+  				<table id = "footer-table" align="center"width="100%" height=" 50px" border="0">
+  	         <tr>
+                  <td width="33.33%" style="border : none;"><img class ="images" src="../../static/fitness/images/left.png"></td>
+                  <td width="33.33%" style="border : none;"><img class ="images" src="../../static/fitness/images/home.png"></td>
+                  <td width="33.33%" style="border : none;"><img class ="images" src="../../static/fitness/images/right.png"></td>
+  	         </tr>
+  	  	 </table>
+      </div>
+</body>
+<script>
+  var ws_socket = new WebSocket('ws://' + window.location.host + '/ws/fitness');
+    function armsClick(){
+      msg = "{\"section\" : " + "\"arms\"" + "}";
+      ws_socket.send(msg);
+      window.location.href = "../catalog-exercise?section=" + "arms";
+    };
+    function legsClick(){
+      msg = "{\"section\" : " + "\"legs\"" + "}";
+      ws_socket.send(msg);
+      window.location.href = "../catalog-exercise?section=" + "legs";
+    };
+    function absClick(){
+      msg = "{\"section\" : " + "\"abs\"" + "}";
+      ws_socket.send(msg);
+      window.location.href = "../catalog-exercise?section=" + "abs";
+    };
+    function shouldersClick(){
+      msg = "{\"section\" : " + "\"shoulders\"" + "}";
+      ws_socket.send(msg);
+      window.location.href = "../catalog-exercise?section=" + "shoulders";
+    };
+    function backClick(){
+      msg = "{\"section\" : " + "\"back\"" + "}";
+      ws_socket.send(msg);
+      window.location.href = "../catalog-exercise?section=" + "back";
+    };
+    function chestClick(){
+      msg = "{\"section\" : " + "\"chest\"" + "}";
+      ws_socket.send(msg);
+      window.location.href = "../catalog-exercise?section=" + "chest";
+    };
+</script>
+</html>
