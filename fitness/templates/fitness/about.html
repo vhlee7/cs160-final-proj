@@ -1,1 +1,214 @@
-<p> about </p>
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>About Page</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'fitness/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'fitness/css/about.css' %}" />
+    <script type="text/javascript" src="{% static 'fitness/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'fitness/vendor/paper/paper-full.min.js' %}"></script>
+
+</head>
+	<p id='topText'> About Page </p>
+
+
+	<div class='headerText'> My Goals </div>
+
+	<div id='section1'>
+		<div id='down1'>
+			About My Goals
+			<i class="bi bi-caret-right-fill" id="rightCaret1"></i>
+		</div>
+
+		<div id='right1'> My Goals is where you can create your own goals by clicking the "plus" circle, and have the option to "complete" it by clicking the green checkmark, or "discard" it by clicking the red "x" icon. <br><br> You can also access the Goal Progress Archive page, and the App Achievements page.
+		 </div>
+	</div>
+
+	<div id='section2'>
+		<div id='down2'>
+			Goal Progress Archive
+			<i class="bi bi-caret-right-fill" id="rightCaret2"></i>
+		</div>
+
+		<div id='right2'> The Goal Progress Archive is a place you can see all the past goals you have completed by clicking on the green checkmark. <br><br> It's a place to see all your past achievements, so feel proud about yourself, your making great progress! </div>
+	</div>
+
+<!-- 	<div id='section3'>
+		<div id='down3'>
+			Leveling Up
+			<i class="bi bi-caret-right-fill" id="rightCaret3"></i>
+		</div>
+
+		<div id='right3'> Filler Text. </div>
+	</div> -->
+
+
+
+	<div class='headerText'> My Scheduale </div>
+
+	<div id='section4'>
+		<div id='down4'>
+			About My Scheduale
+			<i class="bi bi-caret-right-fill" id="rightCaret4"></i>
+		</div>
+
+		<div id='right4'> Filler Text. </div>
+	</div>
+
+	<div id='section5'>
+		<div id='down5'>
+			Filling out the Scheduale
+			<i class="bi bi-caret-right-fill" id="rightCaret5"></i>
+		</div>
+
+		<div id='right5'> Filler Text. </div>
+	</div>
+
+	<div id='section6'>
+		<div id='down6'>
+			Making Exercises
+			<i class="bi bi-caret-right-fill" id="rightCaret6"></i>
+		</div>
+
+		<div id='right6'> Filler Text. </div>
+	</div>
+
+
+	<div class='headerText'> My Exercises </div>
+
+	<div id='section7'>
+		<div id='down7'>
+			About My Exercises
+			<i class="bi bi-caret-right-fill" id="rightCaret7"></i>
+		</div>
+
+		<div id='right7'> Filler Text. </div>
+	</div>
+
+
+
+
+	<div class='headerText'> My Motivation </div>
+
+	<div id='section8'>
+		<div id='down8'>
+			About My Motivation
+			<i class="bi bi-caret-right-fill" id="rightCaret8"></i>
+		</div>
+
+		<div id='right8'> Filler Text. </div>
+	</div>
+
+
+	<div class='headerText'> My Progress </div>
+
+	<div id='section9'>
+		<div id='down9'>
+			About My Progress
+			<i class="bi bi-caret-right-fill" id="rightCaret9"></i>
+		</div>
+
+		<div id='right9'> Filler Text. </div>
+	</div>
+
+	<div id='section10'>
+		<div id='down10'>
+			Leveling Up
+			<i class="bi bi-caret-right-fill" id="rightCaret10"></i>
+		</div>
+
+		<div id='right10'> Filler Text. </div>
+	</div>
+
+	<br><br><br>
+
+<body>
+
+
+
+</body>
+<script>
+
+	$("#section1").click(function(){
+	    $("#right1").slideToggle("slow");
+	    toggleCaret("rightCaret1", "downCaret1", "#down1");
+    });
+
+	$("#section2").click(function(){
+	    $("#right2").slideToggle("slow");
+	    toggleCaret("rightCaret2", "downCaret2", "#down2");
+    });
+
+    $("#section3").click(function(){
+	    $("#right3").slideToggle("slow");
+	    toggleCaret("rightCaret3", "downCaret3", "#down3");
+    });
+
+    $("#section4").click(function(){
+	    $("#right4").slideToggle("slow");
+	    toggleCaret("rightCaret4", "downCaret4", "#down4");
+    });
+
+    $("#section5").click(function(){
+	    $("#right5").slideToggle("slow");
+	    toggleCaret("rightCaret5", "downCaret5", "#down5");
+    });
+
+    $("#section6").click(function(){
+	    $("#right6").slideToggle("slow");
+	    toggleCaret("rightCaret6", "downCaret6", "#down6");
+    });
+
+
+    $("#section7").click(function(){
+	    $("#right7").slideToggle("slow");
+	    toggleCaret("rightCaret7", "downCaret7", "#down7");
+    });
+
+    $("#section8").click(function(){
+	    $("#right8").slideToggle("slow");
+	    toggleCaret("rightCaret8", "downCaret8", "#down8");
+    });
+
+    $("#section9").click(function(){
+	    $("#right9").slideToggle("slow");
+	    toggleCaret("rightCaret9", "downCaret9", "#down9");
+    });
+
+    $("#section10").click(function(){
+	    $("#right10").slideToggle("slow");
+	    toggleCaret("rightCaret10", "downCaret10", "#down10");
+    });
+
+
+
+
+
+	// Function that handles toggling the Caret
+    function toggleCaret(rightCaretNum, downCaretNum, downNum) {
+    	console.log(rightCaretNum);
+    	console.log(downCaretNum);
+    	console.log(downNum);
+
+    	var rightCaret = document.getElementById(rightCaretNum);
+	   	var downCaret = document.getElementById(downCaretNum);
+
+        if (rightCaret != null) {
+            rightCaret.remove();
+            $(downNum).append("<i class='bi bi-caret-down-fill' id='" + downCaretNum + "'> </i>");
+        }
+
+        if (downCaret != null) {
+        	downCaret.remove();
+        	$(downNum).append("<i class='bi bi-caret-right-fill' id='" + rightCaretNum + "'></i>");
+        }
+    }
+  
+	  
+
+</script>
+</html>
