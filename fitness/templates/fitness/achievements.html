@@ -1,4 +1,18 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>App Achievements Page</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'fitness/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'fitness/css/motivation.css' %}" />
+    <script type="text/javascript" src="{% static 'fitness/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'fitness/vendor/paper/paper-full.min.js' %}"></script>
+
     <style>
         table, td {
           margin-top: 25px;
@@ -17,91 +31,119 @@
         .space {
             margin-top: 25px;
         }
-        .check {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            width: 50%;
+
+        .tableStyle {
+            width: 60%;
+            margin-left: 20%;
         }
+
+        .descriptionPosition {
+            text-align: center;
+            font-size: 35px;
+        } 
+
+        .checkWidth {
+            width: 10%;
+        }
+
+
         </style>
 </head>
-    <body class ="body">
+
+<body>
+        <br>
+
+        <div class="text-block-1">App Achievements</div>
+
+        <br><br>
+
         <div>
-            <div class="space"></div>
-        </div>
-        <div>
-            <div class="text-block-1">App Achievements</div>
-        </div>
-        <div>
-            <table>
-                <col width="10%">
-                    <col width="90%">
-                        <tr>
-                            <td><div>
-                                <img class="check", src=https://library.kissclipart.com/20181217/uue/kissclipart-checkbox-psd-clipart-royalty-free-checkbox-72c73030a92924c8.png></img>
-                            </div></td>
-                            <td>Started the App</td>
-                        </tr>
-                        <tr>
-                            <td><div>
-                                <img class="check", src=https://library.kissclipart.com/20181217/uue/kissclipart-checkbox-psd-clipart-royalty-free-checkbox-72c73030a92924c8.png></img>
-                            </div></td>
-                            <td>Used the App Thrice</td>
-                        </tr>
-                        <tr>
-                            <td><div>
-                                <img class="check", src=https://library.kissclipart.com/20180830/qre/kissclipart-blank-check-boxes-clipart-clip-art-b4fd73b9e067c5b9.jpg></img>
-                            </div></td>
-                            <td>Manually chose a workout once</td>
-                        </tr>
-                        <tr>
-                            <td><div>
-                                <img class="check", src=https://library.kissclipart.com/20180830/qre/kissclipart-blank-check-boxes-clipart-clip-art-b4fd73b9e067c5b9.jpg></img>
-                            </div></td>
-                            <td>Used App more than once a week</td>
-                        </tr>
-                        <tr>
-                            <td><div>
-                                <img class="check", src=https://library.kissclipart.com/20181217/uue/kissclipart-checkbox-psd-clipart-royalty-free-checkbox-72c73030a92924c8.png></img>
-                            </div></td>
-                            <td>Used App more than once a week for a month</td>
-                        </tr>
-                        <tr>
-                            <td><div>
-                                <img class="check", src=https://library.kissclipart.com/20181217/uue/kissclipart-checkbox-psd-clipart-royalty-free-checkbox-72c73030a92924c8.png></img>
-                            </div></td>
-                            <td>Finished 1 Goal</td>
-                        </tr>
-                        <tr>
-                            <td><div>
-                                <img class="check", src=https://library.kissclipart.com/20180830/qre/kissclipart-blank-check-boxes-clipart-clip-art-b4fd73b9e067c5b9.jpg></img>
-                            </div></td>
-                            <td>Finished 5 Goals</td>
-                        </tr>
-                        <tr>
-                            <td><div>
-                                <img class="check", src=https://library.kissclipart.com/20180830/qre/kissclipart-blank-check-boxes-clipart-clip-art-b4fd73b9e067c5b9.jpg></img>
-                            </div></td>
-                            <td>Finished 10 Goals</td>
-                        </tr>
-                        <tr>
-                            <td><div>
-                                <img class="check", src=https://library.kissclipart.com/20181217/uue/kissclipart-checkbox-psd-clipart-royalty-free-checkbox-72c73030a92924c8.png></img>
-                            </div></td>
-                            <td>Workout one muscle group</td>
-                        </tr>
-                        <tr>
-                            <td><div>
-                                <img class="check", src=https://library.kissclipart.com/20180830/qre/kissclipart-blank-check-boxes-clipart-clip-art-b4fd73b9e067c5b9.jpg></img>
-                            </div></td>
-                            <td>Workout six muscle groups</td>
-                        </tr>
-                        <tr>
-                            <td><div>
-                                <img class="check", src=https://library.kissclipart.com/20180830/qre/kissclipart-blank-check-boxes-clipart-clip-art-b4fd73b9e067c5b9.jpg></img>
-                            </div></td>
-                            <td>Navigated through all pages</td>
-                        </tr>
+
+            <p class="descriptionPosition"> App Use </p>
+            <table class="tableStyle">
+                <tr>
+                    <td id="one" class="checkWidth"></td>
+                    <td>Started the App</td>
+                </tr>
+
+                <tr>
+                    <td id="two" class="checkWidth"></td>
+                    <td>Used the App Thrice</td>
+                </tr>
+                <tr>
+                    <td id="three" class="checkWidth"></td>
+                    <td>Used App more than once a week</td>
+                </tr>
+                <tr>
+                    <td id="four" class="checkWidth"></td>
+                    <td>Used App more than once a week for a month</td>
+                </tr>
+
+                <tr>
+                    <td id="five" class="checkWidth"></td>
+                    <td>Navigated through all pages</td>
+                </tr>
+
+
             </table>
+            <br>
+
+            <p class="descriptionPosition"> Goals </p>
+            <table class="tableStyle">
+                <tr>
+
+                <tr>
+                    <td id="six" class="checkWidth"></td>
+                    <td>Finished 1 Goal</td>
+                </tr>
+                <tr>
+                    <td id="seven" class="checkWidth"></td>
+                    <td>Finished 5 Goals</td>
+                </tr>
+                <tr>
+                    <td id="eight" class="checkWidth"></td>
+                    <td>Finished 10 Goals</td>
+                </tr>
+
+            </table>
+            <br>
+
+            <p class="descriptionPosition"> Workouts </p>
+            <table class="tableStyle">
+                <tr>
+                    <td id="nine" class="checkWidth"></td>
+                    <td>Manually chose a workout once</td>
+                </tr>
+
+                <tr>
+                    <td id="ten" class="checkWidth"></td>
+                    <td>Workout one muscle group</td>
+                </tr>
+                <tr>
+                    <td id="eleven" class="checkWidth"></td>
+                    <td>Workout six muscle groups</td>
+                </tr>
+
+            </table>
+
         </div>
-    </body>
+
+</body>
+
+
+
+
+<script>
+
+    // This function is to be called on when we want to checkmark a achievement
+    // BoxNum would be an input corresoponding to the box number, for example "#ten"
+    // inputNum would be something like "tenCheck"
+    function checkMarking(boxNum, inputNum) {
+        var inputCheck = document.getElementById(inputNum);
+        if (inputCheck === null) {
+            $(boxNum).append("<i class='bi bi-check-lg' id='" + inputNum + "' style='color:green';> </i>");
+        }
+    }
+
+</script>
+</html>
