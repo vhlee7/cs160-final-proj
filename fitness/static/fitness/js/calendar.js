@@ -4,7 +4,7 @@ var calendar;
 var socket = new WebSocket(
     'ws://' + window.location.host + '/ws/fitness');
 
-var fillerEvents = {
+var userEvents = {
     events: [
         {
             title: 'work',
@@ -19,6 +19,11 @@ var fillerEvents = {
         {
             title: 'work',
             start: '2021-08-11T09:00:00',
+            end: '2021-08-11T12:00:00'
+        },
+        {
+            title: 'errands',
+            start: '2021-08-11T15:00:00',
             end: '2021-08-11T17:00:00'
         },
         {
@@ -37,6 +42,38 @@ var fillerEvents = {
     textColor: 'black'
 };
 
+var userWorkouts = {
+    events: [
+        {
+            title: 'arms',
+            start: '2021-08-09T18:00:00',
+            end: '2021-08-09T18:30:00'
+        },
+        {
+            title: 'legs',
+            start: '2021-08-10T16:00:00',
+            end: '2021-08-10T17:00:00'
+        },
+        {
+            title: 'abs',
+            start: '2021-08-11T14:00:00',
+            end: '2021-08-11T14:30:00'
+        },
+        {
+            title: 'shoulders',
+            start: '2021-08-12T16:00:00',
+            end: '2021-08-12T17:00:00'
+        },
+        {
+            title: 'legs',
+            start: '2021-08-13T18:00:00',
+            end: '2021-08-13T18:30:00'
+        },
+    ],
+    id: "userWorkout",
+    color: 'green',
+    textColor: 'black'
+};
 function init() {
     $("#calendar-form").hide();
     closeForm();
@@ -65,12 +102,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         },
         eventSources: [
-            fillerEvents
+            userEvents
         ]
     });
     calendar.render();
     calendar.scrollToTime(d.getHours() + ':' + d.getMinutes());
-    //calendar.addEvent(eventFiller, 'userSchedule');
 });
 
 function formatEvent(message) {
@@ -92,7 +128,10 @@ socket.onclose = function(e) {
 };
 
 function generateWorkout() {
-    alert("hi");
+    var workouts = userWorkouts.events;
+    for (let i = 0; i < workouts.length; i++) {
+        calendar.addEvent(workouts[i]);
+    }
 }
 
 function openForm() {
