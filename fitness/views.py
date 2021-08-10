@@ -19,6 +19,27 @@ def calendar(request):
 def catalogExercise(request):
     return render(request, 'fitness/catalog-exercise.html')
 
+
+def catalogExerciseShoulders(request):
+    return render(request, 'fitness/catalog-exercise-shoulders.html')
+
+def catalogExerciseLegs(request):
+    return render(request, 'fitness/catalog-exercise-legs.html')
+
+def catalogExerciseChest(request):
+    return render(request, 'fitness/catalog-exercise-chest.html')
+
+def catalogExerciseBack(request):
+    return render(request, 'fitness/catalog-exercise-back.html')
+
+def catalogExerciseArms(request):
+    return render(request, 'fitness/catalog-exercise-arms.html')
+
+def catalogExerciseAbs(request):
+    return render(request, 'fitness/catalog-exercise-abs.html')
+
+
+
 def goalProgressArchive(request):
     return render(request, 'fitness/goal-progress-archive.html')
 

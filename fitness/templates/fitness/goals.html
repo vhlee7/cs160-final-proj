@@ -1,32 +1,49 @@
-<p> goals</p>
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
 <head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>About Page</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'fitness/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'fitness/css/about.css' %}" />
+    <script type="text/javascript" src="{% static 'fitness/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'fitness/vendor/paper/paper-full.min.js' %}"></script>
+
+
     <style>
+
         table, td {
           margin-top: 25px;
           border: 1px solid black;
           border-collapse: collapse;
         }
+
         td {
           padding: 15px;
         }
+
         .text-block-1 {
             margin: auto;
             width: 50%;
             text-align: center;
             font-size: 50px;
         }
+
         .space {
             margin-top: 25px;
         }
+
         .add {
-            margin-top: 25px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            width: 50%;
-            max-width: 5%;
-            height: auto;
+            text-align: center;
+            font-size: 50px;
+            margin-left: 47%;
         }
+
         .progress {
             position: absolute;
             bottom: 20px;
@@ -39,6 +56,7 @@
             border-color: MediumPurple;
             background-color: Lavender;
         }
+
         .achievements {
             position: absolute;
             bottom: 20px;
@@ -51,34 +69,151 @@
             border-color: Khaki;
             background-color: LemonChiffon;
         }
+
+        .tableStyle {
+            width: 60%;
+            margin-left: 20%;
+        }
+
+        .numWidth {
+            width: 10%;
+        }   
+
+        .crossSize {
+            font-size: 40px;
+        }
+
+
+
+
+        #background-form5 {
+            position: absolute;
+            margin-left: 30%;
+            width: 400px;
+            height: 230px;
+            outline: 30px;
+            outline-width: thick;
+            outline-style: outset;
+            outline-color: goldenrod;
+            background-color: whitesmoke;
+        }
+
+        .mytxt {
+            position: absolute;
+            margin-left: 35%;
+            margin-top: 3%;
+        }
+
+        #locForm {
+
+        }
+
+        #areaChoose {
+            font-weight: bold;
+            font-size: 25px;
+        }
+
+        #myform {
+
+        }
+
+
         </style>
 </head>
+
     <body class ="body">
-        <div>
-            <div class="space"></div>
-        </div>
+
+        <br>
+
         <div>
             <div class="text-block-1">My Goals</div>
         </div>
-        <div>
-            <table style="width:100%">
+        <br><br>
+
+
+        <div id="tableHolder">
+            <table class='tableStyle'>
                 <tr>
-                    <td></td>
-                    <td>Lose 5 Pounds</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>Stay fit for a week</td>
+                    <td> Placeholder Goal </td>
+                    <td class='numWidth'> <i class='bi bi-x crossSize' onclick='removeGoal(this);' style ='color:red';> </i> </td>
+                    <td class='numWidth'> <i class='bi bi-check-lg' style='color:green';> </i> </td>
                 </tr>
             </table>
+
+
+        </div>
+
+
+        <br><br>
+
+        <div id="phCircle">
+            <i class="bi bi-plus-circle-fill add" onclick='clickGoal();'> </i>
+        </div>
+
+
+        <!-- FORM FOR SUBMITTING A GOAL --> 
+        <div id="phForm">
+            <div id="background-form5"> </div>  
+            <form class='mytxt' name='areaform' id="locForm">
+                <label for='myform' id='areaChoose'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Add a goal!</label>
+
+                <br><br>
+
+                <input type='textarea' id='myform' value=''>
+                    <input type='submit' onclick='submitGoal(); return false'> </input>
+                </input>
+            </form>
+        </div>
+
+
+        <div>
+            <div class="progress" id="phProgress" onclick="location.href='/fitness/goal-progress-archive/';">Goal<br>Progress Archive</div>
         </div>
         <div>
-            <img class="add", src=https://image.flaticon.com/icons/png/512/61/61183.png></img>
-        </div>
-        <div>
-            <div class="progress">Goal<br>Progress<br>Archive</div>
-        </div>
-        <div>
-            <div class="achievements">App<br>Achievements</div>
+            <div class="achievements" id="phAchievements" onclick="location.href='/fitness/achievements/';">App<br>Achievements</div>
         </div>
     </body>
+
+
+<script>
+
+    // Hides everything else and pops up the form
+    function clickGoal() {
+        $("#tableHolder").hide();
+        $("#phCircle").hide();
+        $("#phProgress").hide();
+        $("#phAchievements").hide();
+        $("#phForm").show();
+    }
+
+
+    function removeGoal(el) {
+        el.parentNode.parentNode.remove();
+    }
+
+    function submitGoal() {
+        var myGoal = document.areaform.myform.value;
+        
+        $("#tableHolder").append("<table class='tableStyle'> <tr> <td>" + myGoal + "</td> <td class='numWidth'> <i class='bi bi-x crossSize' onclick='removeGoal(this);' style ='color:red';> </i> </td> <td class='numWidth'> <i class='bi bi-check-lg' style='color:green';> </i> </td> </tr></table>");
+
+
+        $("#phForm").hide();
+        $("#tableHolder").show();
+        $("#phCircle").show();
+        $("#phProgress").show();
+        $("#phAchievements").show();
+        document.areaform.myform.value ="";
+    }
+
+
+
+
+    function init() {
+        $("#phForm").hide();
+    }
+
+    init();
+
+</script>
+
+</html>

@@ -31,6 +31,16 @@
             /* margin-left: 10px; */
         }
         
+        #questionIcon {
+            font-size: 60px;
+            margin-left: 90%;
+            padding-top: 30px;
+        }
+
+        .boxSize {
+            width: 100px;
+            height: 200px;
+        }
 
     </style>
 </head>
@@ -40,27 +50,39 @@
 
 
 <body>
-    <h1 class = "text-center">GoMotivation</h1>
+    <div id='questionIcon' onclick="location.href='/fitness/about/';" style="cursor: pointer;">
+        <i class="bi bi-patch-question-fill"></i>
+    </div>
+
+    <h1 class = "text-center"> GoMotivation </h1>
+
+    <br><br><br>
+
     <div class = "container"> 
+
         <div class = "row"> 
             <div class="col-sm-2"> </div>
-            <div class="col-sm-3" id = "border"> <div onclick="location.href='/fitness/calendar/';" style="cursor: pointer;"><p class="text-center">My Schedule</p></div> </div> 
+            <div class="col-sm-3 boxSize" id = "border" onclick="location.href='/fitness/calendar/';" style="cursor: pointer;"> <p class="text-center">My Schedule</p></div>
             <div class="col-sm-2"> </div>
-            <div class="col-sm-3" id = "border"> <div onclick="location.href='/fitness/goals/';" style="cursor: pointer;"><p class="text-center">My Goals</p></div> </div>
+            <div class="col-sm-3 boxSize" id = "border" onclick="location.href='/fitness/goals/';" style="cursor: pointer;"> <p class="text-center">My Goals</p> </div>
             <div class="col-sm-2"> </div>
         </div>
 
+        <br><br><br>
+
         <div class="row">
             <div class="col-sm-2"> </div>
-            <div class="col-sm-3" id = "border"> <div onclick="location.href='/fitness/muscle-groups/';" style="cursor: pointer;"><p class="text-center">My Exercises</p></div> </div>
+            <div class="col-sm-3 boxSize" id = "border" onclick="location.href='/fitness/muscle-groups/';" style="cursor: pointer;"> <p class="text-center">My Exercises</p></div>
             <div class="col-sm-2"> </div>
-            <div class="col-sm-3" id = "border"> <div onclick="location.href='/fitness/motivation/';" style="cursor: pointer;"><p class="text-center">My Motivation</p></div> </div>
+            <div class="col-sm-3 boxSize" id = "border" onclick="location.href='/fitness/motivation/';" style="cursor: pointer;"><p class="text-center">My Motivation</p> </div>
             <div class="col-sm-2"> </div>
         </div>
+
+        <br><br><br>
 
         <div class="row">
             <div class="col-sm-4"> </div>
-            <div class="col-sm-4" id = "border"><div onclick="location.href='/fitness/progress/';" style="cursor: pointer;"><p class="text-center">My Progress</p></div></div>
+            <div class="col-sm-4 boxSize" id = "border" onclick="location.href='/fitness/progress/';" style="cursor: pointer;"><p class="text-center">My Progress</p></div>
             <div class="col-sm-4"> </div>
             
         </div>
@@ -70,80 +92,80 @@
 </body>
 <script>
     // this is the homepage, feel free to delete anything here
-    var calendar;
+    // var calendar;
 
-    document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-        calendar = new FullCalendar.Calendar(calendarEl, {
-            eventClick: function(info) {
-                var eventObj = info.event;
-                alert(eventObj.title);
-            },
-            timeZone: 'local',
-            initialView: 'timeGridWeek',
-            headerToolbar: {
-                left: 'prev,next',
-                center: 'title',
-                right: 'timeGridWeek,timeGridDay'
-            }, 
-            events: [ ]
-        });
-        calendar.render();
-    });
+    // document.addEventListener('DOMContentLoaded', function() {
+    //     var calendarEl = document.getElementById('calendar');
+    //     calendar = new FullCalendar.Calendar(calendarEl, {
+    //         eventClick: function(info) {
+    //             var eventObj = info.event;
+    //             alert(eventObj.title);
+    //         },
+    //         timeZone: 'local',
+    //         initialView: 'timeGridWeek',
+    //         headerToolbar: {
+    //             left: 'prev,next',
+    //             center: 'title',
+    //             right: 'timeGridWeek,timeGridDay'
+    //         }, 
+    //         events: [ ]
+    //     });
+    //     calendar.render();
+    // });
     
-    function formatEvent(message) {
-        return {
-            title: "[" + message.schID + "] " + message.name + ' - '+ message.desc,
-            start: message.date + "T" + message.start + ":00",
-            end: message.date + "T" + message.end + ":00" 
-        }
-    }  
+    // function formatEvent(message) {
+    //     return {
+    //         title: "[" + message.schID + "] " + message.name + ' - '+ message.desc,
+    //         start: message.date + "T" + message.start + ":00",
+    //         end: message.date + "T" + message.end + ":00" 
+    //     }
+    // }  
     
-    function addEvent(event) {
-        calendar.addEvent(event);
-    }
+    // function addEvent(event) {
+    //     calendar.addEvent(event);
+    // }
 
-    var socket = new WebSocket(
-        'ws://' + window.location.host + '/ws/fitness');
+    // var socket = new WebSocket(
+    //     'ws://' + window.location.host + '/ws/fitness');
 
-    socket.onmessage = function(receivedMessage) {
-        var received = JSON.parse(receivedMessage.data);
-        console.log("Received: " + JSON.stringify(received));
+    // socket.onmessage = function(receivedMessage) {
+    //     var received = JSON.parse(receivedMessage.data);
+    //     console.log("Received: " + JSON.stringify(received));
     
-        console.log(received)
-        if (received['to'] == 'display') {
-            var event = formatEvent(received);
-            console.log(JSON.stringify(event));
-            addEvent(event);
-        }
-    }
+    //     console.log(received)
+    //     if (received['to'] == 'display') {
+    //         var event = formatEvent(received);
+    //         console.log(JSON.stringify(event));
+    //         addEvent(event);
+    //     }
+    // }
 
-    socket.onclose = function(e) {
-        console.error('Chat socket closed unexpectedly');
-    };
+    // socket.onclose = function(e) {
+    //     console.error('Chat socket closed unexpectedly');
+    // };
     
-    function reqListener () {
-        console.log(this.responseText);
-    }
-    function fetchWorkout() {
-        var wgerUrl = 'https://wger.de/api/v2/exercise/';
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", wgerUrl, true);
-        xhr.addEventListener("load", reqListener);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.send();
-    }
+    // function reqListener () {
+    //     console.log(this.responseText);
+    // }
+    // function fetchWorkout() {
+    //     var wgerUrl = 'https://wger.de/api/v2/exercise/';
+    //     var xhr = new XMLHttpRequest();
+    //     xhr.open("GET", wgerUrl, true);
+    //     xhr.addEventListener("load", reqListener);
+    //     xhr.setRequestHeader('Content-Type', 'application/json');
+    //     xhr.send();
+    // }
 
-    fetchWorkout();
+    // fetchWorkout();
 
-    var myStorage = window.localStorage;
-    function ok() {
-        localStorage.setItem('key', "uwu2");
-    }
-    function ok2() {
-        let a = localStorage.getItem('key');
-        alert(a);
-    }
+    // var myStorage = window.localStorage;
+    // function ok() {
+    //     localStorage.setItem('key', "uwu2");
+    // }
+    // function ok2() {
+    //     let a = localStorage.getItem('key');
+    //     alert(a);
+    // }
 
 
 

@@ -1,0 +1,170 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Catalog of Exercises</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'fitness/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'fitness/css/about.css' %}" />
+    <script type="text/javascript" src="{% static 'fitness/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'fitness/vendor/paper/paper-full.min.js' %}"></script>
+</head>
+<style>
+h1 {
+  text-align : center;
+  font-weight : bold;
+  font-size : 4em;
+  margin-top: 5%;
+}
+h3 {
+  text-align : center;
+  font-size : 2.5em;
+}
+.images{
+  max-width: 100%;
+  height: auto;
+}
+.tables{
+  text-align : center;
+}
+table{
+  border-collapse: separate;
+  border-spacing: 0 30px;
+  text-align:center;
+}
+.my-container{
+  padding : 0px 4%;
+}
+.footer {
+  border-top: 1px solid black;
+}
+.main-text{
+  font-size :3.3em;
+  font-weight : bold;
+}
+p{
+  font-size : 2.2em;
+}
+.sections{
+  margin-top:10%;
+}
+.outer-text{
+/*  margin-left:3%;
+  font-size : 2.6em;*/
+  border: solid 1px black;
+}
+
+.inner-text{
+  margin-left:7%;
+  border: solid 1px black;
+}
+.equip{
+  margin-top:5%:
+}
+
+.nequip{
+  margin-top:8%;
+  margin-bottom : 4%;
+}
+
+
+</style>
+<body>
+
+    <div class = "my-container arms">
+      <h1>Catalog of Exercises: </h1>
+      <h3> Arms Click on an exercise to learn more!</h3>
+      <br><br><br>
+      <div>
+        <div class = "equip">
+          <div class = "main-text">Equipment Required</div>
+          <br>
+
+          <div>
+            <div class ="outer-text" id="out1">Bicep curls <i class="bi bi-caret-down-fill" id="downCaret1"></i></div>
+            <div id="in1">
+              <div class ="inner-text" >Dumbell curls</div>
+              <div class ="inner-text" >Zottman curls</div>
+              <div class ="inner-text" >Hammer curls</div>
+            </div>
+          </div>
+
+          <div class ="outer-text">Tricep pulldowns</div>
+          <div class ="outer-text">Chinups</div>
+        </div>
+
+        <div class = "nequip">
+          <div class = "main-text">No Equipment Required</div>
+          <br>
+          <div>
+            <div class ="outer-text" id="out2">Push ups <i class="bi bi-caret-down-fill" id="downCaret2"></i></div>
+            <div id="in2">
+              <div class ="inner-text" >Close grip push ups</div>
+              <div class ="inner-text" >Diamond push ups</div>
+            </div>
+          </div>
+
+          <div class ="outer-text">Tricep dips</div>
+          <div>
+          <div class ="outer-text" id="out3">Planks <i class="bi bi-caret-down-fill" id="downCaret3"></i></div>
+            <div id="in3">
+              <div class ="inner-text" >Plank jacks</div>
+              <div class ="inner-text" >Up-down planks</div>
+              <div class ="inner-text" >Side planks</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <div class ="footer col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+  				<table id = "footer-table" align="center" width="100%" height="50px" border="0">
+  	         <tr>
+                  <td width="33.33%" style="border : none;"><img class ="images" src="../../static/fitness/images/left.png"></td>
+                  <td width="33.33%" style="border : none;"><img class ="images" src="../../static/fitness/images/home.png"></td>
+                  <td width="33.33%" style="border : none;"><img class ="images" src="../../static/fitness/images/right.png"></td>
+  	         </tr>
+  	  	 </table>
+      </div>
+</body>
+<script>
+
+
+    $("#out1").click(function(){
+      $("#in1").slideToggle("slow");
+      toggleCaret("rightCaret1", "downCaret1", "#out1");
+    });
+
+    $("#out2").click(function(){
+      $("#in2").slideToggle("slow");
+      toggleCaret("rightCaret2", "downCaret2", "#out2");
+    });
+
+    $("#out3").click(function(){
+      $("#in3").slideToggle("slow");
+      toggleCaret("rightCaret3", "downCaret3", "#out3");
+    });
+
+  // Function that handles toggling the Caret
+    function toggleCaret(rightCaretNum, downCaretNum, downNum) {
+
+      var rightCaret = document.getElementById(rightCaretNum);
+      var downCaret = document.getElementById(downCaretNum);
+
+        if (rightCaret != null) {
+            rightCaret.remove();
+            $(downNum).append("<i class='bi bi-caret-down-fill' id='" + downCaretNum + "'> </i>");
+        }
+
+        if (downCaret != null) {
+          downCaret.remove();
+          $(downNum).append("<i class='bi bi-caret-right-fill' id='" + rightCaretNum + "'></i>");
+        }
+    }
+
+
+</script>
+</html>
