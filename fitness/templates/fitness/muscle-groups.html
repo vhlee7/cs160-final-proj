@@ -65,7 +65,7 @@ td{
   				<table align="center"width="100%" border="0" style=" margin-top:2%">
   	         <tr class= "tr-rows">
 
-                  <td width="45%" onclick="armsClick();"><p class = "section">Arms</p><img class ="images" src="../../static/fitness/images/arms.png"></td>
+                  <td width="45%" onclick="location.href='/fitness/catalog-exercise-arms/';"><p class = "section">Arms</p><img class ="images" src="../../static/fitness/images/arms.png"></td>
                   <td style = "border: transparent;" width = "10%"></td>
                   <td width="45%" onclick="legsClick();"><p class = "section">Legs</p><img class ="images" src="../../static/fitness/images/legs.png"></td>
   	         </tr>
@@ -95,36 +95,37 @@ td{
       </div>
 </body>
 <script>
-  var ws_socket = new WebSocket('ws://' + window.location.host + '/ws/fitness');
-    function armsClick(){
-      msg = "{\"section\" : " + "\"arms\"" + "}";
-      ws_socket.send(msg);
-      window.location.href = "../catalog-exercise?section=" + "arms";
-    };
-    function legsClick(){
-      msg = "{\"section\" : " + "\"legs\"" + "}";
-      ws_socket.send(msg);
-      window.location.href = "../catalog-exercise?section=" + "legs";
-    };
-    function absClick(){
-      msg = "{\"section\" : " + "\"abs\"" + "}";
-      ws_socket.send(msg);
-      window.location.href = "../catalog-exercise?section=" + "abs";
-    };
-    function shouldersClick(){
-      msg = "{\"section\" : " + "\"shoulders\"" + "}";
-      ws_socket.send(msg);
-      window.location.href = "../catalog-exercise?section=" + "shoulders";
-    };
-    function backClick(){
-      msg = "{\"section\" : " + "\"back\"" + "}";
-      ws_socket.send(msg);
-      window.location.href = "../catalog-exercise?section=" + "back";
-    };
-    function chestClick(){
-      msg = "{\"section\" : " + "\"chest\"" + "}";
-      ws_socket.send(msg);
-      window.location.href = "../catalog-exercise?section=" + "chest";
-    };
+
+  // var ws_socket = new WebSocket('ws://' + window.location.host + '/ws/fitness');
+  //   function armsClick(){
+  //     msg = "{\"section\" : " + "\"arms\"" + "}";
+  //     ws_socket.send(msg);
+  //     window.location.href = "../catalog-exercise?section=" + "arms";
+  //   };
+  //   function legsClick(){
+  //     msg = "{\"section\" : " + "\"legs\"" + "}";
+  //     ws_socket.send(msg);
+  //     window.location.href = "../catalog-exercise?section=" + "legs";
+  //   };
+  //   function absClick(){
+  //     msg = "{\"section\" : " + "\"abs\"" + "}";
+  //     ws_socket.send(msg);
+  //     window.location.href = "../catalog-exercise?section=" + "abs";
+  //   };
+  //   function shouldersClick(){
+  //     msg = "{\"section\" : " + "\"shoulders\"" + "}";
+  //     ws_socket.send(msg);
+  //     window.location.href = "../catalog-exercise?section=" + "shoulders";
+  //   };
+  //   function backClick(){
+  //     msg = "{\"section\" : " + "\"back\"" + "}";
+  //   ws_socket.send(msg);
+  //   window.location.href = "../catalog-exercise?section=" + "back";
+  // };
+  // function chestClick(){
+  //   msg = "{\"section\" : " + "\"chest\"" + "}";
+  //   ws_socket.send(msg);
+  //   window.location.href = "../catalog-exercise?section=" + "chest";
+  // };
 </script>
 </html>
