@@ -30,6 +30,10 @@
             border-style: solid; 
             /* margin-left: 10px; */
         }
+
+        i.bi {
+            font-size: 5rem; 
+        }
         
         #questionIcon {
             font-size: 60px;
@@ -62,9 +66,11 @@
 
         <div class = "row"> 
             <div class="col-sm-2"> </div>
-            <div class="col-sm-3 boxSize" id = "border" onclick="location.href='/fitness/calendar/';" style="cursor: pointer;"> <p class="text-center">My Schedule</p></div>
+            <div class="col-sm-3 boxSize" id = "border" onclick="location.href='/fitness/calendar/';" style="cursor: pointer;"> <div style="text-align: center"> <p>My Schedule</p><i class="bi bi-calendar"></i></div></div>
             <div class="col-sm-2"> </div>
-            <div class="col-sm-3 boxSize" id = "border" onclick="location.href='/fitness/goals/';" style="cursor: pointer;"> <p class="text-center">My Goals</p> </div>
+            <div class="col-sm-3 boxSize" id = "border" onclick="location.href='/fitness/goals/';" style="cursor: pointer;"> <div style="text-align: center">
+                <p>My Goals</p><i class="bi bi-card-checklist"></i>
+            </div> </div>
             <div class="col-sm-2"> </div>
         </div>
 
@@ -72,9 +78,13 @@
 
         <div class="row">
             <div class="col-sm-2"> </div>
-            <div class="col-sm-3 boxSize" id = "border" onclick="location.href='/fitness/muscle-groups/';" style="cursor: pointer;"> <p class="text-center">My Exercises</p></div>
+            <div class="col-sm-3 boxSize" id = "border" onclick="location.href='/fitness/muscle-groups/';" style="cursor: pointer;"><div style="text-align: center">
+                <p>My Exercises</p><i class="bi bi-heart"></i>
+            </div></div>
             <div class="col-sm-2"> </div>
-            <div class="col-sm-3 boxSize" id = "border" onclick="location.href='/fitness/motivation/';" style="cursor: pointer;"><p class="text-center">My Motivation</p> </div>
+            <div class="col-sm-3 boxSize" id = "border" onclick="location.href='/fitness/motivation/';" style="cursor: pointer;"><div style="text-align: center">
+                <p>My Motivation</p><i class="bi bi-trophy"></i>
+            </div></div>
             <div class="col-sm-2"> </div>
         </div>
 
@@ -82,7 +92,9 @@
 
         <div class="row">
             <div class="col-sm-4"> </div>
-            <div class="col-sm-4 boxSize" id = "border" onclick="location.href='/fitness/progress/';" style="cursor: pointer;"><p class="text-center">My Progress</p></div>
+            <div class="col-sm-4 boxSize" id = "border" onclick="location.href='/fitness/progress/';" style="cursor: pointer;"><div style="text-align: center">
+                <p>My Progress</p><i class="bi bi-person"></i>
+            </div></div>
             <div class="col-sm-4"> </div>
             
         </div>
