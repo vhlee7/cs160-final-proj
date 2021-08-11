@@ -37,6 +37,37 @@ var userEvents = {
             start: '2021-08-13T09:00:00',
             end: '2021-08-13T17:00:00'
         },
+        {
+            id: 'mywork',
+            title: '[work] - finish project',
+            start: '2021-08-16T09:00:00',
+            end: '2021-08-16T17:00:00'
+        },
+        {
+            title: '[work] - study',
+            start: '2021-08-17T09:00:00',
+            end: '2021-08-17T15:00:00'
+        },
+        {
+            title: '[work] - present project',
+            start: '2021-08-18T09:00:00',
+            end: '2021-08-18T12:00:00'
+        },
+        {
+            title: '[leisure] - shopping',
+            start: '2021-08-18T15:00:00',
+            end: '2021-08-18T17:00:00'
+        },
+        {
+            title: '[work] - meeting',
+            start: '2021-08-19T09:00:00',
+            end: '2021-08-19T15:00:00'
+        },
+        {
+            title: '[work] - plan next project',
+            start: '2021-08-20T09:00:00',
+            end: '2021-08-20T17:00:00'
+        },
     ],
     id: "userSchedule",
     color: '#e4e4e4',
@@ -88,7 +119,6 @@ var wList = ['arms', 'legs', 'abs', 'shoulders', 'back', 'check'];
 var deleteMode = false;
 
 function init() {
-    $("#calendar-form").hide();
     $("#first-row").hide();
     closeForm();
     closeForm2();
@@ -380,3 +410,7 @@ function deleteModeOn() {
     deleteMode = true;
     $("#delete-mode").show();
 }
+
+function goBack() {
+    window.history.back();
+  }
