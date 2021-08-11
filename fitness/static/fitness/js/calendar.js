@@ -229,6 +229,17 @@ function getEventsDate(date) {
     return dEvents;
 }
 
+function getEventsWeek(wStart, wEnd) {
+    var allEvents = calendar.getEvents();
+    var wEvents = [];
+    for (let i = 0; i < allEvents.length; i++) {
+        if (allEvents[i].start >= wStart && allEvents[i].start <= wEnd) {
+            wEvents.push(allEvents[i]);
+        }
+    }
+    return wEvents;
+}
+
 function openForm() {
     $("#calendar-form").show();
     //$('#formControl').click(closeForm);
@@ -351,8 +362,18 @@ function getDuration(st, et) {
     return (hourDiff * 60) + minuteDiff;
 }
 
+function addDays(date, days) {
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
+}
+
 function analyzeSchedule() {
-    var calItems = calendar.getEvents();
+    //var calItems = calendar.getEvents();
+    var curDay = d.getDay();
+    var wStart = addDays(d, -1 * curDay);
+    var wEnd = addDays(d, 6 - curDay);
+    var wEvents = getEventsWeek(wStart, wEnd);
     var schedText = document.getElementById('analyze-schedule');
 
     userSchedData = {
@@ -362,13 +383,16 @@ function analyzeSchedule() {
         otherTime: 0
     };
 
-    for (let i = 0; i < calItems.length; i++) {
-        var type = getType(calItems[i].title);
-        var dur = getDuration(calItems[i].startStr, calItems[i].endStr);
+    for (let i = 0; i < wEvents.length; i++) {
+        var type = getType(wEvents[i].title);
+        var dur = getDuration(wEvents[i].startStr, wEvents[i].endStr);
         userSchedData[type + 'Time'] += dur;
     }
 
-    schedText.innerHTML = 'This week you have: <br>' + 
+    var wB = (wStart + '').split(" ")[1] + ' ' + (wStart + '').split(" ")[2];
+    var wE = (wEnd + '').split(" ")[1] + ' ' + (wEnd + '').split(" ")[2];
+
+    schedText.innerHTML = 'This week (' + wB + ' to ' + wE + ') you have: <br>' + 
         Math.floor(userSchedData['exerciseTime'] / 60) + ' hours and ' + userSchedData['exerciseTime'] % 60 + ' minutes of exercise, <br>' +
         Math.floor(userSchedData['workTime'] / 60) + ' hours and ' + userSchedData['workTime'] % 60 + ' minutes of work, <br>' +
         Math.floor(userSchedData['leisureTime'] / 60) + ' hours and ' + userSchedData['leisureTime'] % 60 + ' minutes of leisure, <br>' +
