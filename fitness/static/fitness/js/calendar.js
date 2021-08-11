@@ -272,9 +272,7 @@ function sendForm2() {
                 if (dTime >= minutes) {
                     var eH = parseInt(eventList[j].endStr.split('T')[1].split(':')[0]);
                     var eM = parseInt(eventList[j].endStr.split('T')[1].split(':')[1]);
-                    if (eM + minutes >= 60) {
-                        eH += 1;
-                    }
+                    eH += Math.floor((eM + minutes) / 60);
                     calendar.addEvent({
                         title: '[exercise] - ' + wList[sel],
                         start: eventList[j].endStr,
@@ -286,9 +284,7 @@ function sendForm2() {
             var last = eventList[eventList.length - 1];
             var lH = parseInt(last.endStr.split('T')[1].split(':')[0]);
             var lM = parseInt(last.endStr.split('T')[1].split(':')[1]);
-            if (lM + minutes >= 60) {
-                lH += 1;
-            }
+            lH += Math.floor((lM + minutes) / 60);
             calendar.addEvent({
                 title: '[exercise] - ' + wList[sel],
                 start: last.endStr,
