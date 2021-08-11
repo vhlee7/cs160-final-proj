@@ -136,7 +136,7 @@
                 <tr>
                     <td> Placeholder Goal </td>
                     <td class='numWidth'> <i class='bi bi-x crossSize' onclick='removeGoal(this);' style ='color:red';> </i> </td>
-                    <td class='numWidth'> <i class='bi bi-check-lg' style='color:green';> </i> </td>
+                    <td class='numWidth'> <i class='bi bi-check-lg' style='color:green'; onclick='archiveGoal(this)'> </i> </td>
                 </tr>
             </table>
 
@@ -191,10 +191,35 @@
         el.parentNode.parentNode.remove();
     }
 
+    // Make sure your goal text is the very top <td>, else this fails
+    function archiveGoal(el) {
+        var goalText = el.closest(".tableStyle").rows[0].cells[0].textContent;
+
+        var goalStorage = localStorage.getItem("myGoalText");
+        console.log(goalStorage);
+
+        // if we did not submit ANY goal at all
+        if (goalStorage === null) {
+            var goalArray = [];
+            goalArray.push(goalText);
+            localStorage.setItem("myGoalText", JSON.stringify(goalArray));
+
+        // if we have previous goals submitted already
+        } else {
+
+            var store = JSON.parse(goalStorage);
+            store.push(goalText);
+            localStorage.setItem("myGoalText", JSON.stringify(store));
+        }
+
+        removeGoal(el);
+    }
+
+
     function submitGoal() {
         var myGoal = document.areaform.myform.value;
         
-        $("#tableHolder").append("<table class='tableStyle'> <tr> <td>" + myGoal + "</td> <td class='numWidth'> <i class='bi bi-x crossSize' onclick='removeGoal(this);' style ='color:red';> </i> </td> <td class='numWidth'> <i class='bi bi-check-lg' style='color:green';> </i> </td> </tr></table>");
+        $("#tableHolder").append("<table class='tableStyle'> <tr> <td>" + myGoal + "</td> <td class='numWidth'> <i class='bi bi-x crossSize' onclick='removeGoal(this);' style ='color:red';> </i> </td> <td class='numWidth'> <i class='bi bi-check-lg' style='color:green'; onclick='archiveGoal(this)'> </i> </td> </tr></table>");
 
 
         $("#phForm").hide();
@@ -204,6 +229,7 @@
         $("#phAchievements").show();
         document.areaform.myform.value ="";
     }
+
 
 
 
