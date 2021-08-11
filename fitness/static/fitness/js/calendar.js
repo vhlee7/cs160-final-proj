@@ -7,6 +7,7 @@ var socket = new WebSocket(
 var userEvents = {
     events: [
         {
+            id: 'mywork',
             title: '[work] - finish project',
             start: '2021-08-09T09:00:00',
             end: '2021-08-09T17:00:00'
@@ -82,11 +83,17 @@ var userSchedData = {
     otherTime: 0
 };
 
+var wList = ['arms', 'legs', 'abs', 'shoulders', 'back', 'check'];
+
+var deleteMode = false;
+
 function init() {
     $("#calendar-form").hide();
     $("#first-row").hide();
     closeForm();
+    closeForm2();
     hideSuggestions();
+    deleteModeOff();
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -94,11 +101,16 @@ document.addEventListener('DOMContentLoaded', function() {
     calendar = new FullCalendar.Calendar(calendarEl, {
         eventClick: function(info) {
             var eventObj = info.event;
-            //alert(eventObj.title);
-            eventObj.remove();
-            analyzeSchedule();
+            if (deleteMode) {
+                alert(eventObj.title + ' was deleted.')
+                eventObj.remove();
+                analyzeSchedule();
+            } else {
+                alert(eventObj.title);
+            }
         },
         timeZone: 'local',
+        nowIndicator: true,
         initialView: 'timeGridWeek',
         headerToolbar: {
             left: 'add autoWorkout',
@@ -106,19 +118,31 @@ document.addEventListener('DOMContentLoaded', function() {
             right: 'prev,next timeGridWeek,timeGridDay'
         }, 
         footerToolbar: {
-            center: ''
+            left: 'delete'
         },
         customButtons: {
             add: {
                 text: 'Add to calendar',
                 click: function() {
+                    closeForm2();
+                    deleteModeOff();
                     openForm();
                 }
             },
             autoWorkout: {
                 text: 'Autofill Workout',
                 click: function() {
-                    generateWorkout();
+                    closeForm();
+                    deleteModeOff();
+                    openForm2();
+                }
+            },
+            delete: {
+                text: 'Delete items',
+                click: function() {
+                    closeForm();
+                    closeForm2();
+                    deleteModeOn();
                 }
             }
         },
@@ -127,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function() {
         ]
     });
     calendar.render();
-    calendar.scrollToTime(d.getHours() + ':' + d.getMinutes());
+    //calendar.scrollToTime(d.getHours() + ':' + d.getMinutes());
     analyzeSchedule();
 });
 
@@ -157,16 +181,35 @@ function generateWorkout() {
     analyzeSchedule();
 }
 
+function getEventsDate(date) {
+    var allEvents = calendar.getEvents();
+    var dEvents = [];
+    for (let i = 0; i < allEvents.length; i++) {
+        if (allEvents[i].startStr.split('T')[0] === date) {
+            dEvents.push(allEvents[i]);
+        }
+    }
+    return dEvents;
+}
+
 function openForm() {
     $("#calendar-form").show();
-    $('#formControl').click(closeForm);
-    $('#formControl').text("Hide Form");
+    //$('#formControl').click(closeForm);
+    //$('#formControl').text("Hide Form");
 }
 
 function closeForm() {
     $("#calendar-form").hide();
-    $('#formControl').click(openForm);
-    $('#formControl').text("Show Form");
+    //$('#formControl').click(openForm);
+    //$('#formControl').text("Show Form");
+}
+
+function openForm2() {
+    $("#workout-fill").show();
+}
+
+function closeForm2() {
+    $("#workout-fill").hide();
 }
 
 function sendForm() {
@@ -190,17 +233,84 @@ function sendForm() {
     analyzeSchedule();
 }
 
+function sendForm2() {
+    var date = document.getElementById("wdate").value;
+    var minutes = document.getElementById("minutes").value;
+    minutes = parseInt(minutes);
+    var sel = Math.floor(Math.random() * wList.length);
+    var eventList = getEventsDate(date);
+    eventList.sort(function (a, b) {
+        var aSt = parseInt(a.startStr.split('T')[1].split(':')[0]) * 60 + parseInt(a.startStr.split('T')[1].split(':')[1])
+        var bSt = parseInt(b.startStr.split('T')[1].split(':')[0]) * 60 + parseInt(b.startStr.split('T')[1].split(':')[1])
+        if (aSt < bSt) {
+            return -1;
+        } else if (aSt > bSt) {
+            return 1;
+        } else {
+            return 0;
+        }
+    });
+    if (eventList.length == 0) {
+        calendar.addEvent({
+            title: '[exercise] - ' + wList[sel],
+            start: date + 'T08:00:00',
+            end: date + 'T' + ('0' + Math.floor(minutes / 60 + 8 )).slice(-2) + ':' + ('0' + minutes % 60).slice(-2) + ':00'
+        });
+        return;
+    } else {
+        var eStart = '08';
+        if (parseInt(eventList[0].startStr.split('T')[1].split(':')[0]) - Math.floor(minutes / 60) > 8) {
+            eStart = '08';
+            calendar.addEvent({
+                title: '[exercise] - ' + wList[sel],
+                start: date + 'T' + ('0' + eStart).slice(-2) + ':00:00',
+                end: date + 'T' + ('0' + Math.floor(minutes / 60 + parseInt(eStart))).slice(-2) + ':' + ('0' + minutes % 60).slice(-2) + ':00'
+            });
+        } else {
+            for (let j = 0; j < eventList.length - 1; j++) {
+                var dTime = getDuration(eventList[j].endStr, eventList[j + 1].startStr);
+                if (dTime >= minutes) {
+                    var eH = parseInt(eventList[j].endStr.split('T')[1].split(':')[0]);
+                    var eM = parseInt(eventList[j].endStr.split('T')[1].split(':')[1]);
+                    if (eM + minutes >= 60) {
+                        eH += 1;
+                    }
+                    calendar.addEvent({
+                        title: '[exercise] - ' + wList[sel],
+                        start: eventList[j].endStr,
+                        end: date + 'T' + ('0' + Math.floor(minutes / 60) + eH).slice(-2) + ':' + ('0' + (minutes + eM) % 60).slice(-2) + ':00'
+                    });
+                    return;
+                }
+            }
+            var last = eventList[eventList.length - 1];
+            var lH = parseInt(last.endStr.split('T')[1].split(':')[0]);
+            var lM = parseInt(last.endStr.split('T')[1].split(':')[1]);
+            if (lM + minutes >= 60) {
+                lH += 1;
+            }
+            calendar.addEvent({
+                title: '[exercise] - ' + wList[sel],
+                start: last.endStr,
+                end: date + 'T' + ('0' + Math.floor(minutes / 60) + lH).slice(-2) + ':' + ('0' + (minutes + lM) % 60).slice(-2) + ':00'
+            });
+            analyzeSchedule();
+            return;
+        }
+    }
+}
+
 // parses through title to get type
 function getType(str) {
     return str.replace(/\s+/g, '').split('-')[0].replace(/[\[\]']+/g,'');
 }
 
 // returns time in minutes
-function getDuration(startTime, endTime) {
-    startTime = startTime.split(' ')[4].split(':');
-    endTime = endTime.split(' ')[4].split(':');
-    var minuteDiff = parseInt(endTime[1]) - parseInt(startTime[1]);  
-    var hourDiff = parseInt(endTime[0]) - parseInt(startTime[0]);
+function getDuration(st, et) {
+    st = st.split('T')[1].split(':');
+    et = et.split('T')[1].split(':');
+    var minuteDiff = parseInt(et[1]) - parseInt(st[1]);  
+    var hourDiff = parseInt(et[0]) - parseInt(st[0]);
     return (hourDiff * 60) + minuteDiff;
 }
 
@@ -217,7 +327,7 @@ function analyzeSchedule() {
 
     for (let i = 0; i < calItems.length; i++) {
         var type = getType(calItems[i].title);
-        var dur = getDuration(calItems[i].start + '', calItems[i].end + '');
+        var dur = getDuration(calItems[i].startStr, calItems[i].endStr);
         userSchedData[type + 'Time'] += dur;
     }
 
@@ -251,16 +361,26 @@ function suggestions() {
     if (userSchedData.exerciseTime < 210) {
         var eDiff = 210 - userSchedData.exerciseTime;
         suggText += '    This week, your schedule averages less than 30 minutes of exercise per day. You need ' + 
-            eDiff + ' minutes of exerise or more for a healthy amount. Consider using the "Autofill Workout" tool. <br>'
+            eDiff + ' minutes of exerise or more for a healthy amount. Consider using the "Autofill Workout" tool. <br>';
     }
 
     if (userSchedData.workTime > 2400) { 
-        suggText += '    This week, your schedule has you working for more than 40 hours. Consider adding more breaks. <br>'
+        suggText += '    This week, your schedule has you working for more than 40 hours. Consider adding more breaks. <br>';
     }
 
     if (suggText === '') {
-        suggText = 'Your schedule is perfect. Keep it up!'
+        suggText = 'Your schedule is perfect. Keep it up!';
     }
 
     textBox.innerHTML = suggText;
+}
+
+function deleteModeOff() {
+    deleteMode = false;
+    $("#delete-mode").hide();
+}
+
+function deleteModeOn() {
+    deleteMode = true;
+    $("#delete-mode").show();
 }

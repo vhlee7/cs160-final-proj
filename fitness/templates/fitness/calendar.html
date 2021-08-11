@@ -27,9 +27,30 @@
             </div>
         </div>
         <p class="h1 text-center">Calendar</p>
+        <div id="delete-mode" class="row justify-content-center"> 
+            <form>
+                <p class="h3 text-center">Click Calendar Items to Delete</p>
+                <button type="button" onclick="deleteModeOff();"> Turn off delete mode</button>
+            </form>
+        </div>
+        <div id="workout-fill" class="row justify-content-center"> 
+            <form> 
+                <p class="h3 text-center">Autofill Workout Form</p>
+                <div class="form-item form-group">
+                    <label for="wdate"> Select a day to autofill: </label>
+                    <input type="date" name="wdate" id="wdate" />
+                </div>
+                <div class="form-item form-group">
+                    <label for="minutes"> How many minutes do you want to exercise?: </label>
+                    <input type="number" name="minutes" id="minutes" min="0" step="15" value="30"/>
+                </div>
+                <button class="center-button" type="button" onclick="sendForm2();analyzeSchedule();"> Enter </button>
+                <button class="center-button" type="button" onclick="closeForm2();"> Close </button>
+            </form>
+        </div>
         <div id="calendar-form" class="row justify-content-center"> 
             <form>
-                <p class="h3 text-center">Calendar Form</p>
+                <p class="h3 text-center">Add Calendar Form</p>
                 <div class="form-item form-group">
                     <label for="eventName"> Task name: </label>
                     <input type="text" name="eventName" id="eventName" />
@@ -54,8 +75,8 @@
                     <label for="endTime"> End Time: </label>
                     <input type="time" name="endTime" id="endTime" />
                 </div>
-                <button type="button" onclick="sendForm();"> Add to Calendar </button>
-                <button type="button" onclick="closeForm();"> Close </button>
+                <button class="center-button" type="button" onclick="sendForm();"> Add to Calendar </button>
+                <button class="center-button" type="button" onclick="closeForm();"> Close </button>
             </form>     
         </div>
         <div id="calendar"></div>
