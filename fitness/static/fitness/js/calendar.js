@@ -114,6 +114,13 @@ var userSchedData = {
     otherTime: 0
 };
 
+var calColor = {
+    work: '#e4e4e4',
+    exercise: 'green',
+    leisure: 'blue',
+    other: '#87ceeb'
+}
+
 var wList = ['arms', 'legs', 'abs', 'shoulders', 'back', 'chest'];
 
 var deleteMode = false;
@@ -187,10 +194,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function formatEvent(message) {
     return {
-        title: message.type + ' - ' + message.title,
+        title: '[' + message.type + '] - ' + message.title,
         start: message.date + "T" + message.start + ":00",
         end: message.date + "T" + message.end + ":00",
-        eventColor: message.color
+        backgroundColor: calColor[message.type]
     };
 }  
 
@@ -284,7 +291,8 @@ function sendForm2() {
         calendar.addEvent({
             title: '[exercise] - ' + wList[sel],
             start: date + 'T08:00:00',
-            end: date + 'T' + ('0' + Math.floor(minutes / 60 + 8 )).slice(-2) + ':' + ('0' + minutes % 60).slice(-2) + ':00'
+            end: date + 'T' + ('0' + Math.floor(minutes / 60 + 8 )).slice(-2) + ':' + ('0' + minutes % 60).slice(-2) + ':00',
+            backgroundColor: calColor['exercise']
         });
         return;
     } else {
@@ -294,7 +302,8 @@ function sendForm2() {
             calendar.addEvent({
                 title: '[exercise] - ' + wList[sel],
                 start: date + 'T' + ('0' + eStart).slice(-2) + ':00:00',
-                end: date + 'T' + ('0' + Math.floor(minutes / 60 + parseInt(eStart))).slice(-2) + ':' + ('0' + minutes % 60).slice(-2) + ':00'
+                end: date + 'T' + ('0' + Math.floor(minutes / 60 + parseInt(eStart))).slice(-2) + ':' + ('0' + minutes % 60).slice(-2) + ':00',
+                backgroundColor: calColor['exercise']
             });
         } else {
             for (let j = 0; j < eventList.length - 1; j++) {
@@ -306,7 +315,8 @@ function sendForm2() {
                     calendar.addEvent({
                         title: '[exercise] - ' + wList[sel],
                         start: eventList[j].endStr,
-                        end: date + 'T' + ('0' + Math.floor(minutes / 60) + eH).slice(-2) + ':' + ('0' + (minutes + eM) % 60).slice(-2) + ':00'
+                        end: date + 'T' + ('0' + Math.floor(minutes / 60) + eH).slice(-2) + ':' + ('0' + (minutes + eM) % 60).slice(-2) + ':00',
+                        backgroundColor: calColor['exercise']
                     });
                     return;
                 }
@@ -318,7 +328,8 @@ function sendForm2() {
             calendar.addEvent({
                 title: '[exercise] - ' + wList[sel],
                 start: last.endStr,
-                end: date + 'T' + ('0' + Math.floor(minutes / 60) + lH).slice(-2) + ':' + ('0' + (minutes + lM) % 60).slice(-2) + ':00'
+                end: date + 'T' + ('0' + Math.floor(minutes / 60) + lH).slice(-2) + ':' + ('0' + (minutes + lM) % 60).slice(-2) + ':00',
+                backgroundColor: calColor['exercise']
             });
             analyzeSchedule();
             return;
