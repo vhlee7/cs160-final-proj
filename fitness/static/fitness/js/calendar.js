@@ -114,7 +114,7 @@ var userSchedData = {
     otherTime: 0
 };
 
-var wList = ['arms', 'legs', 'abs', 'shoulders', 'back', 'check'];
+var wList = ['arms', 'legs', 'abs', 'shoulders', 'back', 'chest'];
 
 var deleteMode = false;
 
