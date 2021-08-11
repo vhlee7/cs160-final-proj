@@ -7,32 +7,32 @@ var socket = new WebSocket(
 var userEvents = {
     events: [
         {
-            title: 'work',
+            title: '[work] - finish project',
             start: '2021-08-09T09:00:00',
             end: '2021-08-09T17:00:00'
         },
         {
-            title: 'work',
+            title: '[work] - study',
             start: '2021-08-10T09:00:00',
             end: '2021-08-10T15:00:00'
         },
         {
-            title: 'work',
+            title: '[work] - present project',
             start: '2021-08-11T09:00:00',
             end: '2021-08-11T12:00:00'
         },
         {
-            title: 'errands',
+            title: '[leisure] - shopping',
             start: '2021-08-11T15:00:00',
             end: '2021-08-11T17:00:00'
         },
         {
-            title: 'work',
+            title: '[work] - meeting',
             start: '2021-08-12T09:00:00',
             end: '2021-08-12T15:00:00'
         },
         {
-            title: 'work',
+            title: '[work] - plan next project',
             start: '2021-08-13T09:00:00',
             end: '2021-08-13T17:00:00'
         },
@@ -45,27 +45,27 @@ var userEvents = {
 var userWorkouts = {
     events: [
         {
-            title: 'arms',
+            title: '[exercise] - arms',
             start: '2021-08-09T18:00:00',
             end: '2021-08-09T18:30:00'
         },
         {
-            title: 'legs',
+            title: '[exercise] - legs',
             start: '2021-08-10T16:00:00',
             end: '2021-08-10T17:00:00'
         },
         {
-            title: 'abs',
+            title: '[exercise] - abs',
             start: '2021-08-11T14:00:00',
             end: '2021-08-11T14:30:00'
         },
         {
-            title: 'shoulders',
+            title: '[exercise] - shoulders',
             start: '2021-08-12T16:00:00',
             end: '2021-08-12T17:00:00'
         },
         {
-            title: 'legs',
+            title: '[exercise] - legs',
             start: '2021-08-13T18:00:00',
             end: '2021-08-13T18:30:00'
         },
@@ -74,6 +74,14 @@ var userWorkouts = {
     color: 'green',
     textColor: 'black'
 };
+
+var userSchedData = {
+    workTime: 0,
+    exerciseTime: 0,
+    leisureTime: 0, 
+    otherTime: 0
+};
+
 function init() {
     $("#calendar-form").hide();
     closeForm();
@@ -84,7 +92,9 @@ document.addEventListener('DOMContentLoaded', function() {
     calendar = new FullCalendar.Calendar(calendarEl, {
         eventClick: function(info) {
             var eventObj = info.event;
-            alert(eventObj.title);
+            //alert(eventObj.title);
+            eventObj.remove();
+            analyzeSchedule();
         },
         timeZone: 'local',
         initialView: 'timeGridWeek',
@@ -107,11 +117,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     calendar.render();
     calendar.scrollToTime(d.getHours() + ':' + d.getMinutes());
+    analyzeSchedule();
 });
 
 function formatEvent(message) {
     return {
-        title: message.title,
+        title: message.type + ' - ' + message.title,
         start: message.date + "T" + message.start + ":00",
         end: message.date + "T" + message.end + ":00",
         eventColor: message.color
@@ -132,6 +143,7 @@ function generateWorkout() {
     for (let i = 0; i < workouts.length; i++) {
         calendar.addEvent(workouts[i]);
     }
+    analyzeSchedule();
 }
 
 function openForm() {
@@ -151,40 +163,55 @@ function sendForm() {
     var date = document.getElementById("date").value;
     var startTime = document.getElementById("startTime").value;
     var endTime = document.getElementById("endTime").value;
+    var taskType = document.getElementById("taskType").value;
 
     var calendarParams = {
         title: title,
         date: date,
         start: startTime,
         end: endTime,
+        type: taskType 
     };
 
     var event = formatEvent(calendarParams);
     calendar.addEvent(event);
+    analyzeSchedule();
 }
 
-function ok() {
-    localStorage.setItem('key', "uwu2");
-}
-function ok2() {
-    let a = localStorage.getItem('key');
-    alert(a);
+// parses through title to get type
+function getType(str) {
+    return str.replace(/\s+/g, '').split('-')[0].replace(/[\[\]']+/g,'');
 }
 
-
-/*
-function reqListener () {
-    console.log(this.responseText);
-}
-function fetchWorkout() {
-    var wgerUrl = 'https://wger.de/api/v2/exercise/';
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", wgerUrl, true);
-    xhr.addEventListener("load", reqListener);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send();
+// returns time in minutes
+function getDuration(startTime, endTime) {
+    startTime = startTime.split(' ')[4].split(':');
+    endTime = endTime.split(' ')[4].split(':');
+    var minuteDiff = parseInt(endTime[1]) - parseInt(startTime[1]);  
+    var hourDiff = parseInt(endTime[0]) - parseInt(startTime[0]);
+    return (hourDiff * 60) + minuteDiff;
 }
 
-fetchWorkout();
+function analyzeSchedule() {
+    var calItems = calendar.getEvents();
+    var schedText = document.getElementById('analyze-schedule');
 
-*/
+    userSchedData = {
+        workTime: 0,
+        exerciseTime: 0,
+        leisureTime: 0, 
+        otherTime: 0
+    };
+
+    for (let i = 0; i < calItems.length; i++) {
+        var type = getType(calItems[i].title);
+        var dur = getDuration(calItems[i].start + '', calItems[i].end + '');
+        userSchedData[type + 'Time'] += dur;
+    }
+
+    schedText.innerHTML = 'This week you have: <br>' + 
+        Math.floor(userSchedData['exerciseTime'] / 60) + ' hours and ' + userSchedData['exerciseTime'] % 60 + ' minutes of exercise, <br>' +
+        Math.floor(userSchedData['workTime'] / 60) + ' hours and ' + userSchedData['workTime'] % 60 + ' minutes of work, <br>' +
+        Math.floor(userSchedData['leisureTime'] / 60) + ' hours and ' + userSchedData['leisureTime'] % 60 + ' minutes of leisure, <br>' +
+        Math.floor(userSchedData['otherTime'] / 60) + ' hours and ' + userSchedData['otherTime'] % 60 + ' minutes of other tasks times.';
+}

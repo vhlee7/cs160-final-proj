@@ -30,8 +30,17 @@
             <form>
                 <p class="h3 text-center">Calendar Form</p>
                 <div class="form-item form-group">
-                    <label for="eventName"> Event Name: </label>
+                    <label for="eventName"> Task name: </label>
                     <input type="text" name="eventName" id="eventName" />
+                </div>
+                <div class="form-item form-group">
+                    <label for="taskType"> What bests describes this task?: </label>
+                    <select name="taskType" id="taskType">
+                        <option value="work">Work</option>
+                        <option value="exercise">Exercise</option>
+                        <option value="leisure">Leisure</option>
+                        <option value="other">Other</option>
+                    </select>
                 </div>
                 <div class="form-item form-group">
                     <label for="date"> Date: </label>
@@ -49,7 +58,7 @@
         </div>
         <p class="h1 text-center">Calendar</p>
         <div id="calendar"></div>
-        <p class="h3 text-center">This week, you have in total, <br> <b> 8 Hours </b> <br> of free time to exercise!</p>
+        <p id="analyze-schedule"class="h3 text-center">This week, you have in total, <br> <b> 8 Hours </b> <br> of free time to exercise!</p>
     </div>
 </body>
 </html>
