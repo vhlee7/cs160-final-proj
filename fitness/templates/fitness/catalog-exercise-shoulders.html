@@ -7,6 +7,8 @@
     <title>Catalog of Exercises</title>
 
     <link rel="stylesheet" type="text/css" href="{% static 'fitness/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'fitness/css/about.css' %}" />
     <script type="text/javascript" src="{% static 'fitness/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'fitness/vendor/paper/paper-full.min.js' %}"></script>
 </head>
@@ -50,8 +52,8 @@ p{
   margin-top:10%;
 }
 .outer-text{
-  margin-left:3%;
-  font-size : 2.6em;
+/*  margin-left:3%;
+  font-size : 2.6em;*/
   border: solid 1px black;
 }
 
@@ -68,238 +70,134 @@ p{
   margin-bottom : 4%;
 }
 
-.arms{
-  display:none;
+#in1 {
+  display: none;
 }
-.legs{
-  display:none;
+
+#in2 {
+  display: none;
 }
-.abs{
-  display:none;
-}
-.shoulders{
-  display:none;
-}
-.chest{
-  display:none;
-}
-.back{
-  display:none;
+
+#in3 {
+  display: none;
 }
 
 </style>
 <body>
 
-    <div class = "my-container arms">
-      <h1>Catalog of Exercises: </h1>
-      <h3> Arms Click on an exercise to learn more!</h3>
-      <div class ="sections col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class = "equip">
-          <p class = "main-text">Equipment Required</p>
-          <br>
-          <p class ="outer-text">· Bicep curls <p>
-          <p class ="inner-text">Dumbell curls</p>
-          <p class ="inner-text">Zottman curls</p>
-          <p class ="inner-text">Hammer curls</p>
-          <p class ="outer-text">· Tricep pulldowns</p>
-          <p class ="outer-text">· Chinups</p>
-        </div>
-        <div class = "nequip">
-          <p class = "main-text">No Equipment Required</p>
-          <br>
-          <p class ="outer-text">· Push ups<p>
-          <p class ="inner-text">Close grip push ups</p>
-          <p class ="inner-text">Diamond push ups</p>
-          <p class ="outer-text">· Tricep dips</p>
-          <p class ="outer-text">· Planks</p>
-          <p class ="inner-text">Plank jacks</p>
-          <p class ="inner-text">Up-down planks</p>
-          <p class ="inner-text">Side planks</p>
-        </div>
-      </div>
-    </div>
+
+
+
+
+
+
+
+
 
     <div class = "my-container legs">
       <h1>Catalog of Exercises: </h1>
-      <h3> Legs Click on an exercise to learn more!</h3>
-      <div class ="sections col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <h3> Arms Click on an exercise to learn more!</h3>
+      <br><br><br>
+      <div>
         <div class = "equip">
-          <p class = "main-text">Equipment Required</p>
+          <div class = "main-text">Equipment Required</div>
           <br>
-          <p class ="outer-text">· Leg Press<p>
-          <p class ="outer-text">· Leg Press Heel Raises</p>
-          <p class ="outer-text">· Seated Calf Raise</p>
-          <p class ="outer-text">· Quad Extensions</p>
-          <p class ="outer-text">· Hamstring Curls</p>
+
+          <div>
+
+
+
+          <div>
+            <div class ="outer-text" id="out1">Shoulder Press <i class="bi bi-caret-right-fill" id="rightCaret1"></i></div>
+            <div id="in1">
+              <div class ="inner-text" >Cable Shoulder Press</div>
+              <div class ="inner-text" >Machine Shoulder Press</div>
+            </div>
+          </div>
+
+
+
+            <div class ="outer-text"> Smith Machine Upright Row</div>
+            <div class ="outer-text"> Standing Cable Rear Delt Fly Crossover</div>
+            <div class ="outer-text"> Cable Raise</div>
+          </div>
         </div>
+
         <div class = "nequip">
-          <p class = "main-text">No Equipment Required</p>
+          <div class = "main-text">No Equipment Required</div>
           <br>
-          <p class ="outer-text">·Squats<p>
-          <p class ="inner-text">Jump Squats</p>
-          <p class ="inner-text">Bulgarian Split Squats</p>
-          <p class ="inner-text">Pistol Squats</p>
-          <p class ="inner-text">Single Leg Squats</p>
 
 
-          <p class ="outer-text">· Lunge</p>
-          <p class ="inner-text">Curtsy Lunge</p>
-          <p class ="inner-text">Reverse Lunge</p>
-          <p class ="inner-text">Lateral Lunge</p>
+
+          <div>
+            <div class ="outer-text" id="out2">Push ups <i class="bi bi-caret-right-fill" id="rightCaret2"></i></div>
+            <div id="in2">
+              <div class ="inner-text" >Incline push-up</div>
+              <div class ="inner-text" >Push-back push-up</div>
+              <div class ="inner-text" >Pike push-up</div>
+
+            </div>
+          </div>
+
+
+          <div class ="outer-text"> Prone T (and Y)</div>
+
+
+          <div>
+            <div class ="outer-text" id="out3">Planks <i class="bi bi-caret-right-fill" id="rightCaret3"></i></div>
+            <div id="in3">
+              <div class ="inner-text" >Plank-up</div>
+              <div class ="inner-text" >Plank to Down Dog</div>
+            </div>
+          </div>
+
+
+
+
         </div>
       </div>
     </div>
 
-    <div class = "my-container abs">
-      <h1>Catalog of Exercises: </h1>
-      <h3> Abs Click on an exercise to learn more!</h3>
-      <div class ="sections col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class = "equip">
-          <p class = "main-text">Equipment Required</p>
-          <br>
-          <p class ="outer-text">· Cable Machine Crunches <p>
-          <p class ="outer-text">· Glute Hamstring Developer Situp</p>
-          <p class ="outer-text">· Incline Bench Situp</p>
-          <p class ="outer-text">· Rowing Machine Knee Tuck</p>
-          <p class ="outer-text">· Pullup Bar Knee Raise</p>
-        </div>
-        <div class = "nequip">
-          <p class = "main-text">No Equipment Required</p>
-          <br>
-          <p class ="outer-text">· Crunch<p>
-          <p class ="inner-text">Bicycle crunch</p>
-          <p class ="inner-text">Reverse Crunch</p>
-          <p class ="outer-text">· Heel taps</p>
-          <p class ="outer-text">· Planks</p>
-          <p class ="inner-text">Up-down planks</p>
-          <p class ="inner-text">Side planks</p>
-          <p class ="outer-text">· Mountain climbers </p>
-          <p class ="outer-text">· Leg Raises</p>
-        </div>
-      </div>
-    </div>
 
 
-    <div class = "my-container shoulders">
-      <h1>Catalog of Exercises: </h1>
-      <h3> Shoulders Click on an exercise to learn more!</h3>
-      <div class ="sections col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class = "equip">
-          <p class = "main-text">Equipment Required</p>
-          <br>
-          <p class ="outer-text">· Shoulder Press <p>
-          <p class ="inner-text">Cable Shoulder Press</p>
-          <p class ="inner-text">Machine Shoulder Press</p>
-          <p class ="outer-text">· Smith Machine Upright Row</p>
-          <p class ="outer-text">· Standing Cable Rear Delt Fly Crossover</p>
-          <p class ="outer-text">· Cable Raise</p>
-        </div>
-        <div class = "nequip">
-          <p class = "main-text">No Equipment Required</p>
-          <br>
-          <p class ="outer-text">· Push ups<p>
-          <p class ="inner-text">Incline push-up</p>
-          <p class ="inner-text">Push-back push-up</p>
-          <p class ="inner-text">Pike push-up</p>
-          <p class ="outer-text">· Prone T (and Y)</p>
-          <p class ="outer-text">· Planks</p>
-          <p class ="inner-text">Plank-up</p>
-          <p class ="inner-text">Plank to Down Dog</p>
-        </div>
-      </div>
-    </div>
 
-    <div class = "my-container back">
-      <h1>Catalog of Exercises: </h1>
-      <h3> Back Click on an exercise to learn more!</h3>
-      <div class ="sections col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class = "equip">
-          <p class = "main-text">Equipment Required</p>
-          <br>
-          <p class ="outer-text">· Lat Pulldown <p>
-          <p class ="outer-text">· Back Extension</p>
-          <p class ="outer-text">· Seated Row Machine</p>
-          <p class ="outer-text">· Rope Pull</p>
-          <p class ="outer-text">· Chest Supported Row Machine</p>
-        </div>
-        <div class = "nequip">
-          <p class = "main-text">No Equipment Required</p>
-          <br>
-          <p class ="outer-text">· Aquaman<p>
-          <p class ="outer-text">· Dolphin Kicks</p>
-          <p class ="outer-text">· Superman</p>
-          <p class ="outer-text">· Planks</p>
-          <p class ="inner-text">Plank jacks</p>
-          <p class ="inner-text">Up-down planks</p>
-          <p class ="inner-text">Side planks</p>
-          <p class ="outer-text">· Squats<p>
-          <p class ="inner-text">Single Leg Squats</p>
-        </div>
-      </div>
-    </div>
-
-    <div class = "my-container chest">
-      <h1>Catalog of Exercises: </h1>
-      <h3> Chest Click on an exercise to learn more!</h3>
-      <div class ="sections col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class = "equip">
-          <p class = "main-text">Equipment Required</p>
-          <br>
-          <p class ="outer-text">· Chest presses <p>
-          <p class ="inner-text">Incline chest press</p>
-          <p class ="inner-text">Decline chest press</p>
-          <p class ="inner-text">Regular chest press</p>
-          <p class ="outer-text">· Chest fly</p>
-          <p class ="outer-text">· Chest dips</p>
-        </div>
-        <div class = "nequip">
-          <p class = "main-text">No Equipment Required</p>
-          <br>
-          <p class ="outer-text">· Push ups<p>
-          <p class ="inner-text">Close grip push ups</p>
-          <p class ="inner-text">Diamond push ups</p>
-          <p class ="inner-text">Incline push-ups</p>
-          <p class ="inner-text">Decline push-ups</p>
-          <p class ="outer-text">· Planks</p>
-          <p class ="inner-text">Plank jacks</p>
-          <p class ="inner-text">Up-down planks</p>
-          <p class ="inner-text">Side planks</p>
-        </div>
-      </div>
-    </div>
-
-      <div class ="footer col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-  				<table id = "footer-table" align="center"width="100%" height=" 50px" border="0">
-  	         <tr>
-                  <td width="33.33%" style="border : none;"><img class ="images" src="../../static/fitness/images/left.png"></td>
-                  <td width="33.33%" style="border : none;"><img class ="images" src="../../static/fitness/images/home.png"></td>
-                  <td width="33.33%" style="border : none;"><img class ="images" src="../../static/fitness/images/right.png"></td>
-  	         </tr>
-  	  	 </table>
-      </div>
 </body>
 <script>
-  var ws_socket = new WebSocket('ws://' + window.location.host + '/ws/fitness');
-  const urlParams = new URLSearchParams(window.location.search);
-  var section = urlParams.get('section');
-  if (section == "arms"){
-    $(".arms").show();
-  }
-  if (section == "legs"){
-    $(".legs").show();
-  }
-  if (section == "abs"){
-    $(".abs").show();
-  }
-  if (section == "shoulders"){
-    $(".shoulders").show();
-  }
-  if (section == "back"){
-    $(".back").show();
-  }
-  if (section == "chest"){
-    $(".chest").show();
-  }
+
+
+
+    $("#out1").click(function(){
+      $("#in1").slideToggle("slow");
+      toggleCaret("rightCaret1", "downCaret1", "#out1");
+    });
+
+    $("#out2").click(function(){
+      $("#in2").slideToggle("slow");
+      toggleCaret("rightCaret2", "downCaret2", "#out2");
+    });
+
+    $("#out3").click(function(){
+      $("#in3").slideToggle("slow");
+      toggleCaret("rightCaret3", "downCaret3", "#out3");
+    });
+
+
+    // Function that handles toggling the Caret
+    function toggleCaret(rightCaretNum, downCaretNum, downNum) {
+
+      var rightCaret = document.getElementById(rightCaretNum);
+      var downCaret = document.getElementById(downCaretNum);
+
+        if (rightCaret != null) {
+            rightCaret.remove();
+            $(downNum).append("<i class='bi bi-caret-down-fill' id='" + downCaretNum + "'> </i>");
+        }
+
+        if (downCaret != null) {
+          downCaret.remove();
+          $(downNum).append("<i class='bi bi-caret-right-fill' id='" + rightCaretNum + "'></i>");
+        }
+    }
 
 </script>
 </html>
