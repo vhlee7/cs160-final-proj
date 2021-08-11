@@ -77,7 +77,7 @@
 
         .numWidth {
             width: 10%;
-        }   
+        }
 
         .crossSize {
             font-size: 40px;
@@ -126,6 +126,7 @@
         <br>
 
         <div>
+          <i class="bi bi-arrow-left" onclick="goBack()" style="font-size:4em; margin-left:5%; font-weight:bold;"></i>
             <div class="text-block-1">My Goals</div>
         </div>
         <br><br>
@@ -151,9 +152,9 @@
         </div>
 
 
-        <!-- FORM FOR SUBMITTING A GOAL --> 
+        <!-- FORM FOR SUBMITTING A GOAL -->
         <div id="phForm">
-            <div id="background-form5"> </div>  
+            <div id="background-form5"> </div>
             <form class='mytxt' name='areaform' id="locForm">
                 <label for='myform' id='areaChoose'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Add a goal!</label>
 
@@ -218,7 +219,7 @@
 
     function submitGoal() {
         var myGoal = document.areaform.myform.value;
-        
+
         $("#tableHolder").append("<table class='tableStyle'> <tr> <td>" + myGoal + "</td> <td class='numWidth'> <i class='bi bi-x crossSize' onclick='removeGoal(this);' style ='color:red';> </i> </td> <td class='numWidth'> <i class='bi bi-check-lg' style='color:green'; onclick='archiveGoal(this)'> </i> </td> </tr></table>");
 
 
@@ -233,6 +234,9 @@
 
 
 
+    function goBack() {
+      window.history.back();
+    }
 
     function init() {
         $("#phForm").hide();

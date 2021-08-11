@@ -87,6 +87,7 @@ p{
 
 
     <div class = "my-container arms">
+      <i class="bi bi-arrow-left" onclick="goBack()" style="font-size:4em; margin-left:1%; font-weight:bold;"></i>
       <h1>Catalog of Exercises: </h1>
       <h3> Arms Click on an exercise to learn more!</h3>
       <br><br><br>
@@ -168,7 +169,10 @@ p{
         }
     }
 
+    function goBack() {
+      window.history.back();
+    }
+
 
 </script>
 </html>
-

@@ -66,6 +66,7 @@
 <body>
 
 
+   <i class="bi bi-arrow-left" onclick="goBack()" style="font-size:4em; margin-left:5%; font-weight:bold;"></i>
     <h1 style="text-align: center"> My Progress </h1>
     <i class="bi bi-person" style="margin-left: 43%"></i>
     <h3 id="buffer" style="text-align: center"> Level 1 </h3>
@@ -87,6 +88,9 @@
 <script>
 
 
+function goBack() {
+  window.history.back();
+}
 
 </script>
 

@@ -90,6 +90,7 @@ p{
 
 
     <div class = "my-container arms">
+      <i class="bi bi-arrow-left" onclick="goBack()" style="font-size:4em; margin-left:1%; font-weight:bold;"></i>
       <h1>Catalog of Exercises: </h1>
       <h3> Arms Click on an exercise to learn more!</h3>
       <br><br><br>
@@ -110,7 +111,7 @@ p{
         <div class = "nequip">
           <div class = "main-text">No Equipment Required</div>
           <br>
- 
+
 
           <div class ="outer-text">Aquaman</div>
           <div class ="outer-text">Dolphin Kicks</div>
@@ -167,6 +168,10 @@ p{
           downCaret.remove();
           $(downNum).append("<i class='bi bi-caret-right-fill' id='" + rightCaretNum + "'></i>");
         }
+    }
+
+    function goBack() {
+      window.history.back();
     }
 
 </script>

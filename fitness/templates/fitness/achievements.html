@@ -40,7 +40,7 @@
         .descriptionPosition {
             text-align: center;
             font-size: 35px;
-        } 
+        }
 
         .checkWidth {
             width: 10%;
@@ -52,7 +52,7 @@
 
 <body>
         <br>
-
+        <i class="bi bi-arrow-left" onclick="goBack()" style="font-size:4em; margin-left:5%; font-weight:bold;"></i>
         <div class="text-block-1">App Achievements</div>
 
         <br><br>
@@ -143,6 +143,10 @@
         if (inputCheck === null) {
             $(boxNum).append("<i class='bi bi-check-lg' id='" + inputNum + "' style='color:green';> </i>");
         }
+    }
+
+    function goBack() {
+      window.history.back();
     }
 
 </script>

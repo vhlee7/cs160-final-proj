@@ -15,11 +15,12 @@
 <body>
 <!--     <button onclick="uwu();"> click </button>
     <div id="ex"> huh</div> -->
+    <i class="bi bi-arrow-left" onclick="goBack()" style="font-size:4em; margin-left:5%; font-weight:bold;"></i>
 
     <h1 class=h1Position> My Motivation </h1>
     <i class="bi bi-arrow-repeat" id="refresh1Position" onclick="quoteAppend();"></i>
     <div id='quoteHolder'>
-        
+
     </div>
 
     <i class="bi bi-arrow-repeat" id="refresh2Position" onclick="vidAppend();"></i>
@@ -34,7 +35,7 @@
 <script>
 
     var myVids = ['https://www.youtube.com/embed/Z63w5PefxTQ', 'https://www.youtube.com/embed/T1XLHsz4r_M',
-    'https://www.youtube.com/embed/s8hWQwFwayo', 'https://www.youtube.com/embed/loB4aMdlKaI', 
+    'https://www.youtube.com/embed/s8hWQwFwayo', 'https://www.youtube.com/embed/loB4aMdlKaI',
     'https://www.youtube.com/embed/Y85_muzKuI0', 'https://www.youtube.com/embed/crsST0ptxlU',
     'https://www.youtube.com/embed/YUxR3d10lz4', 'https://www.youtube.com/embed/QTB1YiWxxKU',
     'https://www.youtube.com/embed/ugGt_baqyFQ', 'https://www.youtube.com/embed/ffXKVfUcQE8',
@@ -47,7 +48,7 @@
      "'All our dreams can come true if we have the courage to pursue them' <br> -- Walt Disney",
      "'It does not matter how slowly you go, so long as you do not stop' <br> -- Confucius",
      "'Success is walking from failure to failure with no loss of enthusiasm' <br> -- Winston Churchill",
-     "'Whenever you see a successful person, you only see the public glories, never the private sacrifices to reach them.' <br>         -- Vaibhav Shah", 
+     "'Whenever you see a successful person, you only see the public glories, never the private sacrifices to reach them.' <br>         -- Vaibhav Shah",
      "'Someone is sitting in the shade today because someone planted a tree a long time ago' <br> -- Warren Buffett",
      "'You only live once, but if you do it right, once is enough' <br> -- Mae West",
      "'The difference between winning and losing is most often not quitting' <br> -- Walt Disney",
@@ -103,6 +104,10 @@
     }
 
     init();
+
+    function goBack() {
+      window.history.back();
+    }
 
 
 </script>

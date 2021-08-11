@@ -54,6 +54,7 @@
         <br>
 
         <div>
+          <i class="bi bi-arrow-left" onclick="goBack()" style="font-size:4em; margin-left:5%; font-weight:bold;"></i>
             <div class="text-block-1">Goal Progress Archive</div>
         </div>
 
@@ -86,7 +87,11 @@
             $("#tableList").append("<table class='tableStyle'> <tr> <td class='numWidth'><i class='bi bi-stars' style='color:blue;'></i></td> <td>" + goalText[i] + "</td> </tr> </table>");
         }
 
-      
+
+    }
+
+    function goBack() {
+      window.history.back();
     }
 
 
