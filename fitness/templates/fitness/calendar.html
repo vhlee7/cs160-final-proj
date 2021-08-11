@@ -26,6 +26,7 @@
                 <div id="formControl" class="top-button"> Add to Calendar </div>
             </div>
         </div>
+        <p class="h1 text-center">Calendar</p>
         <div id="calendar-form" class="row justify-content-center"> 
             <form>
                 <p class="h3 text-center">Calendar Form</p>
@@ -54,11 +55,14 @@
                     <input type="time" name="endTime" id="endTime" />
                 </div>
                 <button type="button" onclick="sendForm();"> Add to Calendar </button>
+                <button type="button" onclick="closeForm();"> Close </button>
             </form>     
         </div>
-        <p class="h1 text-center">Calendar</p>
         <div id="calendar"></div>
-        <p id="analyze-schedule"class="h3 text-center">This week, you have in total, <br> <b> 8 Hours </b> <br> of free time to exercise!</p>
+        <p id="analyze-schedule" class="h3 text-center">This week, you have in total, <br> <b> 8 Hours </b> <br> of free time to exercise!</p>
+        <div class="row justify-content-center"> <button id="suggButton"> See suggestions</button> </div>
+        <p id="suggTitle" class="h1 text-center">Suggestions</p>
+        <div id="suggestions" class="row justify-content-center">  </div>
     </div>
 </body>
 </html>

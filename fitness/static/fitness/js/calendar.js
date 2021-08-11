@@ -84,7 +84,9 @@ var userSchedData = {
 
 function init() {
     $("#calendar-form").hide();
+    $("#first-row").hide();
     closeForm();
+    hideSuggestions();
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -99,15 +101,24 @@ document.addEventListener('DOMContentLoaded', function() {
         timeZone: 'local',
         initialView: 'timeGridWeek',
         headerToolbar: {
-            left: 'prev,next,import',
+            left: 'add autoWorkout',
             center: 'title',
-            right: 'timeGridWeek,timeGridDay'
+            right: 'prev,next timeGridWeek,timeGridDay'
         }, 
+        footerToolbar: {
+            center: ''
+        },
         customButtons: {
-            import: {
-                text: 'import schedule',
+            add: {
+                text: 'Add to calendar',
                 click: function() {
-                    alert('Schedule imported!');
+                    openForm();
+                }
+            },
+            autoWorkout: {
+                text: 'Autofill Workout',
+                click: function() {
+                    generateWorkout();
                 }
             }
         },
@@ -149,13 +160,13 @@ function generateWorkout() {
 function openForm() {
     $("#calendar-form").show();
     $('#formControl').click(closeForm);
-    $('#formControl').text("Close the Form");
+    $('#formControl').text("Hide Form");
 }
 
 function closeForm() {
     $("#calendar-form").hide();
     $('#formControl').click(openForm);
-    $('#formControl').text("Open the Form");
+    $('#formControl').text("Show Form");
 }
 
 function sendForm() {
@@ -175,6 +186,7 @@ function sendForm() {
 
     var event = formatEvent(calendarParams);
     calendar.addEvent(event);
+    alert('Successfully added to calendar!');
     analyzeSchedule();
 }
 
@@ -214,4 +226,41 @@ function analyzeSchedule() {
         Math.floor(userSchedData['workTime'] / 60) + ' hours and ' + userSchedData['workTime'] % 60 + ' minutes of work, <br>' +
         Math.floor(userSchedData['leisureTime'] / 60) + ' hours and ' + userSchedData['leisureTime'] % 60 + ' minutes of leisure, <br>' +
         Math.floor(userSchedData['otherTime'] / 60) + ' hours and ' + userSchedData['otherTime'] % 60 + ' minutes of other tasks times.';
+    
+    suggestions();
+}
+
+function showSuggestion() {
+    $("#suggTitle").show();
+    $("#suggestions").show();
+    suggestions();
+    $("#suggButton").click(hideSuggestions);
+    $("#suggButton").text('Hide suggestions');
+}
+
+function hideSuggestions() {
+    $("#suggTitle").hide();
+    $("#suggestions").hide();
+    $("#suggButton").click(showSuggestion);
+    $("#suggButton").text('Show suggestions');
+}
+
+function suggestions() {
+    var textBox = document.getElementById('suggestions');
+    var suggText = '';
+    if (userSchedData.exerciseTime < 210) {
+        var eDiff = 210 - userSchedData.exerciseTime;
+        suggText += '    This week, your schedule averages less than 30 minutes of exercise per day. You need ' + 
+            eDiff + ' minutes of exerise or more for a healthy amount. Consider using the "Autofill Workout" tool. <br>'
+    }
+
+    if (userSchedData.workTime > 2400) { 
+        suggText += '    This week, your schedule has you working for more than 40 hours. Consider adding more breaks. <br>'
+    }
+
+    if (suggText === '') {
+        suggText = 'Your schedule is perfect. Keep it up!'
+    }
+
+    textBox.innerHTML = suggText;
 }
