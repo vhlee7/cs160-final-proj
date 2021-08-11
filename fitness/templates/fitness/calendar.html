@@ -6,6 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Calendar</title>
 
+    <link rel="stylesheet" type="text/css" href="{% static 'fitness/css/everything.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'fitness/vendor/bootstrap/css/bootstrap.min.css' %}">
     <script type="text/javascript" src="{% static 'fitness/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'fitness/vendor/paper/paper-full.min.js' %}"></script>
@@ -18,7 +19,9 @@
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js"></script>
 </head>
 <body onload="init();">
-    <div class="container-fluid">
+    
+        
+        <div style = "background-color: #48A2E9; padding-bottom: 30px;">
         <i class="bi bi-arrow-left" onclick="goBack()" style="font-size:4em; margin-left:5%; font-weight:bold;"></i>
         <div id="first-row" class="row">
             <div class="col-6"> 
@@ -28,7 +31,11 @@
                 <div id="formControl" class="top-button"> Add to Calendar </div>
             </div>
         </div>
-        <p class="h1 text-center">Calendar</p>
+        <!-- <p class="h1 text-center" style = "padding-top: 50px;">Calendar</p> -->
+        <h1 class="h1 text-center" style="padding-top: 45px;">Calendar</h1>
+        </div>
+
+        <div class="container-fluid">
         <div id="delete-mode" class="row justify-content-center"> 
             <form>
                 <p class="h3 text-center">Click Calendar Items to Delete</p>

@@ -5,7 +5,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Motivation Page</title>
-
+    <link rel="stylesheet" type="text/css" href="{% static 'fitness/css/everything.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'fitness/vendor/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" type="text/css" href="{% static 'fitness/css/motivation.css' %}" />
@@ -15,9 +15,12 @@
 <body>
 <!--     <button onclick="uwu();"> click </button>
     <div id="ex"> huh</div> -->
+    <div style ="background-color: #48A2E9; padding-bottom:3px;">
     <i class="bi bi-arrow-left" onclick="goBack()" style="font-size:4em; margin-left:5%; font-weight:bold;"></i>
-
     <h1 class=h1Position> My Motivation </h1>
+
+    </div>
+
     <i class="bi bi-arrow-repeat" id="refresh1Position" onclick="quoteAppend();"></i>
     <div id='quoteHolder'>
 

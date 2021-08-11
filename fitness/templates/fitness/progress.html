@@ -19,6 +19,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
     <script type="text/javascript" src="{% static 'fitness/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'fitness/vendor/paper/paper-full.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'fitness/css/everything.css' %}" />
 
 
     <style type="text/css">
@@ -65,16 +66,15 @@
 
 <body>
 
-
-   <i class="bi bi-arrow-left" onclick="goBack()" style="font-size:4em; margin-left:5%; font-weight:bold;"></i>
-    <h1 style="text-align: center"> My Progress </h1>
+    <div style= "background-color: #48A2E9;">
+    <i class="bi bi-arrow-left" onclick="goBack()" style="font-size:4em; margin-left:5%; font-weight:bold;"></i>
+    <h1 style="text-align: center; padding: 41px"> My Progress </h1>
+    </div>
     <i class="bi bi-person" style="margin-left: 43%"></i>
     <h3 id="buffer" style="text-align: center"> Level 1 </h3>
     <h3 id="buffer" style="text-align: center"> Beginner </h3>
     <h4 id="buffer" style="text-align: center"> placeholder for bar</h4>
     <h5 id="buffer" style="text-align: center"> 1 more goal till you level up </h5>
-
-
 
     <div id='quoteHolder'>
 

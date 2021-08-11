@@ -6,8 +6,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
     <title>Home Page</title>
-
+    
     <link rel="stylesheet" type="text/css" href="{% static 'fitness/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'fitness/css/everything.css' %}" />
     <script type="text/javascript" src="{% static 'fitness/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'fitness/vendor/paper/paper-full.min.js' %}"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css">
@@ -44,8 +45,20 @@
         .boxSize {
             width: 100px;
             height: 200px;
-        }
+        } 
 
+        .menu { 
+            padding-bottom: 20px;
+            background-color: #48A2E9;
+            text-align: center;
+        }
+        
+        .images{
+            
+            max-width: 50%;
+            max-height: 50%;
+            
+        }
     </style>
 </head>
 
@@ -54,11 +67,13 @@
 
 
 <body>
-    <div id='questionIcon' onclick="location.href='/fitness/about/';" style="cursor: pointer;">
+    <div class = "menu" style = "width: auto"> 
+    <div id='questionIcon' onclick="location.href='/fitness/about/';" style="cursor: pointer; ">
         <i class="bi bi-patch-question-fill"></i>
     </div>
 
-    <h1 class = "text-center"> GoMotivation </h1>
+    <img class="images" src="../../static/fitness/images/logo.png">
+    </div>
 
     <br><br><br>
 
