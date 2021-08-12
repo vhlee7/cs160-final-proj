@@ -45,27 +45,29 @@
         }
 
         .progress {
-            position: absolute;
+         
             bottom: 20px;
             left: 20px;
             font-size: 40px;
             border-style: solid;
-            text-align: center;
+
             height: 150px;
-            width: 300px;
+            width: 100%;
+            
             border-color: MediumPurple;
             background-color: Lavender;
         }
 
         .achievements {
-            position: absolute;
+          
             bottom: 20px;
             right: 20px;
             font-size: 40px;
             border-style: solid;
-            text-align: center;
+        
             height: 150px;
-            width: 300px;
+            width: 100%;
+            padding-right: 50px;
             border-color: Khaki;
             background-color: LemonChiffon;
         }
@@ -165,13 +167,40 @@
             </form>
         </div>
 
+    <!-- <div class ="row justify-content-center"> 
+        <div class="col-sm-1">
+        </div>
+        <div class = "col-sm-4">
+            <div class="progress text-center" id="phProgress" onclick="location.href='/fitness/goal-progress-archive/';"> <div>
+                <p>Goal Progress Archive</p>
+            </div></div>
+        </div>
+        <div class="col-sm-2">
+        </div>
+        <div class = "col-sm-4">
+            <div class="achievements text-center" id="phAchievements" onclick="location.href='/fitness/achievements/';"> <div>
+                <p>App Achievements</p>
+            </div></div>
+        </div>
+        <div class="col-sm-1">
+        </div> -->
 
-        <div>
-            <div class="progress" id="phProgress" onclick="location.href='/fitness/goal-progress-archive/';">Goal<br>Progress Archive</div>
+        <div class="row">
+            <div class="col-sm-1"> </div>
+            <div class="col-sm-4 progress" id="border" onclick="location.href='/fitness/goal-progress-archive/';" style="cursor: pointer;">
+                <div style="text-align: center">
+                    <p>Goals Progress Archive</p>
+                </div>
+            </div>
+            <div class="col-sm-2"> </div>
+            <div class="col-sm-4 achievements" id="border" onclick="location.href='/fitness/achievements/';" style="cursor: pointer;">
+                <div style="text-align: center">
+                    <p>App Achievements</p>
+                </div>
+            </div>
+            <div class="col-sm-1"> </div>
         </div>
-        <div>
-            <div class="achievements" id="phAchievements" onclick="location.href='/fitness/achievements/';">App<br>Achievements</div>
-        </div>
+    </div>
     </body>
 
 
