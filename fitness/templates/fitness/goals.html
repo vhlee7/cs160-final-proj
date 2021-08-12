@@ -248,7 +248,7 @@
         if (localStorage.getItem('goalNum') === null) {
             var goalNum = 0;
             goalNum = goalNum + 1;
-            localStorage.setItem('goalNum', JSON.stringify(userTracker));
+            localStorage.setItem('goalNum', JSON.stringify(goalNum));
         } else {
             let goalNum = JSON.parse(localStorage.getItem('goalNum'));
             goalNum = goalNum + 1;

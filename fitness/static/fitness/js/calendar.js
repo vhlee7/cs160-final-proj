@@ -293,6 +293,10 @@ function sendForm() {
         type: taskType 
     };
 
+    if (taskType === 'exercise') {
+        localStorage.setItem('manExercise', 'true');
+    }
+
     var event = formatEvent(calendarParams);
     calendar.addEvent(event);
     alert('Successfully added to calendar!');
@@ -305,6 +309,7 @@ function sendForm2() {
     minutes = parseInt(minutes);
     var sel = Math.floor(Math.random() * wList.length);
     var eventList = getEventsDate(date);
+    localStorage.setItem('autoExercise', 'true');
     eventList.sort(function (a, b) {
         var aSt = parseInt(a.startStr.split('T')[1].split(':')[0]) * 60 + parseInt(a.startStr.split('T')[1].split(':')[1])
         var bSt = parseInt(b.startStr.split('T')[1].split(':')[0]) * 60 + parseInt(b.startStr.split('T')[1].split(':')[1])
@@ -449,6 +454,10 @@ function suggestions() {
 
     if (suggText === '') {
         suggText = 'Your schedule is perfect. Keep it up!';
+    }
+
+    if (userSchedData.exerciseTime > userSchedData.leisureTime) {
+        localStorage.setItem('moreExercise', 'true');
     }
 
     textBox.innerHTML = suggText;

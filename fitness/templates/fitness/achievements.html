@@ -206,7 +206,10 @@
         // tracker.index == tracker['index']
         let tracker = JSON.parse(localStorage.getItem('userTracker'));
         let goalCount = JSON.parse(localStorage.getItem('goalNum'));
-        let calTracker = JSON.parse(localStorage.getItem('calendarTracker'));
+        let calTracker = JSON.parse(localStorage.getItem('userHours'));
+        let manExercise = localStorage.getItem('manExercise');
+        let autoExercise = localStorage.getItem('autoExercise');
+        let moreExercise = localStorage.getItem('moreExercise');
 
         checkMarking("#one", "oneCheck");
         
@@ -229,14 +232,54 @@
         }
 
         if (goalCount !== null) {
-            
-            // check goals here
+            if (goalCount > 0) {
+                checkMarking("#seven", "sevenCheck");
+            }
+            if (goalCount > 4) {
+                checkMarking("#eight", "eightCheck");
+            }
+            if (goalCount > 9) {
+                checkMarking("#nine", "nineCheck");
+            }
+            if (goalCount > 14) {
+                checkMarking("#ten", "tenCheck");
+            }
+            if (goalCount > 19) {
+                checkMarking("#eleven", "elevenCheck");
+            }
         }
 
         if (calTracker !== null) {
             // check calendar goals here
+            if (calTracker.exerciseTime > 60) {
+                checkMarking("#twelve", "twelveCheck");
+            }
+            if (calTracker.exerciseTime > 120) {
+                checkMarking("#thirteen", "thirteenCheck");
+            }
+            if (calTracker.exerciseTime > 210) {
+                checkMarking("#fourteen", "fourteenCheck");
+            }
+            if (calTracker.exerciseTime > 500) {
+                checkMarking("#fifteen", "fifteenCheck");
+            }  
+            if (calTracker.exerciseTime > 1000) {
+                checkMarking("#sixteen", "sixteenCheck");
+            }    
         }
 
+        if (manExercise !== null) {
+            // don't need if statement for this
+            checkMarking("#seventeen", "seventeenCheck");
+        }
+        if (autoExercise !== null) {
+            // don't need if statement for this
+            checkMarking("#eightteen", "eightteenCheck");
+        }
+        if (moreExercise !== null) {
+            // don't need if statement for this
+            checkMarking("#nineteen", "nineteenCheck");
+        }
 
     }
 
