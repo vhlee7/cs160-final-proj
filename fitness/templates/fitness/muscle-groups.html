@@ -93,5 +93,30 @@ function goBack() {
   window.history.back();
 }
 
+
+
+function init() {
+        // test by writing this in console: console.log(localStorage.getItem('userTracker’));
+        if (localStorage.getItem('userTracker') === null) {
+            // pages that user opened
+            var userTracker = {
+                index: false,
+                calendar: false,
+                goal: false,
+                about: false, 
+                muscle_group: true, 
+                progress: false
+
+            };
+            localStorage.setItem('userTracker', JSON.stringify(userTracker));
+        } else {
+            let tracker = JSON.parse(localStorage.getItem('userTracker'));
+            tracker['muscle_group'] = true;
+            localStorage.setItem('userTracker', JSON.stringify(tracker));
+        }
+    }
+
+  init();
+
 </script>
 </html>

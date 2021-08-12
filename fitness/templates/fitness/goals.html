@@ -242,6 +242,20 @@
         }
 
         removeGoal(el);
+
+
+        // Tracks goal
+        if (localStorage.getItem('goalNum') === null) {
+            var goalNum = 0;
+            goalNum = goalNum + 1;
+            localStorage.setItem('goalNum', JSON.stringify(userTracker));
+        } else {
+            let goalNum = JSON.parse(localStorage.getItem('goalNum'));
+            goalNum = goalNum + 1;
+            localStorage.setItem('goalNum', JSON.stringify(goalNum));
+        }
+
+
     }
 
 
@@ -268,7 +282,26 @@
 
     function init() {
         $("#phForm").hide();
+        // test by writing this in console: console.log(localStorage.getItem('userTracker’));
+        if (localStorage.getItem('userTracker') === null) {
+            // pages that user opened
+            var userTracker = {
+                index: false,
+                calendar: false,
+                goal: true,
+                about: false, 
+                muscle_group: false, 
+                progress: false
+
+            };
+            localStorage.setItem('userTracker', JSON.stringify(userTracker));
+        } else {
+            let tracker = JSON.parse(localStorage.getItem('userTracker'));
+            tracker['index'] = true;
+            localStorage.setItem('userTracker', JSON.stringify(tracker));
+        }
     }
+
 
     init();
 

@@ -66,7 +66,7 @@
 
 
 
-<body>
+<body onload="init();">
     <div class = "menu" style = "width: auto"> 
     <div id='questionIcon' onclick="location.href='/fitness/about/';" style="cursor: pointer; ">
         <i class="bi bi-patch-question-fill"></i>
@@ -119,8 +119,47 @@
 </body>
 <script>
 
+    function init() {
+        // test by writing this in console: console.log(JSON.parse(localStorage.getItem('userTracker')));
+        if (localStorage.getItem('userTracker') === null) {
+            // pages that user opened
+            var userTracker = {
+                index: true,
+                calendar: false,
+                goal: false,
+                about: false, 
+                muscle_group: false, 
+                progress: false
+
+            };
+
+            // console.log(userTracker + "1");
+            // console.log(JSON.stringify(userTracker) + "2");
+
+            localStorage.setItem('userTracker', JSON.stringify(userTracker));
+        } else {
+
+            // console.log(localStorage.getItem('userTracker'));
+            // console.log(JSON.parse(localStorage.getItem('userTracker')));
+            
+
+            let tracker = JSON.parse(localStorage.getItem('userTracker'));
+            tracker['index'] = true;
+            // console.log(tracker['index']);
+            localStorage.setItem('userTracker', JSON.stringify(tracker));
+        }
+    }
+
+
+
+
+
+
+
 
 
 
 </script>
 </html>
+
+

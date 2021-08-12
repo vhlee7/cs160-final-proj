@@ -131,6 +131,24 @@ function init() {
     closeForm2();
     hideSuggestions();
     deleteModeOff();
+
+    if (localStorage.getItem('userTracker') === null) {
+        // pages that user opened
+        var userTracker = {
+            index: false,
+            calendar: true,
+            goal: false,
+            about: false, 
+            muscle_group: false, 
+            progress: false
+
+        };
+        localStorage.setItem('userTracker', JSON.stringify(userTracker));
+    } else {
+        let tracker = JSON.parse(localStorage.getItem('userTracker'));
+        tracker['calendar'] = true;
+        localStorage.setItem('userTracker', JSON.stringify(tracker));
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function() {

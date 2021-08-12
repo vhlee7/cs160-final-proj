@@ -69,32 +69,27 @@
                 </tr>
 
                 <tr>
-                    <td id="five" class="checkWidth"></td>
+                    <td id="two" class="checkWidth"></td>
                     <td>Looked at the about page</td>
                 </tr>
 
                 <tr>
-                    <td id="five" class="checkWidth"></td>
+                    <td id="three" class="checkWidth"></td>
                     <td>Looked at My Scheduale</td>
                 </tr>
 
                 <tr>
-                    <td id="five" class="checkWidth"></td>
+                    <td id="four" class="checkWidth"></td>
                     <td>Looked at My Progress page</td>
                 </tr>
 
                 <tr>
                     <td id="five" class="checkWidth"></td>
                     <td>Looked at My Exercises page</td>
-                </tr>
+                </tr>         
 
                 <tr>
-                    <td id="five" class="checkWidth"></td>
-                    <td>Looked at the My Exercises page</td>
-                </tr>                
-
-                <tr>
-                    <td id="five" class="checkWidth"></td>
+                    <td id="six" class="checkWidth"></td>
                     <td>Looked at My Goals Page</td>
                 </tr>
 
@@ -107,27 +102,27 @@
                 <tr>
 
                 <tr>
-                    <td id="six" class="checkWidth"></td>
+                    <td id="seven" class="checkWidth"></td>
                     <td>Finished 1 Goal</td>
                 </tr>
                 
                 <tr>
-                    <td id="seven" class="checkWidth"></td>
+                    <td id="eight" class="checkWidth"></td>
                     <td>Finished 5 Goals</td>
                 </tr>
 
                 <tr>
-                    <td id="eight" class="checkWidth"></td>
+                    <td id="nine" class="checkWidth"></td>
                     <td>Finished 10 Goals</td>
                 </tr>
 
                 <tr>
-                    <td id="eight" class="checkWidth"></td>
+                    <td id="ten" class="checkWidth"></td>
                     <td>Finished 15 Goals</td>
                 </tr>
 
                 <tr>
-                    <td id="eight" class="checkWidth"></td>
+                    <td id="eleven" class="checkWidth"></td>
                     <td>Finished 20 Goals</td>
                 </tr>
 
@@ -141,41 +136,41 @@
             <table class="tableStyle">
 
                 <tr>
-                    <td id="nine" class="checkWidth"></td>
+                    <td id="twelve" class="checkWidth"></td>
                     <td>Added more than 60 minutes of exercise</td>
                 </tr>
 
                 <tr>
-                    <td id="nine" class="checkWidth"></td>
+                    <td id="thirteen" class="checkWidth"></td>
                     <td>Added more than 120 minutes of exercise</td>
                 </tr>
 
                 <tr>
-                    <td id="nine" class="checkWidth"></td>
+                    <td id="fourteen" class="checkWidth"></td>
                     <td>Added more than 210 minutes of exercise</td>
                 </tr>
 
                 <tr>
-                    <td id="nine" class="checkWidth"></td>
+                    <td id="fifteen" class="checkWidth"></td>
                     <td>Added more than 500 minutes of exercise</td>
                 </tr>
 
                 <tr>
-                    <td id="nine" class="checkWidth"></td>
+                    <td id="sixteen" class="checkWidth"></td>
                     <td>Added more than 1000 minutes of exercise</td>
                 </tr>
 
                 <tr>
-                    <td id="nine" class="checkWidth"></td>
+                    <td id="seventeen" class="checkWidth"></td>
                     <td>Manually chose a workout once</td>
                 </tr>
                 <tr>
-                    <td id="nine" class="checkWidth"></td>
+                    <td id="eightteen" class="checkWidth"></td>
                     <td>Automatically choose a workout once</td>
                 </tr>
 
                 <tr>
-                    <td id="nine" class="checkWidth"></td>
+                    <td id="nineteen" class="checkWidth"></td>
                     <td>Have more exercise hours than leisure hours</td>
                 </tr>
 
@@ -204,6 +199,49 @@
     function goBack() {
       window.history.back();
     }
+
+
+
+    function init() {
+        // tracker.index == tracker['index']
+        let tracker = JSON.parse(localStorage.getItem('userTracker'));
+        let goalCount = JSON.parse(localStorage.getItem('goalNum'));
+        let calTracker = JSON.parse(localStorage.getItem('calendarTracker'));
+
+        checkMarking("#one", "oneCheck");
+        
+        if (tracker !== null) {
+            if (tracker['index']) {
+                checkMarking("#two", "twoCheck");
+            }
+            if (tracker['calendar']) {
+                checkMarking("#three", "threeCheck");
+            }
+            if (tracker['progress']) {
+                checkMarking("#four", "fourCheck");
+            }
+            if (tracker['about']) {
+                checkMarking("#five", "fiveCheck");
+            }
+            if (tracker['muscle_group']) {
+                checkMarking("#six", "sixCheck");
+            }
+        }
+
+        if (goalCount !== null) {
+            
+            // check goals here
+        }
+
+        if (calTracker !== null) {
+            // check calendar goals here
+        }
+
+
+    }
+
+    init();
+
 
 </script>
 </html>
