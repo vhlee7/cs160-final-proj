@@ -9,21 +9,7 @@ html, body {
 .container-fluid {
     width: 95%;
     height: 90%;
-}
-
-#first-row {
-    width: 85%;
-    height: 5%;
-}
-
-.top-button {
-    width: 50%;
-    height: 50%;
-    font-size: 2vw;
-    text-align: center;
-    border: 2px solid black;
-    margin: auto;
-    margin-top: 10%;
+    padding-top: 2%;
 }
 
 #calendar {

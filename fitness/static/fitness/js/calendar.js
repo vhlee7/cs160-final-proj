@@ -278,14 +278,10 @@ function getEventsWeek(wStart, wEnd) {
 
 function openForm() {
     $("#calendar-form").show();
-    //$('#formControl').click(closeForm);
-    //$('#formControl').text("Hide Form");
 }
 
 function closeForm() {
     $("#calendar-form").hide();
-    //$('#formControl').click(openForm);
-    //$('#formControl').text("Show Form");
 }
 
 function openForm2() {
