@@ -371,8 +371,10 @@ function addDays(date, days) {
 function analyzeSchedule() {
     //var calItems = calendar.getEvents();
     var curDay = d.getDay();
+    console.log(curDay);
     var wStart = addDays(d, -1 * curDay);
     var wEnd = addDays(d, 6 - curDay);
+    console.log(wEnd);
     var wEvents = getEventsWeek(wStart, wEnd);
     var schedText = document.getElementById('analyze-schedule');
 
@@ -399,6 +401,7 @@ function analyzeSchedule() {
         Math.floor(userSchedData['otherTime'] / 60) + ' hours and ' + userSchedData['otherTime'] % 60 + ' minutes of other tasks times.';
     
     suggestions();
+    localStorage.setItem('userHours', JSON.stringify(userSchedData));
 }
 
 function showSuggestion() {
