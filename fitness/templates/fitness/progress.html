@@ -81,6 +81,10 @@
 
     </div>
 
+    <div id='videoHolder'>
+
+    </div>
+
 </body>
 
 
@@ -89,9 +93,19 @@
 <script>
 
 
-function goBack() {
-  window.history.back();
-}
+
+    function goBack() {
+      window.history.back();
+    }
+
+    // var myVids = ['https://www.youtube.com/embed/Z63w5PefxTQ', 'https://www.youtube.com/embed/T1XLHsz4r_M',
+    // 'https://www.youtube.com/embed/s8hWQwFwayo', 'https://www.youtube.com/embed/loB4aMdlKaI',
+    // 'https://www.youtube.com/embed/Y85_muzKuI0', 'https://www.youtube.com/embed/crsST0ptxlU',
+    // 'https://www.youtube.com/embed/YUxR3d10lz4', 'https://www.youtube.com/embed/QTB1YiWxxKU',
+    // 'https://www.youtube.com/embed/ugGt_baqyFQ', 'https://www.youtube.com/embed/ffXKVfUcQE8',
+    // 'https://www.youtube.com/embed/xu-WuJtOl0c', 'https://www.youtube.com/embed/eliFKVDY4_0',
+    // 'https://www.youtube.com/embed/zSGoJk-D1LQ', 'https://www.youtube.com/embed/VSceuiPBpxY',
+    // 'https://www.youtube.com/embed/tbnzAVRZ9Xc'];
 
 
     var myQuotes = ["'A journey of a thousand miles begins with a single step.'",
@@ -124,7 +138,19 @@ function goBack() {
 
 
     var quoteSelect = myQuotes[Math.floor(Math.random() * myQuotes.length)];
+    // var vidSelect = myVids[Math.floor(Math.random() * myVids.length)];
 
+
+    // function vidAppend() {
+    //         var existingVideo = $(".vidPosition");
+    //         if (existingVideo != null) {
+    //             existingVideo.remove();
+    //         }
+
+    //         var theVideo = document.getElementById("videoHolder");
+    //         var randomVid = myVids[Math.floor(Math.random() * myVids.length)];
+    //         $("#videoHolder").append("<iframe class=vidPosition src='" + randomVid + "' allowfullscreen> </iframe>");
+    //     }
 
 
     function quoteAppend() {
@@ -142,6 +168,7 @@ function goBack() {
 
     function init() {
         quoteAppend();
+        // vidAppend();
     }
 
     init();
