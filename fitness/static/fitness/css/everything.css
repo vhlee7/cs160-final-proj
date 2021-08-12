@@ -6,3 +6,22 @@ h1 {
   font-size: 60px !important;
   font-weight: bold !important;
 }
+
+.exercisemenu{
+  background-color: #48A2E9 !important;
+}
+
+.my-container{
+  padding-left: 60px !important; 
+  padding-right: 60px !important;
+} 
+
+.inner-text {
+  font-size: 2em !important;
+  padding: 20px; 
+}
+
+.outer-text {
+  font-size: 3em !important;
+  padding-left: 20px;
+}
