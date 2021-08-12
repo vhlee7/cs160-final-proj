@@ -233,7 +233,7 @@ function getEventsWeek(wStart, wEnd) {
     var allEvents = calendar.getEvents();
     var wEvents = [];
     for (let i = 0; i < allEvents.length; i++) {
-        if (allEvents[i].start >= wStart && allEvents[i].start <= wEnd) {
+        if (allEvents[i].start >= wStart && allEvents[i].start < wEnd) {
             wEvents.push(allEvents[i]);
         }
     }
@@ -371,7 +371,7 @@ function addDays(date, days) {
 function analyzeSchedule() {
     var curDay = d.getDay();
     var wStart = addDays(d, -1 * curDay);
-    var wEnd = addDays(d, 6 - curDay);
+    var wEnd = addDays(d, (6 - curDay) + 1);
     var wEvents = getEventsWeek(wStart, wEnd);
     var schedText = document.getElementById('analyze-schedule');
 
