@@ -210,76 +210,100 @@
         let manExercise = localStorage.getItem('manExercise');
         let autoExercise = localStorage.getItem('autoExercise');
         let moreExercise = localStorage.getItem('moreExercise');
+        
+        let totalEXP = 0;
+
 
         checkMarking("#one", "oneCheck");
         
         if (tracker !== null) {
             if (tracker['index']) {
                 checkMarking("#two", "twoCheck");
+                totalEXP++;
             }
             if (tracker['calendar']) {
                 checkMarking("#three", "threeCheck");
+                totalEXP++;
             }
             if (tracker['progress']) {
                 checkMarking("#four", "fourCheck");
+                totalEXP++;
             }
             if (tracker['about']) {
                 checkMarking("#five", "fiveCheck");
+                totalEXP++;
             }
             if (tracker['muscle_group']) {
                 checkMarking("#six", "sixCheck");
+                totalEXP++;
             }
         }
 
         if (goalCount !== null) {
             if (goalCount > 0) {
                 checkMarking("#seven", "sevenCheck");
+                totalEXP++;
             }
             if (goalCount > 4) {
                 checkMarking("#eight", "eightCheck");
+                totalEXP++;
             }
             if (goalCount > 9) {
                 checkMarking("#nine", "nineCheck");
+                totalEXP++;
             }
             if (goalCount > 14) {
                 checkMarking("#ten", "tenCheck");
+                totalEXP++;
             }
             if (goalCount > 19) {
                 checkMarking("#eleven", "elevenCheck");
+                totalEXP++;
             }
+            totalEXP += goalCount
         }
 
         if (calTracker !== null) {
             // check calendar goals here
             if (calTracker.exerciseTime > 60) {
                 checkMarking("#twelve", "twelveCheck");
+                totalEXP++;
             }
             if (calTracker.exerciseTime > 120) {
                 checkMarking("#thirteen", "thirteenCheck");
+                totalEXP++;
             }
             if (calTracker.exerciseTime > 210) {
                 checkMarking("#fourteen", "fourteenCheck");
+                totalEXP++;
             }
             if (calTracker.exerciseTime > 500) {
                 checkMarking("#fifteen", "fifteenCheck");
+                totalEXP++;
             }  
             if (calTracker.exerciseTime > 1000) {
                 checkMarking("#sixteen", "sixteenCheck");
+                totalEXP++;
             }    
         }
 
         if (manExercise !== null) {
             // don't need if statement for this
             checkMarking("#seventeen", "seventeenCheck");
+            totalEXP++;
         }
         if (autoExercise !== null) {
             // don't need if statement for this
             checkMarking("#eightteen", "eightteenCheck");
+            totalEXP++;
         }
         if (moreExercise !== null) {
             // don't need if statement for this
             checkMarking("#nineteen", "nineteenCheck");
+            totalEXP++;
         }
+
+        localStorage.setItem('userEXP', JSON.stringify(totalEXP));
 
     }
 
