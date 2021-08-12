@@ -10,63 +10,75 @@ var userEvents = {
             id: 'mywork',
             title: '[work] - finish project',
             start: '2021-08-09T09:00:00',
-            end: '2021-08-09T17:00:00'
+            end: '2021-08-09T17:00:00',
+            backgroundColor: '#e4e4e4'
         },
         {
             title: '[work] - study',
             start: '2021-08-10T09:00:00',
-            end: '2021-08-10T15:00:00'
+            end: '2021-08-10T15:00:00',
+            backgroundColor: '#e4e4e4'
         },
         {
             title: '[work] - present project',
             start: '2021-08-11T09:00:00',
-            end: '2021-08-11T12:00:00'
+            end: '2021-08-11T12:00:00',
+            backgroundColor: '#e4e4e4'
         },
         {
             title: '[leisure] - shopping',
             start: '2021-08-11T15:00:00',
-            end: '2021-08-11T17:00:00'
+            end: '2021-08-11T17:00:00',
+            backgroundColor: '#e4e4e4'
         },
         {
             title: '[work] - meeting',
             start: '2021-08-12T09:00:00',
-            end: '2021-08-12T15:00:00'
+            end: '2021-08-12T15:00:00',
+            backgroundColor: '#e4e4e4'
         },
         {
             title: '[work] - plan next project',
             start: '2021-08-13T09:00:00',
-            end: '2021-08-13T17:00:00'
+            end: '2021-08-13T17:00:00',
+            backgroundColor: '#e4e4e4'
         },
         {
             id: 'mywork',
             title: '[work] - finish project',
             start: '2021-08-16T09:00:00',
-            end: '2021-08-16T17:00:00'
+            end: '2021-08-16T17:00:00',
+            backgroundColor: '#e4e4e4'
         },
         {
             title: '[work] - study',
             start: '2021-08-17T09:00:00',
-            end: '2021-08-17T15:00:00'
+            end: '2021-08-17T15:00:00',
+            backgroundColor: '#e4e4e4'
         },
         {
             title: '[work] - present project',
             start: '2021-08-18T09:00:00',
-            end: '2021-08-18T12:00:00'
+            end: '2021-08-18T12:00:00',
+            backgroundColor: '#e4e4e4'
         },
         {
             title: '[leisure] - shopping',
             start: '2021-08-18T15:00:00',
-            end: '2021-08-18T17:00:00'
+            end: '2021-08-18T17:00:00',
+            backgroundColor: '#e4e4e4'
         },
         {
             title: '[work] - meeting',
             start: '2021-08-19T09:00:00',
-            end: '2021-08-19T15:00:00'
+            end: '2021-08-19T15:00:00',
+            backgroundColor: '#e4e4e4'
         },
         {
             title: '[work] - plan next project',
             start: '2021-08-20T09:00:00',
-            end: '2021-08-20T17:00:00'
+            end: '2021-08-20T17:00:00',
+            backgroundColor: '#e4e4e4'
         },
     ],
     id: "userSchedule",
@@ -201,12 +213,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         },
-        eventSources: [
-            userEvents
+        events: [
+
         ]
     });
     calendar.render();
     //calendar.scrollToTime(d.getHours() + ':' + d.getMinutes());
+    var cachedEvents = JSON.parse(localStorage.getItem('calendarEvents'));
+    if (cachedEvents === null) {
+        importUserEvents(userEvents.events);
+    } else {
+        importUserEvents(cachedEvents);
+    }
     analyzeSchedule();
 });
 
@@ -421,6 +439,7 @@ function analyzeSchedule() {
         Math.floor(userSchedData['otherTime'] / 60) + ' hours and ' + userSchedData['otherTime'] % 60 + ' minutes of other tasks times.';
     
     suggestions();
+    saveEvents();
     localStorage.setItem('userHours', JSON.stringify(userSchedData));
 }
 
@@ -461,6 +480,17 @@ function suggestions() {
     }
 
     textBox.innerHTML = suggText;
+}
+
+function saveEvents() {
+    var allEvents = calendar.getEvents();
+    localStorage.setItem('calendarEvents', JSON.stringify(allEvents));
+}
+
+function importUserEvents(listEvents) {
+    for (let i = 0; i < listEvents.length; i++) {
+        calendar.addEvent(listEvents[i]);
+    }
 }
 
 function deleteModeOff() {
