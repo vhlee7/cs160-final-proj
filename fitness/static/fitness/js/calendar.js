@@ -363,18 +363,15 @@ function getDuration(st, et) {
 }
 
 function addDays(date, days) {
-    var result = new Date(date);
+    var result = new Date(date.toDateString());
     result.setDate(result.getDate() + days);
     return result;
 }
 
 function analyzeSchedule() {
-    //var calItems = calendar.getEvents();
     var curDay = d.getDay();
-    console.log(curDay);
     var wStart = addDays(d, -1 * curDay);
     var wEnd = addDays(d, 6 - curDay);
-    console.log(wEnd);
     var wEvents = getEventsWeek(wStart, wEnd);
     var schedText = document.getElementById('analyze-schedule');
 
