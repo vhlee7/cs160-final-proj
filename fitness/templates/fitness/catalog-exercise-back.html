@@ -70,17 +70,11 @@ p{
   margin-bottom : 4%;
 }
 
-#in1 {
+#in1, #in2, #in3, #in4, #in5, #in6, #in7, #in8, #in9,
+#in10, #in11, #in12 {
   display: none;
 }
 
-#in2 {
-  display: none;
-}
-
-#in3 {
-  display: none;
-}
 
 </style>
 <body>
@@ -92,18 +86,103 @@ p{
     <div class = "my-container arms">
       <i class="bi bi-arrow-left" onclick="goBack()" style="font-size:4em; margin-left:1%; font-weight:bold;"></i>
       <h1>Catalog of Exercises: </h1>
-      <h3> Arms Click on an exercise to learn more!</h3>
+      <h3> Back Click on an exercise to learn more!</h3>
       <br><br><br>
       <div>
         <div class = "equip">
           <div class = "main-text">Equipment Required</div>
           <br>
 
-          <div class ="outer-text">Lat Pulldown</div>
-          <div class ="outer-text">Back Extension</div>
-          <div class ="outer-text">Seated Row Machine</div>
-          <div class ="outer-text">Rope Pull</div>
-          <div class ="outer-text">Chest Supported Row Machine</div>
+          <div>
+            <div class ="outer-text" id="out1"> Lat Pulldown <i class="bi bi-caret-right-fill" id="rightCaret1"></i></div>
+            <div id="in1">
+              <div class ="inner-text"> 1. Grasp the bar with a wide grip with an overhand, knuckles-up grip. Other positions and grips are possible, but start with this standard position.
+
+              <br><br>
+              2. Pull the bar down until it's approximately level with the chin. Exhale on the downward motion. While shifting just slightly backward is OK, aim to keep your upper torso stationary. Keep your feet flat on the floor and engage your abs as you pull. The bottom of the motion should be where your elbows can't move downward any more without moving backward. Be sure to stop at that point and do not go lower.
+
+              <br><br>
+              3. Squeeze the shoulder blades together while maintaining square shoulders.
+              <br><br>
+              4. From the bottom position, with the bar close to your chin, slowly return the bar to the starting position while controlling its gradual ascent. Don't let it crash into the weight plates.
+
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
+          <div>
+            <div class ="outer-text" id="out2"> Back Extension <i class="bi bi-caret-right-fill" id="rightCaret2"></i></div>
+            <div id="in2">
+              <div class ="inner-text" > 1. Place your thighs on the pad. Bend your knees slightly and secure your feet, keeping them in line with your knees. Extend your arms toward the floor.
+
+              <br><br>
+              2. Exhale and move up until your shoulders, spine, and hips are in line. Engage your core and gently slide your shoulders back.
+
+              <br><br>
+              3. Inhale and bend down from your waist. Touch the floor.
+
+              </div>
+            </div>
+          </div>
+
+
+
+          <div>
+            <div class ="outer-text" id="out3"> Seated Row Machine <i class="bi bi-caret-right-fill" id="rightCaret3"></i></div>
+            <div id="in3">
+              <div class ="inner-text" > 1. Sit upright on the bench and plant your feet on the floor or foot pads, knees bent. Extend your arms and hold the handle or cable. Move your shoulders back and down. Brace your core.
+
+              <br><br>
+              2. Exhale. Bend your elbows to pull the handle or cable, keeping your elbows tucked in and your back neutral. Pause for 1 second.
+
+              <br><br>
+              3. Inhale and slowly extend your arms, counting to 3.
+
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+          <div>
+            <div class ="outer-text" id="out4"> Rope Pull <i class="bi bi-caret-right-fill" id="rightCaret4"></i></div>
+            <div id="in4">
+              <div class ="inner-text" > 1. Wrap the rope around a pole or pulling station up above your head enough times that you have to work to pull and the rope doesn’t just easily flow through.
+
+              <br><br>
+              2. Then standing with your feet between hip-width and shoulder-width apart, sink into a very high squat, pushing your butt back while keeping your chest up. Reach up and grab the rope with one hand above your head.
+
+              <br><br>
+              3. Pull down on the rope, driving your elbow down and even a little bit back. As you pull down with one hand, reach the other hand up overhead to grab the rope and pull down.
+              <br><br>
+              4. Keep alternating arms to pull the rope down. Do not pull with both hands at the same time. Alternate pulls with each arm.
+
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class ="outer-text" id="out5"> Chest Supported Row Machine <i class="bi bi-caret-right-fill" id="rightCaret5"></i></div>
+            <div id="in5">
+              <div class ="inner-text" > 1. Place your feet in the stirrups and your chest on the pad.
+              <br><br>
+              2. Reach down and grab the handles with both hands.
+              <br><br>
+              3. Let your arms hang with the weight.
+              <br><br>
+              4. Pull the weight up to your chest and try to pinch your shoulder blades together at the top.
+              <br><br>
+              5. Lower the weight back down.
+              </div>
+            </div>
+          </div>
         </div>
 
 
@@ -112,27 +191,148 @@ p{
           <div class = "main-text">No Equipment Required</div>
           <br>
 
-
-          <div class ="outer-text">Aquaman</div>
-          <div class ="outer-text">Dolphin Kicks</div>
-          <div class ="outer-text">Superman</div>
-
           <div>
-          <div class ="outer-text" id="out1">Planks <i class="bi bi-caret-right-fill" id="rightCaret1"></i></div>
-            <div id="in1">
-              <div class ="inner-text" >Plank jacks</div>
-              <div class ="inner-text" >Up-down planks</div>
-              <div class ="inner-text" >Side planks</div>
+            <div class ="outer-text" id="out6"> Aquaman <i class="bi bi-caret-right-fill" id="rightCaret6"></i></div>
+            <div id="in6">
+              <div class ="inner-text" > 1. Start in Superman position: facedown on your mat with limbs outstretched.
+
+              <br><br>
+              2. Exhale as you raise your right arm and left leg as high as you comfortably can. Shoot for 5–6 inches.
+
+              <br><br>
+              3. Hold for 5 seconds.
+
+              <br><br>
+              4. Exhale as you lower back down.
+
+              <br><br>
+              5. Repeat with the opposite arm and leg.
+
+              </div>
             </div>
           </div>
 
+
+
+
           <div>
-          <div class ="outer-text" id="out2">Squats <i class="bi bi-caret-right-fill" id="rightCaret2"></i></div>
-            <div id="in2">
-              <div class ="inner-text" >Single Leg Squats</div>
+            <div class ="outer-text" id="out7"> Superman <i class="bi bi-caret-right-fill" id="rightCaret7"></i></div>
+            <div id="in7">
+              <div class ="inner-text" > 1. Lie facedown with arms and legs outstretched, forehead on the mat. Your neck should be in a neutral position.
+              <br><br>
+              2. Exhale as you slowly lift arms, legs, upper back, and head off the floor. Keep arms and legs straight but not locked. Your body should resemble a U shape with either side several inches off the floor.
+              <br><br>
+              3. Hold this position for 5 seconds. Remember to keep breathing!
+              <br><br>
+              4. Exhale as you lower back down.
+              </div>
             </div>
           </div>
 
+
+
+          <div>
+            <div class ="outer-text" id="out8"> Plank jacks <i class="bi bi-caret-right-fill" id="rightCaret8"></i></div>
+            <div id="in8">
+              <div class ="inner-text" > 1. Start in a plank position with your arms extended and hands under your shoulders, feet together. Your body should be in a straight line from your head to your heels.
+
+              <br><br>
+              2. Engage your abs to help protect your lower back from injury.
+
+              <br><br>
+              3. Jump both feet out wide to each side as if you were doing a horizontal jumping jack.
+
+              <br><br>
+              4. Stay in plank position as you quickly jump your feet back together.
+
+              <br><br>
+              5. Continue to jump back in and out. Keep your back flat and don’t let your hips drop throughout the entire movement. Your arms should remain steady.
+              </div>
+            </div>
+          </div>
+
+
+
+
+          <div>
+            <div class ="outer-text" id="out9"> Up-down planks <i class="bi bi-caret-right-fill" id="rightCaret9"></i></div>
+            <div id="in9">
+              <div class ="inner-text" > 1. Begin in an elbow plank position, propped on your elbows and supporting your weight on your toes.
+
+              <br><br>
+              2. Shift your weight to your left and place your right hand on the floor.
+
+              <br><br>
+              3. Shift your weight to the right and place your left hand on the floor to enter a full plank.
+
+              <br><br>
+              4. Drop back down the way you came. Move your weight to the right to put your left elbow on the floor. Then shift to the left and place your right elbow back on the floor.
+
+              <br><br>
+              5. Finish the set then switch, this time placing your left hand on the floor first, then your right.
+              </div>
+            </div>
+          </div>
+
+
+
+          <div>
+            <div class ="outer-text" id="out10"> Side planks <i class="bi bi-caret-right-fill" id="rightCaret10"></i></div>
+            <div id="in10">
+              <div class ="inner-text" > 1. Lie on your right side with your legs straight and feet stacked on top of each other. Place your right elbow under your right shoulder with your forearm pointing away from you and your hand balled into a fist. The pinky side of your hand should be in contact with the ground.
+
+              <br><br>
+              2. With your neck neutral, breathe out and brace your core.
+
+              <br><br>
+              3. Lift your hips off the mat so that you’re supporting your weight on your elbow and the side of your right foot. Your body should be in a straight line from your ankles to your head.
+
+              <br><br>
+              4. Hold this position for the duration of the exercise. Depending on your fitness level, aim for between 15 to 60 seconds.
+
+              <br><br>
+              5. Repeat on your left side.
+
+              </div>
+            </div>
+          </div>
+
+
+          <div>
+            <div class ="outer-text" id="out11"> Squats <i class="bi bi-caret-right-fill" id="rightCaret11"></i></div>
+            <div id="in11">
+              <div class ="inner-text" > 1. Stand up with your feet shoulder-width apart.
+
+              <br><br>
+              2. Bend your knees, press your hips back and stop the movement once the hip joint is slightly lower than the knees.
+
+              <br><br>
+              3. Press your heels into the floor to return to the initial position.
+
+              </div>
+            </div>
+          </div>
+
+
+
+          <div>
+            <div class ="outer-text" id="out12"> Single Leg Squats <i class="bi bi-caret-right-fill" id="rightCaret12"></i></div>
+            <div id="in12">
+              <div class ="inner-text" > 1. Start by standing on your right foot. Lift your left leg out and hold it out straight and slightly in front of your torso. You could also just bend your knee and keep your left leg elevated to start. Your arms can be by your side or out in front of you for balance.
+
+              <br><br>
+              2. Keep your core engaged and your torso up throughout the movement. Start to push your hips back as you lower into a squat position. Aim to get low enough that your hips are parallel to the ground.
+
+              <br><br>
+              3. Squeeze your glutes as you push into the right foot to stand back up. Try to keep your left leg up between reps
+
+              <br><br>
+              4. Perform 5 to 10 reps on this side before switching to the left.
+
+              </div>
+            </div>
+          </div>
+ 
         </div>
       </div>
     </div>
@@ -151,6 +351,57 @@ p{
       $("#in2").slideToggle("slow");
       toggleCaret("rightCaret2", "downCaret2", "#out2");
     });
+
+    $("#out3").click(function(){
+      $("#in3").slideToggle("slow");
+      toggleCaret("rightCaret3", "downCaret3", "#out3");
+    });
+
+    $("#out4").click(function(){
+      $("#in4").slideToggle("slow");
+      toggleCaret("rightCaret4", "downCaret4", "#out4");
+    });
+
+    $("#out5").click(function(){
+      $("#in5").slideToggle("slow");
+      toggleCaret("rightCaret5", "downCaret5", "#out5");
+    });
+
+    $("#out6").click(function(){
+      $("#in6").slideToggle("slow");
+      toggleCaret("rightCaret6", "downCaret6", "#out6");
+    });
+
+    $("#out7").click(function(){
+      $("#in7").slideToggle("slow");
+      toggleCaret("rightCaret7", "downCaret7", "#out7");
+    });
+
+    $("#out8").click(function(){
+      $("#in8").slideToggle("slow");
+      toggleCaret("rightCaret8", "downCaret8", "#out8");
+    });
+
+    $("#out9").click(function(){
+      $("#in9").slideToggle("slow");
+      toggleCaret("rightCaret9", "downCaret9", "#out9");
+    });
+
+    $("#out10").click(function(){
+      $("#in10").slideToggle("slow");
+      toggleCaret("rightCaret10", "downCaret10", "#out10");
+    });
+
+    $("#out11").click(function(){
+      $("#in11").slideToggle("slow");
+      toggleCaret("rightCaret11", "downCaret11", "#out11");
+    });
+
+    $("#out12").click(function(){
+      $("#in12").slideToggle("slow");
+      toggleCaret("rightCaret12", "downCaret12", "#out12");
+    });
+
 
 
     // Function that handles toggling the Caret
