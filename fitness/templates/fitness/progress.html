@@ -76,6 +76,7 @@
     <h4 id="buffer" style="text-align: center"> placeholder for bar</h4>
     <h5 id="buffer" style="text-align: center"> 1 more goal till you level up </h5>
 
+
     <div id='quoteHolder'>
 
     </div>
@@ -91,6 +92,60 @@
 function goBack() {
   window.history.back();
 }
+
+
+    var myQuotes = ["'A journey of a thousand miles begins with a single step.'",
+        "'Success is most often achieved by those who don't know that failure is inevitable'",
+         "'Relax, and take a deep breathe.'",
+         "'If you feel that you are too busy, take the time look at your scheduale.'",
+         "'You're doing fantasic!'",
+         "'Stress is a sign that you care.'",
+         "'Sometimes it's good to take a day off.'",
+         "'If you feel like exercising, feel free to reflect on your progress.'",
+         "'Time not spent is time wasted.'",
+         "'A balanced scheduale is a balanced life.'",
+         "'Goals are to be achieved through hard work.'",
+         "'Start where you are. Use what you have. Do what you can'",
+         "'I find that the harder I work, the more luck I seem to have' <br> ",
+         "'Success is the sum of small efforts, repeated day-in and day-out' <br>",
+         "'All progress takes place outside the comfort zone' <br> ",
+         "'Even the best of the best had to start somewhere.'",
+         "'If you can, cut off some leisure time for exercise.'",
+         "'Great job, i'm proud of you!",
+         "'I avoid looking forward or backward, and try to keep looking upward' ",
+         "'In my experience, there is only one motivation, and that is desire. No reasons or principle contain it or stand against it'",
+         "'Be patient with yourself. Self-growth is tender; it's holy ground. There's no greater investment' ",
+         "'Many of life's failures are people who did not realize how close they were to success when they gave up'",
+         "'If you do what you’ve always done, you’ll get what you’ve always gotten' ",
+         "'Don’t judge each day by the harvest you reap but by the seeds that you plant.'",
+         "'If you always put limit on everything you do, it will spread into your work and into your life'",
+         "'Pain is temporary. Quitting lasts forever'"];
+
+
+
+    var quoteSelect = myQuotes[Math.floor(Math.random() * myQuotes.length)];
+
+
+
+    function quoteAppend() {
+        var existingQuote = $(".quotePosition");
+        if (existingQuote != null) {
+            existingQuote.remove();
+        }
+
+        var theQuote = document.getElementById("quoteHolder");
+        var randomQuote = myQuotes[Math.floor(Math.random() * myQuotes.length)];
+        $("#quoteHolder").append("<p class=quotePosition>" + randomQuote + "</p>");
+    }
+
+
+
+    function init() {
+        quoteAppend();
+    }
+
+    init();
+
 
 </script>
 

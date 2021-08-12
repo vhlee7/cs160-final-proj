@@ -78,6 +78,10 @@
 
     function goalArchiving() {
         var goalText = localStorage.getItem("myGoalText");
+
+        // just incase its null
+        if (goalText === null) {return;}
+
         goalText = JSON.parse(goalText);
 
         console.log(goalText);

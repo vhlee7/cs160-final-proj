@@ -21,13 +21,13 @@
 
     </div>
 
-    <i class="bi bi-arrow-repeat" id="refresh1Position" onclick="quoteAppend();"></i>
+<!--     <i class="bi bi-arrow-repeat" id="refresh1Position" onclick="quoteAppend();"></i>
     <div id='quoteHolder'>
 
-    </div>
+    </div> -->
 
-    <i class="bi bi-arrow-repeat" id="refresh2Position" onclick="vidAppend();"></i>
-
+<!--     <i class="bi bi-arrow-repeat" id="refresh2Position" onclick="vidAppend();"></i>
+ -->
     <div id='videoHolder'>
 
     </div>
@@ -46,48 +46,48 @@
     'https://www.youtube.com/embed/zSGoJk-D1LQ', 'https://www.youtube.com/embed/VSceuiPBpxY',
     'https://www.youtube.com/embed/tbnzAVRZ9Xc'];
 
-    var myQuotes = ["'A journey of a thousand miles begins with a single step.' <br> -- Lao-tzu",
-    "'Success is most often achieved by those who don't know that failure is inevitable' <br> -- Coco Chanel",
-     "'All our dreams can come true if we have the courage to pursue them' <br> -- Walt Disney",
-     "'It does not matter how slowly you go, so long as you do not stop' <br> -- Confucius",
-     "'Success is walking from failure to failure with no loss of enthusiasm' <br> -- Winston Churchill",
-     "'Whenever you see a successful person, you only see the public glories, never the private sacrifices to reach them.' <br>         -- Vaibhav Shah",
-     "'Someone is sitting in the shade today because someone planted a tree a long time ago' <br> -- Warren Buffett",
-     "'You only live once, but if you do it right, once is enough' <br> -- Mae West",
-     "'The difference between winning and losing is most often not quitting' <br> -- Walt Disney",
-     "'If you're going through hell, keep going' <br> -- Winston Churchill",
-     "'You miss 100 percent of the shots you don't take' <br> -- Wayne Gretzky",
-     "'Start where you are. Use what you have. Do what you can' <br> -- Arthur Ashe",
-     "'I find that the harder I work, the more luck I seem to have' <br> -- Thomas Jefferson",
-     "'Success is the sum of small efforts, repeated day-in and day-out' <br> -- Robert Collier",
-     "'All progress takes place outside the comfort zone' <br> -- Michael John Bobak",
-     "'A dream doesn't become reality through magic; it takes sweat, determination, and hard work.' <br> -- Colin Powell",
-     "'Only put off until tomorrow what you are willing to die having left undone' <br> -- Pablo Picasso",
-     "'The first step toward success is taken when you refuse to be a captive oQf the environment in which you first find yourself' <br> -- Mark Caine",
-     "'I avoid looking forward or backward, and try to keep looking upward' <br> -- Charlotte Bronte",
-     "'If you want to make a permanent change, stop focusing on the size of your problems and start focusing on the size of you!' <br> -- T. Harv Eker",
-     "'In my experience, there is only one motivation, and that is desire. No reasons or principle contain it or stand against it' <br> -- Jane Smiley",
-     "'Be patient with yourself. Self-growth is tender; it's holy ground. There's no greater investment' <br> -- Stephen Covey",
-     "'Many of life's failures are people who did not realize how close they were to success when they gave up'<br> -- Thomas A. Edison",
-     "'If you do what you’ve always done, you’ll get what you’ve always gotten'  –- Tony Robbins",
-     "'Don’t judge each day by the harvest you reap but by the seeds that you plant.' <br> –- Robert Louis Stevenson",
-     "'If you always put limit on everything you do, it will spread into your work and into your life' <br> -- Bruce Lee",
-     "'Pain is temporary. Quitting lasts forever' <br> -- Lance Armstrong"];
+    // var myQuotes = ["'A journey of a thousand miles begins with a single step.' <br> -- Lao-tzu",
+    // "'Success is most often achieved by those who don't know that failure is inevitable' <br> -- Coco Chanel",
+    //  "'All our dreams can come true if we have the courage to pursue them' <br> -- Walt Disney",
+    //  "'It does not matter how slowly you go, so long as you do not stop' <br> -- Confucius",
+    //  "'Success is walking from failure to failure with no loss of enthusiasm' <br> -- Winston Churchill",
+    //  "'Whenever you see a successful person, you only see the public glories, never the private sacrifices to reach them.' <br>         -- Vaibhav Shah",
+    //  "'Someone is sitting in the shade today because someone planted a tree a long time ago' <br> -- Warren Buffett",
+    //  "'You only live once, but if you do it right, once is enough' <br> -- Mae West",
+    //  "'The difference between winning and losing is most often not quitting' <br> -- Walt Disney",
+    //  "'If you're going through hell, keep going' <br> -- Winston Churchill",
+    //  "'You miss 100 percent of the shots you don't take' <br> -- Wayne Gretzky",
+    //  "'Start where you are. Use what you have. Do what you can' <br> -- Arthur Ashe",
+    //  "'I find that the harder I work, the more luck I seem to have' <br> -- Thomas Jefferson",
+    //  "'Success is the sum of small efforts, repeated day-in and day-out' <br> -- Robert Collier",
+    //  "'All progress takes place outside the comfort zone' <br> -- Michael John Bobak",
+    //  "'A dream doesn't become reality through magic; it takes sweat, determination, and hard work.' <br> -- Colin Powell",
+    //  "'Only put off until tomorrow what you are willing to die having left undone' <br> -- Pablo Picasso",
+    //  "'The first step toward success is taken when you refuse to be a captive oQf the environment in which you first find yourself' <br> -- Mark Caine",
+    //  "'I avoid looking forward or backward, and try to keep looking upward' <br> -- Charlotte Bronte",
+    //  "'If you want to make a permanent change, stop focusing on the size of your problems and start focusing on the size of you!' <br> -- T. Harv Eker",
+    //  "'In my experience, there is only one motivation, and that is desire. No reasons or principle contain it or stand against it' <br> -- Jane Smiley",
+    //  "'Be patient with yourself. Self-growth is tender; it's holy ground. There's no greater investment' <br> -- Stephen Covey",
+    //  "'Many of life's failures are people who did not realize how close they were to success when they gave up'<br> -- Thomas A. Edison",
+    //  "'If you do what you’ve always done, you’ll get what you’ve always gotten'  –- Tony Robbins",
+    //  "'Don’t judge each day by the harvest you reap but by the seeds that you plant.' <br> –- Robert Louis Stevenson",
+    //  "'If you always put limit on everything you do, it will spread into your work and into your life' <br> -- Bruce Lee",
+    //  "'Pain is temporary. Quitting lasts forever' <br> -- Lance Armstrong"];
 
     var vidSelect = myVids[Math.floor(Math.random() * myVids.length)];
-    var quoteSelect = myQuotes[Math.floor(Math.random() * myQuotes.length)];
+    // var quoteSelect = myQuotes[Math.floor(Math.random() * myQuotes.length)];
 
 
-    function quoteAppend() {
-        var existingQuote = $(".quotePosition");
-        if (existingQuote != null) {
-            existingQuote.remove();
-        }
+    // function quoteAppend() {
+    //     var existingQuote = $(".quotePosition");
+    //     if (existingQuote != null) {
+    //         existingQuote.remove();
+    //     }
 
-        var theQuote = document.getElementById("quoteHolder");
-        var randomQuote = myQuotes[Math.floor(Math.random() * myQuotes.length)];
-        $("#quoteHolder").append("<p class=quotePosition>" + randomQuote + "</p>");
-    }
+    //     var theQuote = document.getElementById("quoteHolder");
+    //     var randomQuote = myQuotes[Math.floor(Math.random() * myQuotes.length)];
+    //     $("#quoteHolder").append("<p class=quotePosition>" + randomQuote + "</p>");
+    // }
 
 
     function vidAppend() {
@@ -102,7 +102,7 @@
     }
 
     function init() {
-        quoteAppend();
+        // quoteAppend();
         vidAppend();
     }
 
