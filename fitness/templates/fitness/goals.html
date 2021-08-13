@@ -183,11 +183,7 @@
     <div id="tableHolder">
         <p class="h1 text-center">Current Goals</p>
         <table class='tableStyle'>
-            <tr>
-                <td class='goalText'> Start the app! </td>
-                <td class='numWidth'> <i class='bi bi-x crossSize' onclick='removeGoal(this);' style ='color:red;'> </i> </td>
-                <td class='numWidth'> <i class='bi bi-check-lg' style='color:green;' onclick='archiveGoal(this)'> </i> </td>
-            </tr>
+
         </table>
     </div>
 
@@ -245,7 +241,6 @@
 
         // if we have previous goals submitted already
         } else {
-
             var store = JSON.parse(goalStorage);
             store.push(goalText);
             localStorage.setItem("myGoalText", JSON.stringify(store));
@@ -274,6 +269,18 @@
 
         $("#tableHolder").append("<table class='tableStyle'> <tr> <td class='goalText'>" + myGoal + "</td> <td class='numWidth'> <i class='bi bi-x crossSize' onclick='removeGoal(this);' style ='color:red';> </i> </td> <td class='numWidth'> <i class='bi bi-check-lg' style='color:green'; onclick='archiveGoal(this)'> </i> </td> </tr></table>");
 
+
+        let myGoalsList = localStorage.getItem('theGoalsList');
+        if (myGoalsList === null) {
+            // pages that user opened
+            myGoalsList = [];
+            myGoalsList.push(myGoal);
+            localStorage.setItem('theGoalsList', JSON.stringify(myGoalsList));
+        } else {
+            let tracker = JSON.parse(localStorage.getItem('theGoalsList'));
+            tracker.push(myGoal);
+            localStorage.setItem('theGoalsList', JSON.stringify(tracker));
+        }
 
         $("#phForm").hide();
         $("#tableHolder").show();
@@ -322,6 +329,24 @@
             tracker['index'] = true;
             localStorage.setItem('userTracker', JSON.stringify(tracker));
         }
+
+
+        let myGoalsList = localStorage.getItem('theGoalsList');
+        var storer = JSON.parse(myGoalsList);
+        console.log(storer);
+        if (storer === null) {
+            return;
+        } else {
+            console.log(storer.length);
+            for (let i = 0; i < storer.length; i++) {
+                console.log("aaaa");
+                $("#tableHolder").append("<table class='tableStyle'> <tr> <td class='goalText'>" + storer[i] + "</td> <td class='numWidth'> <i class='bi bi-x crossSize' onclick='removeGoal(this);' style ='color:red';> </i> </td> <td class='numWidth'> <i class='bi bi-check-lg' style='color:green'; onclick='archiveGoal(this)'> </i> </td> </tr></table>");
+            }
+        }
+
+
+
+
     }
 
 
