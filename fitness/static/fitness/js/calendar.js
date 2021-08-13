@@ -342,6 +342,7 @@ function sendForm2() {
             end: date + 'T' + ('0' + Math.floor(minutes / 60 + 8 )).slice(-2) + ':' + ('0' + minutes % 60).slice(-2) + ':00',
             backgroundColor: calColor['exercise']
         });
+        alert('Successfully added to calendar!');
         return;
     } else {
         var eStart = '08';
@@ -366,6 +367,7 @@ function sendForm2() {
                         end: date + 'T' + ('0' + Math.floor(minutes / 60) + eH).slice(-2) + ':' + ('0' + (minutes + eM) % 60).slice(-2) + ':00',
                         backgroundColor: calColor['exercise']
                     });
+                    alert('Successfully added to calendar!');
                     return;
                 }
             }
@@ -379,6 +381,7 @@ function sendForm2() {
                 end: date + 'T' + ('0' + Math.floor(minutes / 60) + lH).slice(-2) + ':' + ('0' + (minutes + lM) % 60).slice(-2) + ':00',
                 backgroundColor: calColor['exercise']
             });
+            alert('Successfully added to calendar!');
             analyzeSchedule();
             return;
         }
