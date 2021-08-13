@@ -43,7 +43,7 @@
         }
 
         .quotePosition {
-            border: 30px solid cadetblue;
+            border: 30px inset;
             text-align: center;
             /* margin-top:  15%; */
             margin-left: 7%;
@@ -72,7 +72,7 @@
         }
 
         .circle {
-            border: 20px solid black;
+            border: 20px inset;
             background-color: #FFFFFF;
             height: 100px;
             border-radius:50%;
@@ -92,20 +92,11 @@
     <i class="bi bi-arrow-left" onclick="goBack()" style="font-size:4em; margin-left:5%; font-weight:bold;"></i>
     <h1 style="text-align: center; padding: 41px"> My Progress </h1>
     </div>
-    <i class="bi bi-person circle" style="margin-left: 40%"></i>
 
-    
-    <h3 id="level" class="buffer" style="text-align: center">  </h3>
-    <h3 id="status" class="buffer" style="text-align: center">  </h3>
-    <!-- <h4 id="buffer" style="text-align: center"> placeholder for bar</h4> -->
-    <h5 id="exp" class="buffer" style="text-align: center">  </h5>
-
-
-
+    <br><br><br>
+    <i class="bi bi-person circle" id='person1' style="margin-left: 40%"></i>
     <br><br>
-
-
-    <div class="container">
+        <div class="container">
       <div class="row">
         <div class="col expBarFill bar1">
           <br>
@@ -118,16 +109,18 @@
         </div>
       </div>
     </div>
+    <br>
+    <h3 id="level" class="buffer" style="text-align: center; font-size: 50px">  </h3>
+    <h3 id="status" class="buffer" style="text-align: center; font-size: 50px">  </h3>
 
+    <h5 id="exp" class="buffer" style="text-align: center;">  </h5>
 
     <br><br>
 
+    <br><br><br><br>
+
 
     <div id='quoteHolder'>
-
-    </div>
-
-    <div id='videoHolder'>
 
     </div>
 
@@ -143,15 +136,6 @@
     function goBack() {
       window.history.back();
     }
-
-    // var myVids = ['https://www.youtube.com/embed/Z63w5PefxTQ', 'https://www.youtube.com/embed/T1XLHsz4r_M',
-    // 'https://www.youtube.com/embed/s8hWQwFwayo', 'https://www.youtube.com/embed/loB4aMdlKaI',
-    // 'https://www.youtube.com/embed/Y85_muzKuI0', 'https://www.youtube.com/embed/crsST0ptxlU',
-    // 'https://www.youtube.com/embed/YUxR3d10lz4', 'https://www.youtube.com/embed/QTB1YiWxxKU',
-    // 'https://www.youtube.com/embed/ugGt_baqyFQ', 'https://www.youtube.com/embed/ffXKVfUcQE8',
-    // 'https://www.youtube.com/embed/xu-WuJtOl0c', 'https://www.youtube.com/embed/eliFKVDY4_0',
-    // 'https://www.youtube.com/embed/zSGoJk-D1LQ', 'https://www.youtube.com/embed/VSceuiPBpxY',
-    // 'https://www.youtube.com/embed/tbnzAVRZ9Xc'];
 
 
     var myQuotes = ["'A journey of a thousand miles begins with a single step.'",
@@ -184,20 +168,6 @@
 
 
     var quoteSelect = myQuotes[Math.floor(Math.random() * myQuotes.length)];
-    // var vidSelect = myVids[Math.floor(Math.random() * myVids.length)];
-
-
-    // function vidAppend() {
-    //         var existingVideo = $(".vidPosition");
-    //         if (existingVideo != null) {
-    //             existingVideo.remove();
-    //         }
-
-    //         var theVideo = document.getElementById("videoHolder");
-    //         var randomVid = myVids[Math.floor(Math.random() * myVids.length)];
-    //         $("#videoHolder").append("<iframe class=vidPosition src='" + randomVid + "' allowfullscreen> </iframe>");
-    //     }
-
 
     function quoteAppend() {
         var existingQuote = $(".quotePosition");
@@ -207,7 +177,7 @@
 
         var theQuote = document.getElementById("quoteHolder");
         var randomQuote = myQuotes[Math.floor(Math.random() * myQuotes.length)];
-        $("#quoteHolder").append("<p class=quotePosition>" + randomQuote + "</p>");
+        $("#quoteHolder").append("<p class=quotePosition id='quo'>" + randomQuote + "</p>");
     }
 
 
@@ -244,6 +214,22 @@
         } else {
             return 'Master';
         }
+    }
+
+    function borderCol(level) {
+        let colors = ['black', 'DarkBlue', 'Crimson', 'DarkGreen', 'DodgerBlue', 'ForestGreen','indigo', 'RoyalBlue', 'DarkGoldenRod' ]
+        if (level < 10) {
+            return colors[level];
+        } else {
+            return 'gold';
+        }
+    }
+
+    function appendColors(level) {
+        let mycolor = borderCol(level);
+        document.getElementById("quo").style.borderColor = mycolor;
+        document.getElementById("person1").style.borderColor = mycolor;
+
     }
 
     function init() {
@@ -286,7 +272,7 @@
             if (expLeft === 0 ) {
                 expLeft = 3;
             }
-
+            appendColors(myLevel);
             expFilling(expLeft);
 
     }
