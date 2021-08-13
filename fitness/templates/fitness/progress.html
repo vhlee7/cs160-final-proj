@@ -145,6 +145,7 @@
 
     </div>
     <br><br>
+    <button type="button" onclick="resetProgress();"> Reset Progress</button>
 </body>
 
 
@@ -251,6 +252,11 @@
         document.getElementById("quo").style.borderColor = mycolor;
         document.getElementById("person1").style.borderColor = mycolor;
         document.getElementById("progressHolder").style.borderColor = mycolor;
+    }
+
+    function resetProgress() {
+        localStorage.clear();
+        location.href='/fitness/';
     }
 
     function init() {
