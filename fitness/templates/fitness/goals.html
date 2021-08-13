@@ -223,7 +223,23 @@
 
 
     function removeGoal(el) {
+        var goalText = el.closest(".tableStyle").rows[0].cells[0].textContent;
+
+        var goalStorage = localStorage.getItem("theGoalsList");
+        var goalSt = JSON.parse(goalStorage);
+
+        if (goalSt != null) {
+            console.log(goalSt);
+            var myindexer = goalSt.indexOf(goalText);
+            if (myindexer > -1) {
+                goalSt.splice(myindexer, 1);
+            }
+        }
+
+        localStorage.setItem("theGoalsList", JSON.stringify(goalSt));
+
         el.parentNode.parentNode.remove();
+
     }
 
     // Make sure your goal text is the very top <td>, else this fails
