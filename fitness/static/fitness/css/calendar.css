@@ -47,3 +47,11 @@ form {
     text-align: center;
     margin: 0 auto;
 }
+
+#summary-schedule {
+    padding-top: 1%;
+}
+
+#suggTitle {
+    padding-top: 1%; 
+}

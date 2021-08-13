@@ -426,13 +426,13 @@ function analyzeSchedule() {
     }
 
     var wB = (wStart + '').split(" ")[1] + ' ' + (wStart + '').split(" ")[2];
-    var wE = (wEnd + '').split(" ")[1] + ' ' + (wEnd + '').split(" ")[2];
+    var wE = (wEnd + '').split(" ")[1] + ' ' + (parseInt((wEnd + '').split(" ")[2]) - 1);
 
-    schedText.innerHTML = 'This week (' + wB + ' to ' + wE + ') you have: <br>' + 
-        Math.floor(userSchedData['exerciseTime'] / 60) + ' hours and ' + userSchedData['exerciseTime'] % 60 + ' minutes of exercise, <br>' +
-        Math.floor(userSchedData['workTime'] / 60) + ' hours and ' + userSchedData['workTime'] % 60 + ' minutes of work, <br>' +
-        Math.floor(userSchedData['leisureTime'] / 60) + ' hours and ' + userSchedData['leisureTime'] % 60 + ' minutes of leisure, <br>' +
-        Math.floor(userSchedData['otherTime'] / 60) + ' hours and ' + userSchedData['otherTime'] % 60 + ' minutes of other tasks times.';
+    schedText.innerHTML = 'This week (' + wB + ' to ' + wE + ') you have: <br><b>' + 
+        Math.floor(userSchedData['exerciseTime'] / 60) + ' hours</b> and <b>' + userSchedData['exerciseTime'] % 60 + ' minutes</b> of <b>exercise</b>, <br><b>' +
+        Math.floor(userSchedData['workTime'] / 60) + ' hours</b> and <b>' + userSchedData['workTime'] % 60 + ' minutes</b> of <b>work</b>, <br><br><b>' +
+        Math.floor(userSchedData['leisureTime'] / 60) + ' hours</b> and <b>' + userSchedData['leisureTime'] % 60 + ' minutes</b> of <b>leisure</b>, <br><b>' +
+        Math.floor(userSchedData['otherTime'] / 60) + ' hours</b> and <b>' + userSchedData['otherTime'] % 60 + ' minutes</b> of <b>other</b> tasks times.<br><br>';
     
     suggestions();
     saveEvents();
