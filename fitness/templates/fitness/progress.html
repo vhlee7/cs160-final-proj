@@ -79,6 +79,16 @@
             width: 100px;
         }
 
+        #progressHolder {
+            text-align: center;
+            border: 15px outset;
+            width: 700px;
+            height: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+
     </style>
 </head>
 
@@ -115,10 +125,21 @@
 
     <h5 id="exp" class="buffer" style="text-align: center;">  </h5>
 
+
     <br><br>
 
-    <br><br><br><br>
 
+
+    <div id='progressHolder' style="font-size: 50px;">
+    Time Use Summary <br>
+        <div id='exercise' style="font-size: 40px;"> </div>
+        <div id='work' style="font-size: 40px;"> </div>
+        <div id='leisure' style="font-size: 40px;"> </div>
+        <div id='other' style="font-size: 40px;"> </div>
+    </div>
+
+
+    <br><br><br><br>
 
     <div id='quoteHolder'>
 
@@ -229,7 +250,7 @@
         let mycolor = borderCol(level);
         document.getElementById("quo").style.borderColor = mycolor;
         document.getElementById("person1").style.borderColor = mycolor;
-
+        document.getElementById("progressHolder").style.borderColor = mycolor;
     }
 
     function init() {
@@ -275,6 +296,15 @@
             appendColors(myLevel);
             expFilling(expLeft);
 
+
+        let calTracker = JSON.parse(localStorage.getItem('userHours'));
+        if (calTracker != null) {
+            $('#exercise').append("Total <b>exercise</b> time: <b>" + calTracker.exerciseTime + " minutes </b>");
+            $('#work').append("Total <b>work</b> time: <b>" + calTracker.workTime + " minutes </b>");
+            $('#leisure').append("Total <b>leisure</b> time: <b>" + calTracker.leisureTime + " minutes </b>");
+            $('#other').append("Total <b>other</b> time: <b>" + calTracker.otherTime + " minutes </b>");
+
+        }
     }
 
     init();
