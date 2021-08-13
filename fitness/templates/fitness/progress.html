@@ -255,8 +255,17 @@
     }
 
     function resetProgress() {
-        localStorage.clear();
-        location.href='/fitness/';
+        let msg = prompt('Please type "progress reset" below to reset everything.');
+        if (msg === "progress reset") {
+            alert("Your progress was reset.")
+            localStorage.clear();
+            location.href='/fitness/';
+        } else if (msg === null){
+            return;
+        } else {
+            alert('Your progress was not reset because you inputted the wrong phrase.');
+        }
+        
     }
 
     function init() {
