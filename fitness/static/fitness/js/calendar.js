@@ -460,8 +460,8 @@ function hideSuggestions() {
 function suggestions() {
     var textBox = document.getElementById('suggestions');
     var suggText = '';
-    if (userSchedData.exerciseTime < 210) {
-        var eDiff = 210 - userSchedData.exerciseTime;
+    if (userSchedData.exerciseTime < 150) {
+        var eDiff = 150 - userSchedData.exerciseTime;
         suggText += '    This week, your schedule averages less than 30 minutes of exercise per day. You need ' + 
             eDiff + ' minutes of exerise or more for a healthy amount. Consider using the "Autofill Workout" tool. <br>';
     }
