@@ -95,8 +95,6 @@
         }
 
 
-
-
         #background-form5 {
             margin-left: auto;
             margin-right: auto;
@@ -134,6 +132,26 @@
 
         }
 
+        .boxSize {
+            font-size: 4vw;
+            font-family: Arial, Helvetica, sans-serif;
+            width: 50%;
+            height: 60%;
+            padding-top: 4%;
+        } 
+        .bborder {
+            border-style: solid; 
+            border-radius: 10%;
+            /* margin-left: 10px; */
+        }
+
+        .uwu1 {
+            border-color:purple;
+        }
+        .uwu2 {
+            border-color:green;
+        }
+
 
         </style>
 </head>
@@ -145,21 +163,6 @@
     </div>
     <br><br>
 
-    <div class="row">
-        <div class="col-sm-1"> </div>
-        <div class="col-sm-4 progress" id="progress" onclick="location.href='/fitness/goal-progress-archive/';" style="cursor: pointer;">
-            <div style="text-align: center">
-                <p>Goals Progress Archive</p>
-            </div>
-        </div>
-        <div class="col-sm-2"> </div>
-        <div class="col-sm-4 achievements" id="achievements" onclick="location.href='/fitness/achievements/';" style="cursor: pointer;">
-            <div style="text-align: center">
-                <p>App Achievements</p>
-            </div>
-        </div>
-        <div class="col-sm-1"> </div>
-    </div>
 
     <!-- FORM FOR SUBMITTING A GOAL -->
     <div id="phForm">
@@ -195,26 +198,17 @@
         <i class="bi bi-plus-circle-fill add" onclick='clickGoal();'> </i>
     </div>
 
-
-
-<!-- <div class ="row justify-content-center"> 
-    <div class="col-sm-1">
+    <br><br><br><br><br><br>
+    <div class = "container"> 
+        <div class = "row"> 
+            <div class="col-sm-5 boxSize bborder uwu1" onclick="location.href='/fitness/goal-progress-archive/';" style="cursor: pointer;"> <div style="text-align: center"> 
+                <p>Goals Archive</p><i class="bi bi-folder" style="color:purple; font-size: 7vw;"></i></div></div>
+            <div class="col-sm-2"> </div>
+            <div class="col-sm-5 boxSize bborder uwu2" onclick="location.href='/fitness/achievements/';" style="cursor: pointer;"> <div style="text-align: center">
+                <p>Achievements</p><i class="bi bi-gem" style="color:green; font-size: 7vw;"></i>
+            </div> </div>
+        </div>
     </div>
-    <div class = "col-sm-4">
-        <div class="progress text-center" id="phProgress" onclick="location.href='/fitness/goal-progress-archive/';"> <div>
-            <p>Goal Progress Archive</p>
-        </div></div>
-    </div>
-    <div class="col-sm-2">
-    </div>
-    <div class = "col-sm-4">
-        <div class="achievements text-center" id="phAchievements" onclick="location.href='/fitness/achievements/';"> <div>
-            <p>App Achievements</p>
-        </div></div>
-    </div>
-    <div class="col-sm-1">
-    </div> -->
-
 </body>
 
 
