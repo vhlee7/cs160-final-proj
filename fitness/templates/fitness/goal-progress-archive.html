@@ -42,6 +42,12 @@
 
         .numWidth {
             width: 10%;
+            font-size: 3vw;
+            color: gold;
+        }
+
+        .goalText {
+            font-size: 3vw;
         }
 
         #tableList {
@@ -54,16 +60,16 @@
 
         <div style="background-color: #48A2E9; padding-bottom: 50px;">
           <i class="bi bi-arrow-left" onclick="goBack()" style="font-size:4em; margin-left:5%; font-weight:bold;"></i>
-            <div class="text-block-1"> <h1>Goal Progress Archive</h1></div>
+            <div class="text-block-1"> <h1>Goal Archive</h1></div>
         </div>
 
         <br><br><br>
 
         <div id='tableList'>
+            <p class="h1 text-center">Completed Goals</p>
             <table class='tableStyle'>
                 <tr>
-                    <td class='numWidth'><i class="bi bi-stars" style='color:blue;'></i></td>
-                    <td>Archive Placeholder</td>
+                    
                 </tr>
             </table>
 
@@ -87,7 +93,7 @@
         console.log(goalText);
 
         for (var i = 0; i < goalText.length; i++) {
-            $("#tableList").append("<table class='tableStyle'> <tr> <td class='numWidth'><i class='bi bi-stars' style='color:blue;'></i></td> <td>" + goalText[i] + "</td> </tr> </table>");
+            $("#tableList").append("<table class='tableStyle'> <tr> <td class='numWidth'><i class='bi bi-star-fill'></i></td> <td class='goalText'>" + goalText[i] + "</td> </tr> </table>");
         }
     }
 
