@@ -4,6 +4,13 @@ var calendar;
 var socket = new WebSocket(
     'ws://' + window.location.host + '/ws/fitness');
 
+var calColor = {
+    work: '#e4e4e4',
+    exercise: 'green',
+    leisure: 'blue',
+    other: '#87ceeb'
+}
+
 var userEvents = {
     events: [
         {
@@ -11,74 +18,74 @@ var userEvents = {
             title: '[work] - finish project',
             start: '2021-08-09T09:00:00',
             end: '2021-08-09T17:00:00',
-            backgroundColor: '#e4e4e4'
+            backgroundColor: calColor['work']
         },
         {
             title: '[work] - study',
             start: '2021-08-10T09:00:00',
             end: '2021-08-10T15:00:00',
-            backgroundColor: '#e4e4e4'
+            backgroundColor: calColor.work
         },
         {
             title: '[work] - present project',
             start: '2021-08-11T09:00:00',
             end: '2021-08-11T12:00:00',
-            backgroundColor: '#e4e4e4'
+            backgroundColor: calColor.work
         },
         {
             title: '[leisure] - shopping',
             start: '2021-08-11T15:00:00',
             end: '2021-08-11T17:00:00',
-            backgroundColor: '#e4e4e4'
+            backgroundColor: calColor.leisure
         },
         {
             title: '[work] - meeting',
             start: '2021-08-12T09:00:00',
             end: '2021-08-12T15:00:00',
-            backgroundColor: '#e4e4e4'
+            backgroundColor: calColor.work
         },
         {
             title: '[work] - plan next project',
             start: '2021-08-13T09:00:00',
             end: '2021-08-13T17:00:00',
-            backgroundColor: '#e4e4e4'
+            backgroundColor: calColor.work
         },
         {
             id: 'mywork',
             title: '[work] - finish project',
             start: '2021-08-16T09:00:00',
             end: '2021-08-16T17:00:00',
-            backgroundColor: '#e4e4e4'
+            backgroundColor: calColor.work
         },
         {
             title: '[work] - study',
             start: '2021-08-17T09:00:00',
             end: '2021-08-17T15:00:00',
-            backgroundColor: '#e4e4e4'
+            backgroundColor: calColor.work
         },
         {
             title: '[work] - present project',
             start: '2021-08-18T09:00:00',
             end: '2021-08-18T12:00:00',
-            backgroundColor: '#e4e4e4'
+            backgroundColor: calColor.work
         },
         {
             title: '[leisure] - shopping',
             start: '2021-08-18T15:00:00',
             end: '2021-08-18T17:00:00',
-            backgroundColor: '#e4e4e4'
+            backgroundColor: calColor.work
         },
         {
             title: '[work] - meeting',
             start: '2021-08-19T09:00:00',
             end: '2021-08-19T15:00:00',
-            backgroundColor: '#e4e4e4'
+            backgroundColor: calColor.work
         },
         {
             title: '[work] - plan next project',
             start: '2021-08-20T09:00:00',
             end: '2021-08-20T17:00:00',
-            backgroundColor: '#e4e4e4'
+            backgroundColor: calColor.work
         },
     ],
     id: "userSchedule",
@@ -125,13 +132,6 @@ var userSchedData = {
     leisureTime: 0, 
     otherTime: 0
 };
-
-var calColor = {
-    work: '#e4e4e4',
-    exercise: 'green',
-    leisure: 'blue',
-    other: '#87ceeb'
-}
 
 var wList = ['arms', 'legs', 'abs', 'shoulders', 'back', 'chest'];
 
