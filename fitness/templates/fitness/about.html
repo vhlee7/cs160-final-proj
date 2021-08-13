@@ -13,28 +13,33 @@
     <script type="text/javascript" src="{% static 'fitness/vendor/paper/paper-full.min.js' %}"></script>
 
 </head>
-	<p id='topText'> About Page </p>
+	
+	<div style="background-color: #48A2E9;">
+	    <i class="bi bi-arrow-left" onclick="goBack()" style="font-size:4em; margin-left:2%; font-weight:bold;"></i>
+	    <h1 style="text-align: center;">About Page </h1>
+	    <br>
+  	</div>
 
 
-	<div class='headerText'> My Goals </div>
+	<div class='headerText' style="font-size:45px;"> My Goals </div>
 
 	<div id='section1'>
-		<div id='down1'>
+		<div id='down1' style="font-size:35px;">
 			About My Goals
 			<i class="bi bi-caret-right-fill" id="rightCaret1"></i>
 		</div>
 
-		<div id='right1'> My Goals is where you can create your own goals by clicking the "plus" circle, and have the option to "complete" it by clicking the green checkmark, or "discard" it by clicking the red "x" icon. <br><br> You can also access the Goal Progress Archive page, and the App Achievements page.
+		<div id='right1' style="font-size:30px;"> My Goals is where you can create your own goals by clicking the "plus" circle, and have the option to "complete" it by clicking the green checkmark, or "discard" it by clicking the red "x" icon. <br><br> You can also access the Goal Progress Archive page, and the App Achievements page.
 		 </div>
 	</div>
 
 	<div id='section2'>
-		<div id='down2'>
+		<div id='down2' style="font-size:35px;">
 			Goal Progress Archive
 			<i class="bi bi-caret-right-fill" id="rightCaret2"></i>
 		</div>
 
-		<div id='right2'> The Goal Progress Archive is a place you can see all the past goals you have completed by clicking on the green checkmark. <br><br> It's a place to see all your past achievements, so feel proud about yourself, your making great progress! </div>
+		<div id='right2' style="font-size:30px;"> The Goal Progress Archive is a place you can see all the past goals you have completed by clicking on the green checkmark. <br><br> It's a place to see all your past achievements, so feel proud about yourself, your making great progress! </div>
 	</div>
 
 <!-- 	<div id='section3'>
@@ -48,80 +53,80 @@
 
 
 
-	<div class='headerText'> My Scheduale </div>
+	<div class='headerText' style="font-size:45px;"> My Scheduale </div>
 
 	<div id='section4'>
-		<div id='down4'>
+		<div id='down4' style="font-size:35px;">
 			About My Scheduale
 			<i class="bi bi-caret-right-fill" id="rightCaret4"></i>
 		</div>
 
-		<div id='right4'> Filler Text. </div>
+		<div id='right4' style="font-size:25px;"> Filler Text. </div>
 	</div>
 
 	<div id='section5'>
-		<div id='down5'>
+		<div id='down5' style="font-size:35px;">
 			Filling out the Scheduale
 			<i class="bi bi-caret-right-fill" id="rightCaret5"></i>
 		</div>
 
-		<div id='right5'> Filler Text. </div>
+		<div id='right5' style="font-size:25px;"> Filler Text. </div>
 	</div>
 
 	<div id='section6'>
-		<div id='down6'>
+		<div id='down6' style="font-size:35px;">
 			Making Exercises
 			<i class="bi bi-caret-right-fill" id="rightCaret6"></i>
 		</div>
 
-		<div id='right6'> Filler Text. </div>
+		<div id='right6' style="font-size:25px;"> Filler Text. </div>
 	</div>
 
 
-	<div class='headerText'> My Exercises </div>
+	<div class='headerText' style="font-size:45px;"> My Exercises </div>
 
 	<div id='section7'>
-		<div id='down7'>
+		<div id='down7' style="font-size:35px;">
 			About My Exercises
 			<i class="bi bi-caret-right-fill" id="rightCaret7"></i>
 		</div>
 
-		<div id='right7'> Filler Text. </div>
+		<div id='right7' style="font-size:25px;"> Filler Text. </div>
 	</div>
 
 
 
 
-	<div class='headerText'> My Motivation </div>
+	<div class='headerText' style="font-size:45px;"> My Motivation </div>
 
 	<div id='section8'>
-		<div id='down8'>
+		<div id='down8' style="font-size:35px;">
 			About My Motivation
 			<i class="bi bi-caret-right-fill" id="rightCaret8"></i>
 		</div>
 
-		<div id='right8'> Filler Text. </div>
+		<div id='right8' style="font-size:25px;"> Filler Text. </div>
 	</div>
 
 
-	<div class='headerText'> My Progress </div>
+	<div class='headerText' style="font-size:45px;"> My Progress </div>
 
-	<div id='section9'>
-		<div id='down9'>
+	<div id='section9' style="font-size:30px;">
+		<div id='down9' style="font-size:35px;">
 			About My Progress
 			<i class="bi bi-caret-right-fill" id="rightCaret9"></i>
 		</div>
 
-		<div id='right9'> Filler Text. </div>
+		<div id='right9' style="font-size:25px;"> Filler Text. </div>
 	</div>
 
 	<div id='section10'>
-		<div id='down10'>
+		<div id='down10' style="font-size:35px;">
 			Leveling Up
 			<i class="bi bi-caret-right-fill" id="rightCaret10"></i>
 		</div>
 
-		<div id='right10'> Filler Text. </div>
+		<div id='right10' style="font-size:25px;"> Filler Text. </div>
 	</div>
 
 	<br><br><br>
@@ -224,6 +229,11 @@
             localStorage.setItem('userTracker', JSON.stringify(tracker));
         }
     }
+
+
+	function goBack() {
+	  window.history.back();
+	}
 
 	init();
 
