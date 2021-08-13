@@ -21,43 +21,57 @@
         
 
         html, body {
+            height: 100%;
+            width: 100%;
+            body: 100%;
             margin: 0;
             padding: 0;
             font-family: 'Comic Neue', cursive;
             background-color: #f8f9fa;
         }
 
-        #border {
+        .container {
+            height: 80%;
+            width: 100%;
+            padding-top: 27%;
+        }
+
+        .row {
+            height: 50%;
+            width: 100%;
+        }
+
+        .bborder {
             border-style: solid; 
+            border-radius: 10%;
             /* margin-left: 10px; */
         }
 
         i.bi {
-            font-size: 5rem; 
+            font-size: 15vw; 
         }
         
         #questionIcon {
-            font-size: 60px;
-            margin-left: 90%;
-            padding-top: 30px;
+            text-align: right;
+            padding-right: 1%;
+            
         }
 
         .boxSize {
-            width: 100px;
-            height: 200px;
+            font-size: 4vw;
+            width: 50%;
+            height: 60%;
         } 
 
         .menu { 
-            padding-bottom: 20px;
+            padding-bottom: 2%;
             background-color: #48A2E9;
             text-align: center;
         }
         
-        .images{
-            
+        .images{      
             max-width: 50%;
-            max-height: 50%;
-            
+            max-height: 50%;         
         }
     </style>
 </head>
@@ -68,51 +82,33 @@
 
 <body onload="init();">
     <div class = "menu" style = "width: auto"> 
-    <div id='questionIcon' onclick="location.href='/fitness/about/';" style="cursor: pointer; ">
-        <i class="bi bi-patch-question-fill"></i>
-    </div>
+        <div id='questionIcon' onclick="location.href='/fitness/about/';" style="cursor: pointer; ">
+            <i class="bi bi-patch-question-fill" style="font-size: 7vw;"></i>
+        </div>
 
-    <img class="images" src="../../static/fitness/images/logo.png">
+        <img class="images" style = "width: 100%" src="../../static/fitness/images/logo.png">
     </div>
-
-    <br><br><br>
 
     <div class = "container"> 
 
         <div class = "row"> 
+            <div class="col-sm-5 boxSize bborder" onclick="location.href='/fitness/calendar/';" style="cursor: pointer;"> <div style="text-align: center"> <p>My Schedule</p><i class="bi bi-calendar"></i></div></div>
             <div class="col-sm-2"> </div>
-            <div class="col-sm-3 boxSize" id = "border" onclick="location.href='/fitness/calendar/';" style="cursor: pointer;"> <div style="text-align: center"> <p>My Schedule</p><i class="bi bi-calendar"></i></div></div>
-            <div class="col-sm-2"> </div>
-            <div class="col-sm-3 boxSize" id = "border" onclick="location.href='/fitness/goals/';" style="cursor: pointer;"> <div style="text-align: center">
+            <div class="col-sm-5 boxSize bborder" onclick="location.href='/fitness/goals/';" style="cursor: pointer;"> <div style="text-align: center">
                 <p>My Goals</p><i class="bi bi-card-checklist"></i>
             </div> </div>
-            <div class="col-sm-2"> </div>
+            
         </div>
 
-        <br><br><br>
-
         <div class="row">
-            <div class="col-sm-2"> </div>
-            <div class="col-sm-3 boxSize" id = "border" onclick="location.href='/fitness/muscle-groups/';" style="cursor: pointer;"><div style="text-align: center">
+            <div class="col-sm-5 boxSize bborder" onclick="location.href='/fitness/muscle-groups/';" style="cursor: pointer;"><div style="text-align: center">
                 <p>My Exercises</p><i class="bi bi-heart"></i>
             </div></div>
             <div class="col-sm-2"> </div>
-            <div class="col-sm-3 boxSize" id = "border" onclick="location.href='/fitness/progress/';" style="cursor: pointer;"><div style="text-align: center">
+            <div class="col-sm-5 boxSize bborder" onclick="location.href='/fitness/progress/';" style="cursor: pointer;"><div style="text-align: center">
                 <p>My Progress</p><i class="bi bi-person"></i>
             </div></div>
-            <div class="col-sm-2"> </div>
         </div>
-
-        <br><br><br>
-
-<!--         <div class="row">
-            <div class="col-sm-4"> </div>
-            <div class="col-sm-4 boxSize" id = "border" onclick="location.href='/fitness/progress/';" style="cursor: pointer;"><div style="text-align: center">
-                <p>My Progress</p><i class="bi bi-person"></i>
-            </div></div>
-            <div class="col-sm-4"> </div>
-            
-        </div> -->
        
     </div>
 
